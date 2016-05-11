@@ -1,0 +1,74 @@
+\section{研究背景}
+
+\begin{frame}{分布式应用}
+  开放互联的网络环境, 软件/应用体现出``分布性'': 地理分布部署
+
+  \todo{图: 分布式应用}
+\end{frame}
+
+%%%%%%%%%%%%%%%
+\begin{frame}{数据复制}
+  \begin{center}
+    数据共享
+  \end{center}
+
+  \todo{图示: 集中式 $\Rightarrow$ 数据复制}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      集中式数据:
+      \begin{itemize}
+	\item 性能瓶颈
+	\item 单点故障
+      \end{itemize}
+    \column{0.50\textwidth}
+      数据复制:
+      \begin{itemize}
+	\item 负载均衡, 就近访问
+	\item 容灾备份
+      \end{itemize}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{分布副本数据的典型应用 (一)}
+  \fig{width = 0.618\textwidth}{figures/dsss.pdf}
+  {分布式存储系统 (\textcolor{blue}{\scriptsize 开源 [左]} \& \textcolor{red}{\scriptsize 商用 [右]})}.
+
+  上层业务需求 \citeinbeamer{Facebook}{OSDI}{10} vs. ``副本技术'':
+  \begin{description}
+    \item[高性能:] 低延迟就近访问副本数据
+    \item[高可靠性:] 备份容灾; 随时可用
+  \end{description}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{分布数据的典型应用 (二)}
+  \fig{width = 0.85\textwidth}{figures/file-share.pdf}
+  {个人多设备文件共享 {(\textcolor{blue}{\scriptsize [基于云] C/S 结构 [左]} \& 
+  \textcolor{red}{\scriptsize P2P 结构 [右]})}}
+
+  应用需求与特点 \citeinbeamer{Strauss}{MIT Thesis}{10} vs. ``副本技术'':
+  \begin{description}
+    \item[功能需求:] 文件副本
+    \item[网络断连:] 容灾备份; 离线可用
+  \end{description}
+\end{frame}
+%%%%%%%%%%%%%%%
+% \begin{frame}{分布副本数据的典型应用 (三)}
+%   \fig{width = 0.80\textwidth}{figures/coordination.pdf}
+%   {分布式协同应用(上)及服务(下).}
+% 
+%   分布式协同服务需求 \citeinbeamer{Burrows}{OSDI}{06} vs. ``副本技术'':
+%   \begin{description}
+%     \item[高性能:] 低延迟就近``读''副本 \citeinbeamer{Yahoo!}{USENIXATC}{10}
+%     \item[高可靠性:] 避免单点协同故障
+%   \end{description}
+% \end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{数据的形态 (总结)}
+  分布共享数据常以\question{副本}的形态存在:
+  \begin{description}
+    \item[功能需求:] 如, 多设备文件共享
+    \item[系统性能:] 低延迟就近访问
+    \item[高可靠性:] 备份容灾; 避免单点故障
+  \end{description}
+\end{frame}

@@ -9,41 +9,67 @@
 \usefonttheme[onlymath]{serif} % try "professionalfonts"
 \setCJKmainfont{Microsoft YaHei} % try SimSun
 
-\usepackage{amsmath}
+\setbeamertemplate{itemize items}[default]
+\setbeamertemplate{enumerate items}[default]
+
+\usepackage{amsmath, amsfonts, amssymb, mathtools}
+\usepackage{graphicx, subfig}
+\usepackage{adjustbox}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes, positioning, calc, backgrounds, fit}
 
 \theoremstyle{plain}
 \newtheorem{ctheorem}{定理}[section]
 \newtheorem{cdefinition}{定义}[section]
+
+% for fig without caption: #1: width/size; #2: fig file
+\newcommand{\fignocaption}[2]{
+  \begin{figure}[htp]
+    \centering
+    \includegraphics[#1]{#2}
+  \end{figure}
+}
+
+% for fig without caption: #1: width/size; #2: fig file; #3: fig caption
+\newcommand{\fig}[3]{
+  \begin{figure}[htp]
+    \centering
+      \includegraphics[#1]{#2}
+      \caption{#3}
+  \end{figure}
+}
+
+% for cite: #1: author; #2: conference #3: year
+\newcommand{\citeinbeamer}[3]{{\scriptsize{\textcolor{blue}{[#1@#2'#3]}}}}
+
+\newcommand{\question}[1]{\textcolor{red}{\bf #1}}
+\newcommand{\answer}[1]{\textcolor{blue}{\bf #1}}
+\newcommand{\alertred}[1]{\textcolor{red}{#1}}
+\newcommand{\alertblue}[1]{\textcolor{blue}{#1}}
+\newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO:} #1}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-\title[]{分布数据一致性及保障技术研究}
+\title[分布复制数据一致性及保障技术研究]{分布复制数据一致性及保障技术研究}
 \subtitle{}
 
 \author[魏恒峰]{魏恒峰 \\导师: 吕建 \hspace{0.20cm} 黄宇}
-
 \institute{南京大学软件所}
+\date{\today}
 
-\renewcommand{\today}{2015 年 11 月 21 日}
-
-\AtBeginSection[]
-{
-  \addtobeamertemplate{frametitle}{\vskip 3.0ex}{}
-  \begin{frame}[noframenumbering, plain]%<beamer>
-    \frametitle{分布数据一致性及保障技术研究}
+\AtBeginSection[]{
+  \begin{frame}[noframenumbering, plain]
+    \frametitle{分布复制数据一致性及保障技术研究}
     \tableofcontents[currentsection, sectionstyle=show/shaded, subsectionstyle=show/show/hide]
   \end{frame}
-  \addtobeamertemplate{frametitle}{\vskip -3.0ex}{}
 }
 
 % Delete this, if you do not want the table of contents to pop up 
 % at the beginning of each subsection:
-\AtBeginSubsection[]
-{
-  \addtobeamertemplate{frametitle}{\vskip 3.0ex}{}
-  \begin{frame}[noframenumbering, plain] %<beamer>
-    \frametitle{分布数据一致性及保障技术研究}
+\AtBeginSubsection[]{
+  \begin{frame}[noframenumbering, plain]
+    \frametitle{分布复制数据一致性及保障技术研究}
       \tableofcontents[currentsection, sectionstyle=show/shaded, subsectionstyle=show/shaded/hide]
   \end{frame}
-  \addtobeamertemplate{frametitle}{\vskip -3.0ex}{}
 }
 
 %%%%%%%%%%%%%%%%%%%%

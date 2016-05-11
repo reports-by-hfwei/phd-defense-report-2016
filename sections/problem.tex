@@ -1,0 +1,79 @@
+\section{研究问题}
+
+%%%%%%%%%%%%%%%
+\begin{frame}{Programming with Replicated Data}
+  \begin{columns}
+    \column{0.55\textwidth}
+      \fig{width = 0.80\textwidth}{figures/programming-with-replication.pdf}
+      {数据副本导致编程抽象失配 \todo{重绘}.}
+    \column{0.45\textwidth}
+      \only<2-3>{
+      开发人员: 读---计算---写
+      \begin{itemize}
+	\item 集中的``变量''视角
+	\item 顺序访问$\Rightarrow$ 顺序语义
+	\item \textcolor{blue}{\footnotesize 隐含假设:} 随时可用
+      \end{itemize}
+      }
+      
+      \vspace{1.0cm}
+
+      \only<3>{
+      现实: \todo{总结}
+      \begin{itemize}
+	\item 副本数据
+	\item 并发访问
+	\item 节点/通讯故障 
+      \end{itemize}
+      }
+
+      \only<4>{
+	通信 (Communication):
+	\begin{itemize}
+	  \item 从哪里读
+	  \item 写哪里去
+	  \item 失败如何处理
+	\end{itemize}
+      }
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{数据一致性问题}
+  \alertblue{编程抽象失配 $\Rightarrow$ 数据一致性问题:}
+  \begin{itemize}
+    \item 异常 (anomalies)
+    \item 难于编程
+    \item 难于保证正确性
+  \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{数据一致性问题}
+  \fig{width = 0.60\textwidth}{figures/data-inconsistency-comment-reordering.pdf}
+  {社交网络中, 消息-评论乱序 \citeinbeamer{Lloyd}{CACM}{14}.}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{数据一致性问题}
+  \begin{figure}[h!]
+    \centering
+    \begin{adjustbox}{max totalsize = {0.70\textwidth}{0.65\textheight}, center}
+      \input{figures/data-inconsistency-update-lost}
+    \end{adjustbox}
+    \caption{多设备文件共享时, 更新丢失 ($\#N = 3, \#W = 2, \#R = 1$).}
+  \end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{DSM Service}
+  \begin{columns}
+    \column{0.55\textwidth}
+      \todo{图: DSM Service}
+
+    \column{0.45\textwidth}
+      针对数据一致性问题:
+      \begin{itemize}
+	\item 提供共享变量抽象
+	\item 提供并发语义
+	\item 屏蔽节点/通讯故障
+      \end{itemize}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%

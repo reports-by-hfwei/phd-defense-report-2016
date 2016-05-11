@@ -1,1 +1,4 @@
 \beamer@endinputifotherversion {3.36pt}
+\beamer@sectionintoc {1}{研究背景}{2}{0}{1}
+\beamer@sectionintoc {2}{研究问题}{8}{0}{2}
+\beamer@sectionintoc {3}{研究方法}{19}{0}{3}
