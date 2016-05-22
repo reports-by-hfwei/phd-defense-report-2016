@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[shownotes]{beamer}
 
 \usepackage{xeCJK}
 \usepackage{fontspec}
@@ -15,6 +15,9 @@
 \usepackage{amsmath, amsfonts, amssymb, mathtools}
 \usepackage{graphicx, subfig}
 \usepackage{adjustbox}
+
+\usepackage{biblatex}
+\addbibresource{phd-defense-report.bib}
 
 \usepackage{tikz}
 \usetikzlibrary{shapes, positioning, calc, backgrounds, fit}
@@ -48,8 +51,9 @@
 \newcommand{\alertred}[1]{\textcolor{red}{#1}}
 \newcommand{\alertblue}[1]{\textcolor{blue}{#1}}
 \newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO:} #1}}
+\newcommand{\mathbfblue}[1]{\textcolor{blue}{$\mathbf{#1}$}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-\title[分布复制数据一致性及保障技术研究]{分布复制数据一致性及保障技术研究}
+\title[分布共享数据服务理论与技术研究]{分布共享数据服务理论与技术研究}
 \subtitle{}
 
 \author[魏恒峰]{魏恒峰 \\导师: 吕建 \hspace{0.20cm} 黄宇}
@@ -58,7 +62,7 @@
 
 \AtBeginSection[]{
   \begin{frame}[noframenumbering, plain]
-    \frametitle{分布复制数据一致性及保障技术研究}
+    \frametitle{分布共享数据服务理论与技术研究}
     \tableofcontents[currentsection, sectionstyle=show/shaded, subsectionstyle=show/show/hide]
   \end{frame}
 }
@@ -67,11 +71,12 @@
 % at the beginning of each subsection:
 \AtBeginSubsection[]{
   \begin{frame}[noframenumbering, plain]
-    \frametitle{分布复制数据一致性及保障技术研究}
+    \frametitle{分布共享数据服务理论与技术研究}
       \tableofcontents[currentsection, sectionstyle=show/shaded, subsectionstyle=show/shaded/hide]
   \end{frame}
 }
 
+% \bibliography{phd-defense-report.bib}
 %%%%%%%%%%%%%%%%%%%%
 \begin{document}
 

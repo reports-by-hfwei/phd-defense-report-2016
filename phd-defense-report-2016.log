@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.12.27)  11 MAY 2016 12:02
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.12.27)  22 MAY 2016 22:25
 entering extended mode
  restricted \write18 enabled.
  Source specials enabled.
@@ -1651,6 +1651,216 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@loff=\dimen327
 \@vwid@roff=\dimen328
 ))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/biblatex/biblatex.sty
+Package: biblatex 2015/10/21 v3.1 programmable bibliographies (PK/JW/AB)
+
+
+Package biblatex Warning: No "backend" specified, using Biber backend.
+(biblatex)                To use BibTeX, load biblatex with 
+(biblatex)                the "backend=bibtex" option.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/biblatex/biblatex2.sty
+Package: biblatex2 2015/10/21 v3.1 programmable bibliographies (biber) (PK/JW/A
+B)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count277
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/logreq/logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count278
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/logreq/logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@tabx@nest=\count279
+\c@listtotal=\count280
+\c@listcount=\count281
+\c@liststart=\count282
+\c@liststop=\count283
+\c@citecount=\count284
+\c@citetotal=\count285
+\c@multicitecount=\count286
+\c@multicitetotal=\count287
+\c@instcount=\count288
+\c@maxnames=\count289
+\c@minnames=\count290
+\c@maxitems=\count291
+\c@minitems=\count292
+\c@citecounter=\count293
+\c@savedcitecounter=\count294
+\c@uniquelist=\count295
+\c@uniquename=\count296
+\c@refsection=\count297
+\c@refsegment=\count298
+\c@maxextratitle=\count299
+\c@maxextratitleyear=\count300
+\c@maxextrayear=\count301
+\c@maxextraalpha=\count302
+\c@abbrvpenalty=\count303
+\c@highnamepenalty=\count304
+\c@lownamepenalty=\count305
+\c@maxparens=\count306
+\c@parenlevel=\count307
+\blx@tempcnta=\count308
+\blx@tempcntb=\count309
+\blx@tempcntc=\count310
+\blx@maxsection=\count311
+\blx@maxsegment@0=\count312
+\blx@notetype=\count313
+\blx@parenlevel@text=\count314
+\blx@parenlevel@foot=\count315
+\blx@sectionciteorder@0=\count316
+\labelnumberwidth=\skip77
+\labelalphawidth=\skip78
+\biblabelsep=\skip79
+\bibitemsep=\skip80
+\bibnamesep=\skip81
+\bibinitsep=\skip82
+\bibparsep=\skip83
+\bibhang=\skip84
+\blx@bcfin=\read3
+\blx@bcfout=\write5
+\c@mincomprange=\count317
+\c@maxcomprange=\count318
+\c@mincompwidth=\count319
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/biblatex/blx-dm.def)
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count320
+\c@savedafterword=\count321
+\c@annotator=\count322
+\c@savedannotator=\count323
+\c@author=\count324
+\c@savedauthor=\count325
+\c@bookauthor=\count326
+\c@savedbookauthor=\count327
+\c@commentator=\count328
+\c@savedcommentator=\count329
+\c@editor=\count330
+\c@savededitor=\count331
+\c@editora=\count332
+\c@savededitora=\count333
+\c@editorb=\count334
+\c@savededitorb=\count335
+\c@editorc=\count336
+\c@savededitorc=\count337
+\c@foreword=\count338
+\c@savedforeword=\count339
+\c@holder=\count340
+\c@savedholder=\count341
+\c@introduction=\count342
+\c@savedintroduction=\count343
+\c@namea=\count344
+\c@savednamea=\count345
+\c@nameb=\count346
+\c@savednameb=\count347
+\c@namec=\count348
+\c@savednamec=\count349
+\c@translator=\count350
+\c@savedtranslator=\count351
+\c@shortauthor=\count352
+\c@savedshortauthor=\count353
+\c@shorteditor=\count354
+\c@savedshorteditor=\count355
+\c@labelname=\count356
+\c@savedlabelname=\count357
+\c@institution=\count358
+\c@savedinstitution=\count359
+\c@lista=\count360
+\c@savedlista=\count361
+\c@listb=\count362
+\c@savedlistb=\count363
+\c@listc=\count364
+\c@savedlistc=\count365
+\c@listd=\count366
+\c@savedlistd=\count367
+\c@liste=\count368
+\c@savedliste=\count369
+\c@listf=\count370
+\c@savedlistf=\count371
+\c@location=\count372
+\c@savedlocation=\count373
+\c@organization=\count374
+\c@savedorganization=\count375
+\c@origlocation=\count376
+\c@savedoriglocation=\count377
+\c@origpublisher=\count378
+\c@savedorigpublisher=\count379
+\c@publisher=\count380
+\c@savedpublisher=\count381
+\c@language=\count382
+\c@savedlanguage=\count383
+\c@pageref=\count384
+\c@savedpageref=\count385
+\shorthandwidth=\skip85
+\shortjournalwidth=\skip86
+\shortserieswidth=\skip87
+\shorttitlewidth=\skip88
+\shortauthorwidth=\skip89
+\shorteditorwidth=\skip90
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2015/10/21 v3.1 biblatex compatibility (PK/JW/AB)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/biblatex/biblatex.def
+File: biblatex.def 
+\c@textcitecount=\count386
+\c@textcitetotal=\count387
+\c@textcitemaxnames=\count388
+\c@biburlnumpenalty=\count389
+\c@biburlucpenalty=\count390
+\c@biburllcpenalty=\count391
+\c@smartand=\count392
+)
+Package biblatex Info: Trying to load bibliography style 'numeric'...
+Package biblatex Info: ... file 'numeric.bbx' found.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
+File: numeric.bbx 2015/10/21 v3.1 biblatex bibliography style (PK/JW/AB)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2015/10/21 v3.1 biblatex bibliography style (PK/JW/AB)
+\c@bbx:relatedcount=\count393
+\c@bbx:relatedtotal=\count394
+))
+Package biblatex Info: Trying to load citation style 'numeric'...
+Package biblatex Info: ... file 'numeric.cbx' found.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
+File: numeric.cbx 2015/10/21 v3.1 biblatex citation style (PK/JW/AB)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\supercite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\smartcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+)))
 (/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
@@ -1695,7 +1905,7 @@ Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
 (/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
 dlers.code.tex
 File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
-\pgf@plot@mark@count=\count277
+\pgf@plot@mark@count=\count395
 \pgfplotmarksize=\dimen333
 )
 \tikz@lastx=\dimen334
@@ -1708,19 +1918,19 @@ File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
 \tikz@figbox@bg=\box76
 \tikz@tempbox=\box77
 \tikz@tempbox@bg=\box78
-\tikztreelevel=\count278
-\tikznumberofchildren=\count279
-\tikznumberofcurrentchild=\count280
-\tikz@fig@count=\count281
+\tikztreelevel=\count396
+\tikznumberofchildren=\count397
+\tikznumberofcurrentchild=\count398
+\tikz@fig@count=\count399
 
 (/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
 e.tex
 File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
-\pgfmatrixcurrentrow=\count282
-\pgfmatrixcurrentcolumn=\count283
-\pgf@matrix@numberofcolumns=\count284
+\pgfmatrixcurrentrow=\count400
+\pgfmatrixcurrentcolumn=\count401
+\pgf@matrix@numberofcolumns=\count402
 )
-\tikz@expandcount=\count285
+\tikz@expandcount=\count403
 
 (/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarytopaths.code.tex
@@ -1816,13 +2026,24 @@ File: tikzlibrarybackgrounds.code.tex 2013/07/18 v3.0.1a (rcs-revision 1.3)
 s/tikzlibraryfit.code.tex
 File: tikzlibraryfit.code.tex 2013/07/12 v3.0.1a (rcs-revision 1.5)
 )
-\c@ctheorem=\count286
-\c@cdefinition=\count287
+\c@ctheorem=\count404
+\c@cdefinition=\count405
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\\' on input line 55.
+(hyperref)                removing `\\' on input line 59.
 
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+File: english.lbx 2015/10/21 v3.1 biblatex localization (PK/JW/AB)
+)
+
+Package biblatex Warning: Patching footnotes failed.
+(biblatex)                Footnote detection will not work.
+
+\@quotelevel=\count406
+\@quotereset=\count407
 *************************************************
 * xeCJK warning: "CJKfamilydefault-undefined"
 * 
@@ -1834,31 +2055,31 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (./phd-defense-report-2016.aux)
 \openout1 = `phd-defense-report-2016.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 76.
-LaTeX Font Info:    Try loading font information for T3+cmr on input line 76.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 81.
+LaTeX Font Info:    Try loading font information for T3+cmr on input line 81.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/tipa/t3cmr.fd
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
-LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    ... okay on input line 81.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -1896,7 +2117,7 @@ LaTeX Font Info:    ... okay on input line 76.
 
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box101
-Package hyperref Info: Link coloring OFF on input line 76.
+Package hyperref Info: Link coloring OFF on input line 81.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1904,54 +2125,54 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count288
+\c@section@level=\count408
 )
-LaTeX Info: Redefining \ref on input line 76.
-LaTeX Info: Redefining \pageref on input line 76.
-LaTeX Info: Redefining \nameref on input line 76.
+LaTeX Info: Redefining \ref on input line 81.
+LaTeX Info: Redefining \pageref on input line 81.
+LaTeX Info: Redefining \nameref on input line 81.
 
 (./phd-defense-report-2016.out) (./phd-defense-report-2016.out)
-\@outlinefile=\write5
-\openout5 = `phd-defense-report-2016.out'.
+\@outlinefile=\write6
+\openout6 = `phd-defense-report-2016.out'.
 
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmr/m/n --> EU1/lmr/m/n on input line 76.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 76.
+(Font)                  OT1/cmr/m/n --> EU1/lmr/m/n on input line 81.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 81.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> EU1/lmr/bx/n on input line 76.
+(Font)                  OT1/cmr/bx/n --> EU1/lmr/bx/n on input line 81.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> EU1/lmr/bx/n on input line 76.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 76.
+(Font)                  OT1/cmr/bx/n --> EU1/lmr/bx/n on input line 81.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 81.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> EU1/lmss/m/n on input line 76.
+(Font)                  OT1/cmss/m/n --> EU1/lmss/m/n on input line 81.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> EU1/lmss/m/n on input line 76.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 76.
+(Font)                  OT1/cmss/bx/n --> EU1/lmss/m/n on input line 81.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 81.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> EU1/lmr/m/it on input line 76.
+(Font)                  OT1/cmr/m/it --> EU1/lmr/m/it on input line 81.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> EU1/lmr/m/it on input line 76.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 76.
+(Font)                  OT1/cmr/bx/it --> EU1/lmr/m/it on input line 81.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 81.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> EU1/lmtt/m/n on input line 76.
+(Font)                  OT1/cmtt/m/n --> EU1/lmtt/m/n on input line 81.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> EU1/lmtt/m/n on input line 76.
+(Font)                  OT1/cmtt/m/n --> EU1/lmtt/m/n on input line 81.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  EU1/lmr/m/n --> EU1/lmr/bx/n on input line 76.
+(Font)                  EU1/lmr/m/n --> EU1/lmr/bx/n on input line 81.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  EU1/lmr/m/it --> EU1/lmr/bx/it on input line 76.
+(Font)                  EU1/lmr/m/it --> EU1/lmr/bx/it on input line 81.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmr/bx/n --> EU1/lmr/bx/n on input line 76.
+(Font)                  OT1/cmr/bx/n --> EU1/lmr/bx/n on input line 81.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  EU1/lmr/bx/n --> EU1/lmr/bx/n on input line 76.
+(Font)                  EU1/lmr/bx/n --> EU1/lmr/bx/n on input line 81.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  EU1/lmss/m/n --> EU1/lmss/bx/n on input line 76.
+(Font)                  EU1/lmss/m/n --> EU1/lmss/bx/n on input line 81.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  EU1/lmr/m/it --> EU1/lmr/bx/it on input line 76.
+(Font)                  EU1/lmr/m/it --> EU1/lmr/bx/it on input line 81.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  EU1/lmtt/m/n --> EU1/lmtt/bx/n on input line 76.
+(Font)                  EU1/lmtt/m/n --> EU1/lmtt/bx/n on input line 81.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/beamer/translator/dicts/translato
 r-basic-dictionary/translator-basic-dictionary-English.dict
@@ -1977,7 +2198,7 @@ Dictionary: translator-numbers-dictionary, Language: English
 r-theorem-dictionary/translator-theorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \includegraphics on input line 76.
+LaTeX Info: Redefining \includegraphics on input line 81.
 .................................................
 . fontspec info: "setup-math"
 . 
@@ -1985,61 +2206,72 @@ LaTeX Info: Redefining \includegraphics on input line 76.
 .................................................
 \symlegacymaths=\mathgroup8
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 76.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 76.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 76.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 76.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 76.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 76.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 76.
-LaTeX Font Info:    Redeclaring math accent \check on input line 76.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 76.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 76.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 76.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 76.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 76.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 76.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 76.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 76.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 76.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 76.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 76.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 76.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 76.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 76.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 76.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 76.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 81.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 81.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 81.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 81.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 81.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 81.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 81.
+LaTeX Font Info:    Redeclaring math accent \check on input line 81.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 81.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 81.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 81.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 81.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 81.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 81.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 81.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 81.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 81.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 81.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 81.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 81.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 81.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 81.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 81.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 81.
 LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
-(Font)              `operators' in the math version `normal' on input line 76.
+(Font)              `operators' in the math version `normal' on input line 81.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> EU1/lmr/m/n on input line 76.
+(Font)                  OT1/cmr/m/n --> EU1/lmr/m/n on input line 81.
 LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
-(Font)              `operators' in the math version `bold' on input line 76.
+(Font)              `operators' in the math version `bold' on input line 81.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> EU1/lmr/m/n on input line 76.
+(Font)                  OT1/cmr/bx/n --> EU1/lmr/m/n on input line 81.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  EU1/lmr/m/n --> EU1/lmr/m/n on input line 76.
-LaTeX Font Info:    Redeclaring math alphabet \mathrm on input line 76.
+(Font)                  EU1/lmr/m/n --> EU1/lmr/m/n on input line 81.
+LaTeX Font Info:    Redeclaring math alphabet \mathrm on input line 81.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  EU1/lmr/m/it --> EU1/lmr/m/it on input line 76.
+(Font)                  EU1/lmr/m/it --> EU1/lmr/m/it on input line 81.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  EU1/lmr/bx/n --> EU1/lmr/bx/n on input line 76.
+(Font)                  EU1/lmr/bx/n --> EU1/lmr/bx/n on input line 81.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  EU1/lmss/m/n --> EU1/lmss/m/n on input line 76.
+(Font)                  EU1/lmss/m/n --> EU1/lmss/m/n on input line 81.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  EU1/lmtt/m/n --> EU1/lmtt/m/n on input line 76.
+(Font)                  EU1/lmtt/m/n --> EU1/lmtt/m/n on input line 81.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  EU1/lmr/m/n --> EU1/lmr/bx/n on input line 76.
+(Font)                  EU1/lmr/m/n --> EU1/lmr/bx/n on input line 81.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  EU1/lmr/bx/it --> EU1/lmr/bx/it on input line 76.
+(Font)                  EU1/lmr/bx/it --> EU1/lmr/bx/it on input line 81.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  EU1/lmss/bx/n --> EU1/lmss/bx/n on input line 76.
+(Font)                  EU1/lmss/bx/n --> EU1/lmss/bx/n on input line 81.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  EU1/lmtt/bx/n --> EU1/lmtt/bx/n on input line 76.
+(Font)                  EU1/lmtt/bx/n --> EU1/lmtt/bx/n on input line 81.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
+Package biblatex Info: XeTeX detected.
+(biblatex)             Assuming input encoding 'utf8'.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+\openout5 = `phd-defense-report-2016.bcf'.
 
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'phd-defense-report-2016.bbl' not found.
+
+No file phd-defense-report-2016.bbl.
+Package biblatex Info: Reference section=0 on input line 81.
+Package biblatex Info: Reference segment=0 on input line 81.
 (./phd-defense-report-2016.nav)
 *************************************************
 * xeCJK warning: "CJKfamily-Unknown"
@@ -2055,86 +2287,61 @@ Package caption Info: End \AtBeginDocument code.
 ] [3
 
 ]
-LaTeX Font Info:    Try loading font information for U+msa on input line 31.
+LaTeX Font Info:    Try loading font information for U+msa on input line 39.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 31.
+LaTeX Font Info:    Try loading font information for U+msb on input line 39.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [4
 
+] [5
+
+]
+File: figures/shared-data.png Graphic file (type QTm)
+
+<use  "figures/shared-data.png" > [6
+
+]
+File: figures/distributed-data.pdf Graphic file (type QTm)
+ <use  "figures/distributed-data.pdf" >
+[7
+
 ]
 File: figures/dsss.pdf Graphic file (type QTm)
-
-<use  "figures/dsss.pdf" > [5
+ <use  "figures/dsss.pdf" > [8
 
 ]
 File: figures/file-share.pdf Graphic file (type QTm)
- <use  "figures/file-share.pdf" > [6
-
-] [7
+ <use  "figures/file-share.pdf" > [9
 
 ])
-(./sections/problem.tex (./phd-defense-report-2016.toc) [8
+(./sections/problem.tex (./phd-defense-report-2016.toc) [10
 
 ]
-File: figures/programming-with-replication.pdf Graphic file (type QTm)
+File: figures/shared-data.png Graphic file (type QTm)
 
-<use  "figures/programming-with-replication.pdf" > [9
-
-]
-File: figures/programming-with-replication.pdf Graphic file (type QTm)
-
-<use  "figures/programming-with-replication.pdf" > [10
+<use  "figures/shared-data.png" > [11
 
 ]
-File: figures/programming-with-replication.pdf Graphic file (type QTm)
-
-<use  "figures/programming-with-replication.pdf" > [11
-
-]
-File: figures/programming-with-replication.pdf Graphic file (type QTm)
-
-<use  "figures/programming-with-replication.pdf" > [12
+File: figures/distributed-data.pdf Graphic file (type QTm)
+ <use  "figures/distributed-data.pdf" >
+[12
 
 ] [13
+
+] [14
+
+] [15
 
 ]
 File: figures/data-inconsistency-comment-reordering.pdf Graphic file (type QTm)
 
 
-<use  "figures/data-inconsistency-comment-reordering.pdf" > [14
-
-]
-(./figures/data-inconsistency-update-lost.tex
-File: figures/phone-icon.png Graphic file (type QTm)
- <use  "figures/phone-icon.png" >
-File: figures/tablet-icon.jpg Graphic file (type QTm)
-
-<use  "figures/tablet-icon.jpg" >
-File: figures/pc-icon.png Graphic file (type QTm)
- <use  "figures/pc-icon.png" >
-File: figures/person-icon.png Graphic file (type QTm)
-
-<use  "figures/person-icon.png" >) [15
-
-]
-(./figures/data-inconsistency-update-lost.tex
-File: figures/phone-icon.png Graphic file (type QTm)
- <use  "figures/phone-icon.png" >
-File: figures/tablet-icon.jpg Graphic file (type QTm)
-
-<use  "figures/tablet-icon.jpg" >
-File: figures/pc-icon.png Graphic file (type QTm)
- <use  "figures/pc-icon.png" >
-File: figures/person-icon.png Graphic file (type QTm)
-
-<use  "figures/person-icon.png" >
-File: figures/person-icon.png Graphic file (type QTm)
- <use  "figures/person-icon.png" >) [16
+<use  "figures/data-inconsistency-comment-reordering.pdf" > [16
 
 ]
 (./figures/data-inconsistency-update-lost.tex
@@ -2149,38 +2356,79 @@ File: figures/person-icon.png Graphic file (type QTm)
 
 <use  "figures/person-icon.png" >) [17
 
-] [18
+]
+(./figures/data-inconsistency-update-lost.tex
+File: figures/phone-icon.png Graphic file (type QTm)
+ <use  "figures/phone-icon.png" >
+File: figures/tablet-icon.jpg Graphic file (type QTm)
 
-]) (./sections/method.tex
-(./phd-defense-report-2016.toc) [19
+<use  "figures/tablet-icon.jpg" >
+File: figures/pc-icon.png Graphic file (type QTm)
+ <use  "figures/pc-icon.png" >
+File: figures/person-icon.png Graphic file (type QTm)
+
+<use  "figures/person-icon.png" >
+File: figures/person-icon.png Graphic file (type QTm)
+ <use  "figures/person-icon.png" >) [18
+
+]
+(./figures/data-inconsistency-update-lost.tex
+File: figures/phone-icon.png Graphic file (type QTm)
+ <use  "figures/phone-icon.png" >
+File: figures/tablet-icon.jpg Graphic file (type QTm)
+
+<use  "figures/tablet-icon.jpg" >
+File: figures/pc-icon.png Graphic file (type QTm)
+ <use  "figures/pc-icon.png" >
+File: figures/person-icon.png Graphic file (type QTm)
+
+<use  "figures/person-icon.png" >) [19
 
 ] [20
 
-]) (./sections/work.tex)
-(./sections/future.tex)
-\tf@nav=\write6
-\openout6 = `phd-defense-report-2016.nav'.
+]) (./sections/method.tex
+(./phd-defense-report-2016.toc) [21
 
-\tf@toc=\write7
-\openout7 = `phd-defense-report-2016.toc'.
+] (./phd-defense-report-2016.toc) [22
 
-\tf@snm=\write8
-\openout8 = `phd-defense-report-2016.snm'.
+]
+[23
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 89.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 89.
+] [24
+
+] [25
+
+] [26
+
+] (./phd-defense-report-2016.toc) [27
+
+]) (./sections/work.tex) (./sections/future.tex)
+\tf@nav=\write7
+\openout7 = `phd-defense-report-2016.nav'.
+
+\tf@toc=\write8
+\openout8 = `phd-defense-report-2016.toc'.
+
+\tf@snm=\write9
+\openout9 = `phd-defense-report-2016.snm'.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 94.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 94.
  (./phd-defense-report-2016.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 89.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 89.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 89.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 94.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 94.
+Package logreq Info: Writing requests to 'phd-defense-report-2016.run.xml'.
+\openout1 = `phd-defense-report-2016.run.xml'.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 94.
  ) 
 Here is how much of TeX's memory you used:
- 43266 strings out of 493668
- 886737 string characters out of 6145662
- 934666 words of memory out of 5000000
- 45900 multiletter control sequences out of 15000+600000
- 18740 words of font info for 117 fonts, out of 8000000 for 9000
+ 48516 strings out of 493668
+ 981789 string characters out of 6145662
+ 1373574 words of memory out of 5000000
+ 51076 multiletter control sequences out of 15000+600000
+ 18836 words of font info for 129 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
- 56i,17n,83p,10451b,1012s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,17n,83p,10451b,1014s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on phd-defense-report-2016.pdf (20 pages).
+Output written on phd-defense-report-2016.pdf (27 pages).
