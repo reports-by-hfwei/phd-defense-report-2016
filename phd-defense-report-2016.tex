@@ -13,8 +13,10 @@
 \setbeamertemplate{enumerate items}[default]
 
 \usepackage{amsmath, amsfonts, amssymb, mathtools}
-\usepackage{graphicx, subfig}
+\usepackage{graphicx, subcaption}
 \usepackage{adjustbox}
+\usepackage{mdframed}
+\usepackage{listings}
 
 \usepackage{biblatex}
 \addbibresource{phd-defense-report.bib}
@@ -23,8 +25,9 @@
 \usetikzlibrary{shapes, positioning, calc, backgrounds, fit}
 
 \theoremstyle{plain}
+\newtheorem{cdef}{定义}[section]
 \newtheorem{ctheorem}{定理}[section]
-\newtheorem{cdefinition}{定义}[section]
+\newtheorem{cquestion}{问题:}[section]
 
 % for fig without caption: #1: width/size; #2: fig file
 \newcommand{\fignocaption}[2]{
@@ -46,7 +49,7 @@
 % for cite: #1: author; #2: conference #3: year
 \newcommand{\citeinbeamer}[3]{{\scriptsize{\textcolor{blue}{[#1@#2'#3]}}}}
 
-\newcommand{\question}[1]{\textcolor{red}{\bf #1}}
+\newcommand{\question}[1]{\textcolor{red}{\large #1}}
 \newcommand{\answer}[1]{\textcolor{blue}{\bf #1}}
 \newcommand{\alertred}[1]{\textcolor{red}{#1}}
 \newcommand{\alertblue}[1]{\textcolor{blue}{#1}}

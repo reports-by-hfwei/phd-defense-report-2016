@@ -8,9 +8,10 @@
     \column{0.50\textwidth}
       \textcolor{red}{共享变量}编程模型 (\todo{happy programmer}): 
       \begin{itemize}
-	\item 读---计算---写
-	\item 只有一份 (one-copy) 数据
-	\item \textcolor{cyan}{\footnotesize 隐含假设:} 数据随时可用
+	\item 数据层: 数据建模为变量
+	\item 业务层: 读---计算---写
+	\item 变量全局唯一 (one-copy)
+	\item \textcolor{cyan}{\footnotesize 隐含假设:} 变量随时可访问
 	\item 读操作返回最新值 
       \end{itemize}
   \end{columns}
@@ -24,6 +25,7 @@
       共享变量编程模型与分布数据不匹配:
       \begin{itemize}
 	\item 数据副本 (replication)
+	\item 没有全局唯一变量的概念
 	\item 节点/通讯故障
 	\item 读操作语义无定义
       \end{itemize}
@@ -42,56 +44,112 @@
 	\item 如何处理失败
       \end{itemize}
     \column{0.50\textwidth}
+      \pause
       消息传递编程模型的缺点: (\todo{unhappy programmer})
-      \begin{itemize}
-	\item 数据层分布数据细节暴露
-	\item 业务层难于编程
-	\item 业务层难于保证正确性
-      \end{itemize}
+      \begin{description}
+	\item[数据层:] 暴露分布数据细节
+	\item[业务层:] 难于编程
+	\item[数据层:] 数据语义不明确
+	\item[业务层:] 难于保证程序正确性
+      \end{description}
   \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{分布共享数据服务}
+\begin{frame}{面向分布数据的编程模型 (III)}
   \begin{center}
-    \textcolor{red}{分布共享数据}服务: 在\textcolor{blue}{分布数据}之上提供\textcolor{blue}{共享数据}的假象
+    共享变量编程模型与分布数据不匹配的根本原因: 
+
+    \textcolor{blue}{\large 分布数据一致性问题}
   \end{center}
-  
-  \begin{description}
-    \item[核心功能:] 
-    \item[核心问题:] 数据一致性问题
-  \end{description}
+
+  \begin{cdef}[数据一致性问题 (非形式化定义)]
+    读操作语义问题: 在分布数据环境下, 读操作允许返回什么值?
+  \end{cdef}
+
+  \pause
+  \begin{alertblock}{如何理解数据一致性问题:}
+    \begin{enumerate}
+      \item 数据层数据一致与否是相对于业务层逻辑而言的
+      \item 可通过业务层出现的异常行为(anomalies)来衡量数据是否一致
+    \end{enumerate}
+  \end{alertblock}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题}
-\end{frame}
-%%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题}
+\begin{frame}{数据一致性问题举例 (I)}
   \fig{width = 0.60\textwidth}{figures/data-inconsistency-comment-reordering.pdf}
   {社交网络中, 消息-评论乱序 \citeinbeamer{Lloyd}{CACM}{14}.}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题}
+\begin{frame}{数据一致性问题举例 (II)}
   \begin{figure}[h!]
     \centering
-    \begin{adjustbox}{max totalsize = {0.70\textwidth}{0.65\textheight}, center}
+    \begin{adjustbox}{max totalsize = {0.65\textwidth}{0.65\textheight}, center}
       \input{figures/data-inconsistency-update-lost}
     \end{adjustbox}
     \caption{多设备文件共享时, 更新丢失 ($\#N = 3, \#W = 2, \#R = 1$).}
   \end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{DSM Service}
-  \begin{columns}
-    \column{0.55\textwidth}
-      \todo{图: DSM Service}
+\begin{frame}{面向分布数据的编程模型 (IV)}
+  \begin{center}
+    共享变量编程模型与分布数据不匹配: 数据一致性问题 
+  \end{center}
 
-    \column{0.45\textwidth}
-      针对数据一致性问题:
+  \vspace{0.50cm}
+  消息传递编程模型: 业务层显式处理数据一致性问题
+  \begin{itemize}
+    \item 理论难度大, 实现繁琐
+    \item 处理不当: 异常
+  \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{面向分布数据的编程模型 (V)}
+  \begin{cquestion}
+    如何解决共享变量编程模型与分布数据不匹配的问题?
+  \end{cquestion}
+
+  \vspace{0.30cm}
+  \begin{center}
+    {\large \textcolor{red}{分布共享数据}服务: 在\textcolor{blue}{分布数据}之上提供\textcolor{blue}{共享数据}的假象}
+  \end{center}
+  
+  \begin{description}
+    \item<2->[业务层:] 采用``自然的''共享变量编程模型
+    \item<3->[分布共享数据服务:] 专注分布数据一致性问题, 实现分布数据透明性
       \begin{itemize}
-	\item 提供共享变量抽象
-	\item 提供并发语义
-	\item 屏蔽节点/通讯故障
+	\item 屏蔽消息传递编程模型的通信细节
+	\item 形式化定义读操作语义
       \end{itemize}
-  \end{columns}
+    \item<2->[数据层:] 分布数据
+  \end{description}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{分布共享数据服务应用举例 (I)}
+   \lstset{language=C++,
+           basicstyle=\ttfamily\scriptsize,
+           keywordstyle=\color{blue}\ttfamily,
+           stringstyle=\color{red}\ttfamily,
+           commentstyle=\color{green}\ttfamily,
+	   breaklines=true,
+	   captionpos=b,
+	   caption=在社交网络应用中使用满足``因果一致性''的共享变量.
+          }
+    \begin{lstlisting}
+      // Alice's post
+      put(key = lost_msg, val = "lost")
+      put_after(key = found_msg, val = "found", dep = lost_msg)
+
+      // Bob's reply
+      get(key = found_msg)  // get "found"
+      put(key = glad_msg, val = "glad", dep = found_msg)
+
+      // Eve's view
+      read(key = glad_msg)  // get "glad"
+      read(key = found_msg) // get "found" instead of "NULL"
+    \end{lstlisting}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{分布共享数据服务应用举例 (II)}
+  Another example: coordination???
 \end{frame}
 %%%%%%%%%%%%%%%
