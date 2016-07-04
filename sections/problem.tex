@@ -1,78 +1,31 @@
 \section{研究问题}
 
 %%%%%%%%%%%%%%%
-\begin{frame}{面向共享数据的编程模型}
-  \begin{columns}
-    \column{0.50\textwidth}
-      \fig{width = 0.60\textwidth}{figures/shared-data.png}{(集中式)共享数据系统 \todo{重绘}.}
-    \column{0.50\textwidth}
-      \textcolor{red}{共享变量}编程模型 (\todo{happy programmer}): 
-      \begin{itemize}
-	\item 数据层: 数据建模为变量
-	\item 业务层: 读---计算---写
-	\item 变量全局唯一 (one-copy)
-	\item \textcolor{cyan}{\footnotesize 隐含假设:} 变量随时可访问
-	\item 读操作返回最新值 
-      \end{itemize}
-  \end{columns}
-\end{frame}
-%%%%%%%%%%%%%%%
-\begin{frame}{面向分布数据的编程模型 (I)}
-  \begin{columns}
-    \column{0.50\textwidth}
-      \fig{width = 0.80\textwidth}{figures/distributed-data.pdf}{分布数据系统.}
-    \column{0.50\textwidth}
-      共享变量编程模型与分布数据不匹配:
-      \begin{itemize}
-	\item 数据副本 (replication)
-	\item 没有全局唯一变量的概念
-	\item 节点/通讯故障
-	\item 读操作语义无定义
-      \end{itemize}
-  \end{columns}
-\end{frame}
-%%%%%%%%%%%%%%%
-\begin{frame}{面向分布数据的编程模型 (II)}
-  \begin{columns}[t]
-    \column{0.50\textwidth}
-      \textcolor{red}{消息传递}编程模型:
-      \begin{itemize}
-	\item 读/写 + 通信 (communication)
-	\item 从哪里读
-	\item 写哪里去
-	\item 如何理解返回值
-	\item 如何处理失败
-      \end{itemize}
-    \column{0.50\textwidth}
-      \pause
-      消息传递编程模型的缺点: (\todo{unhappy programmer})
-      \begin{description}
-	\item[数据层:] 暴露分布数据细节
-	\item[业务层:] 难于编程
-	\item[数据层:] 数据语义不明确
-	\item[业务层:] 难于保证程序正确性
-      \end{description}
-  \end{columns}
-\end{frame}
-%%%%%%%%%%%%%%%
-\begin{frame}{面向分布数据的编程模型 (III)}
-  \begin{center}
-    共享变量编程模型与分布数据不匹配的根本原因: 
+\begin{frame}{数据一致性问题}
+  \todo{图: 从分布到共享} 
 
-    \textcolor{blue}{\large 分布数据一致性问题}
+  \begin{center}
+	读操作语义问题: 在分布数据环境下, 读操作允许返回什么值?
   \end{center}
 
-  \begin{cdef}[数据一致性问题 (非形式化定义)]
-    读操作语义问题: 在分布数据环境下, 读操作允许返回什么值?
-  \end{cdef}
-
   \pause
-  \begin{alertblock}{如何理解数据一致性问题:}
-    \begin{enumerate}
-      \item 数据层数据一致与否是相对于业务层逻辑而言的
-      \item 可通过业务层出现的异常行为(anomalies)来衡量数据是否一致
-    \end{enumerate}
-  \end{alertblock}
+  \vspace{1.00cm}
+
+  \begin{center}
+	\textcolor{blue}{\Large 数据一致性问题}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{数据一致性问题}
+  数据一致与否是相对于应用逻辑而言的:
+  \pause
+  \begin{itemize}[<+->]
+	\setlength\itemsep{8pt}
+	\item 数据一致性模型多样
+	\item 数据一致性模型有强弱之分
+	\item 应用规约数据一致性需求
+	\item 数据不一致导致应用异常(anomalies)
+  \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题举例 (I)}
@@ -90,66 +43,50 @@
   \end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{面向分布数据的编程模型 (IV)}
-  \begin{center}
-    共享变量编程模型与分布数据不匹配: 数据一致性问题 
-  \end{center}
+\begin{frame}{数据一致性问题研究的历史阶段}
+  \fignocaption{width = 0.30\textwidth}{figures/taste-of-past.jpg}
 
-  \vspace{0.50cm}
-  消息传递编程模型: 业务层显式处理数据一致性问题
-  \begin{itemize}
-    \item 理论难度大, 实现繁琐
-    \item 处理不当: 异常
-  \end{itemize}
+  \todo{图: ps}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{面向分布数据的编程模型 (V)}
-  \begin{cquestion}
-    如何解决共享变量编程模型与分布数据不匹配的问题?
-  \end{cquestion}
+\begin{frame}{数据一致性问题研究的历史阶段 (I; 1970s)}
+  \fignocaption{width = 0.40\textwidth}{figures/notes-on-distributed-databases.png}
 
-  \vspace{0.30cm}
   \begin{center}
-    {\large \textcolor{red}{分布共享数据}服务: 在\textcolor{blue}{分布数据}之上提供\textcolor{blue}{共享数据}的假象}
+	Tradeoff availability for consistency {\scriptsize (and simplicity)}.
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{数据一致性问题研究的历史阶段 (II; Middle 1990s)}
+  Eventual {\scriptsize (weak)} consistency \citeinbeamer{Terry}{PDIS}{94}, \citeinbeamer{Terry}{SOSP}{95} driven by mobile computing.
   
-  \begin{description}
-    \item<2->[业务层:] 采用``自然的''共享变量编程模型
-    \item<3->[分布共享数据服务:] 专注分布数据一致性问题, 实现分布数据透明性
-      \begin{itemize}
-	\item 屏蔽消息传递编程模型的通信细节
-	\item 形式化定义读操作语义
-      \end{itemize}
-    \item<2->[数据层:] 分布数据
-  \end{description}
+  \fignocaption{width = 0.40\textwidth}{figures/bayou-paper.png}
+
+  \begin{center}
+	Tradeoff consistency for availability.
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}[fragile]{分布共享数据服务应用举例 (I)}
-   \lstset{language=C++,
-           basicstyle=\ttfamily\scriptsize,
-           keywordstyle=\color{blue}\ttfamily,
-           stringstyle=\color{red}\ttfamily,
-           commentstyle=\color{green}\ttfamily,
-	   breaklines=true,
-	   captionpos=b,
-	   caption=在社交网络应用中使用满足``因果一致性''的共享变量.
-          }
-    \begin{lstlisting}
-      // Alice's post
-      put(key = lost_msg, val = "lost")
-      put_after(key = found_msg, val = "found", dep = lost_msg)
+\begin{frame}{数据一致性问题研究的历史阶段 (III; Early 2000s)}
+  \fignocaption{width = 0.50\textwidth}{figures/cap-theorem.pdf}
+  \todo{图: 重绘}
 
-      // Bob's reply
-      get(key = found_msg)  // get "found"
-      put(key = glad_msg, val = "glad", dep = found_msg)
-
-      // Eve's view
-      read(key = glad_msg)  // get "glad"
-      read(key = found_msg) // get "found" instead of "NULL"
-    \end{lstlisting}
+  CAP定理: 分布式系统\question{无法}同时满足强一致性, 可用性和分区容错性.
+  \citeinbeamer{Brewer}{PODC}{00} \citeinbeamer{Gilbert}{SIGACT}{02}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{分布共享数据服务应用举例 (II)}
-  Another example: coordination???
+\begin{frame}{数据一致性问题研究的历史阶段 (IV; Late 2000s)}
+  \fignocaption{width = 0.30\textwidth}{figures/amazon-dynamo-logo.jpg}
+
+  \begin{columns}
+	\column{0.50\textwidth}
+	  %\fignocaption{width = 0.50\textwidth}{figures/}
+	\column{0.50\textwidth}
+	  %\fignocaption{width = 0.50\textwidth}{figures/}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{数据一致性问题研究的历史阶段 (V; 2010s)}
+  \fignocaption{width = 0.65\textwidth}{figures/pacelc-tradeoff.pdf}
 \end{frame}
 %%%%%%%%%%%%%%%
