@@ -2,57 +2,19 @@
 
 %%%%%%%%%%%%%%%
 \begin{frame}{分布式应用}
-  开放互联的网络环境下, 网络应用 (web applications) 分布部署.
+  \fignocaption{width = 0.30\textwidth}{figures/sina-weibo.png}
 
-  \todo{图: 分布式应用 (Weibo social network 举例)}
+  \todo{动画: 分布部署}
+
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{分布式应用}
-  \begin{center}
-    应用三层架构: 表示层, 业务层, \textcolor{red}{数据层}
-  \end{center}
+\begin{frame}{分布数据}
+  (\todo{动画: partition + replication})
 
-  \todo{图: 三层架构}
-
-  \begin{columns}[t]
-    \column{0.50\textwidth}
-      数据层中间件:
-      \begin{itemize}
-	\item 屏蔽底层数据具体形态
-	\item 简化业务层开发
-      \end{itemize}
-    \column{0.50\textwidth}
-    数据层中间件\mathbfblue{H^3L}特性:
-      \begin{itemize}
-	\item high availability
-	\item high fault-tolerance
-	\item high scalability
-	\item low latency
-      \end{itemize}
-  \end{columns}
-
-  \only<2->{
-    \begin{center}
-      数据形态: 共享数据 (shared data) vs. 分布数据 (distributed data)
-    \end{center}
-  }
-\end{frame}
-%%%%%%%%%%%%%%%
-\begin{frame}{数据层: 共享数据}
-  \fig{width = 0.35\textwidth}{figures/shared-data.png}{(集中式)共享数据系统 \todo{重绘}.}
-
-  \begin{itemize}
-    \item 单点故障 $\nRightarrow$ high availability
-    \item 性能瓶颈 $\nRightarrow$ low latency
-    \item 超荷负载 $\nRightarrow$ high scalability
-  \end{itemize}
-\end{frame}
-%%%%%%%%%%%%%%%
-\begin{frame}{数据层: 分布数据}
-  \fig{width = 0.40\textwidth}{figures/distributed-data.pdf}{分布数据系统 \todo{动画: partition+replication}.}
+  \fignocaption{width = 0.45\textwidth}{figures/riak-data-distribution.png}
 
   \begin{center}
-    {\LARGE distributed data : partition + replication}
+    {\Large distributed data : partition \& replication}
   \end{center}
 
   % \begin{itemize}
@@ -62,7 +24,7 @@
   % \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{分布数据应用举例 (I)}
+\begin{frame}{分布数据典型应用 (I)}
   \fig{width = 0.618\textwidth}{figures/dsss.pdf}
   {分布式存储系统 (\textcolor{blue}{\scriptsize 开源 [左]} \& \textcolor{red}{\scriptsize 商用 [右]}).}
 
@@ -73,7 +35,7 @@
   \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{分布数据应用举例 (II)}
+\begin{frame}{分布数据典型应用 (II)}
   \fig{width = 0.85\textwidth}{figures/file-share.pdf}
   {个人多设备文件共享 {(\textcolor{blue}{\scriptsize [基于云] C/S 结构 [左]} \& 
   \textcolor{red}{\scriptsize P2P 结构 [右]}).}}
@@ -96,12 +58,32 @@
 %   \end{description}
 % \end{frame}
 %%%%%%%%%%%%%%%
-% \begin{frame}{数据的形态 (总结)}
-%   分布共享数据常以\question{副本}的形态存在:
-%   \begin{description}
-%     \item[功能需求:] 如, 多设备文件共享
-%     \item[系统性能:] 低延迟就近访问
-%     \item[高可靠性:] 备份容灾; 避免单点故障
-%   \end{description}
+\begin{frame}{分布式应用访问分布数据}
+  \fignocaption{width = 0.40\textwidth}{figures/distributed-data.pdf}
+  
+  \todo{重绘: 显示 partition \& replication}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{分布共享数据服务}
+  \begin{columns}
+	\column{0.50\textwidth}
+	  \todo{图: 分布共享数据服务}
+	\column{0.50\textwidth}
+	  \begin{itemize}[<+->]
+		\item 简化上层应用的开发
+		\item 提供共享数据的抽象
+		\item 屏蔽底层数据的分布性
+	  \end{itemize}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%
+% \begin{frame}{分布式应用}
+%     数据层中间件\mathbfblue{H^3L}特性:
+% 	\begin{itemize}
+% 	  \item high availability
+% 	  \item high fault-tolerance
+% 	  \item high scalability
+% 	  \item low latency
+% 	\end{itemize}
 % \end{frame}
 %%%%%%%%%%%%%%%
