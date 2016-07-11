@@ -90,3 +90,43 @@
   \fignocaption{width = 0.65\textwidth}{figures/pacelc-tradeoff.pdf}
 \end{frame}
 %%%%%%%%%%%%%%%
+\begin{frame}{数据一致性问题研究的发展趋势}
+  云计算凸显应用价值观
+
+  binary $\Rightarrow$ spectrum
+
+  tunable consistency
+
+  \fignocaption{width = 0.30\textwidth}{figures/sla-dashboard.jpg}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{数据一致性问题研究的发展趋势}
+  \fignocaption{width = 0.40\textwidth}{figures/sla.jpg}
+
+  更灵活的数据一致性模型:
+  \begin{enumerate}
+    \setlength{\itemsep}{5pt}
+    \item 多样化, 可定制 \citeinbeamer{Terry}{CACM}{13}
+    \uncover<2->{
+      \begin{description}
+        \item[多样化:] 
+          \begin{itemize}
+            \item 一致性族: causality; read-your-writes {\scriptsize (RYW)}
+            \item 参数调节: 提供``有限度''的不一致 \citeinbeamer{Yu}{TOCS}{02}
+          \end{itemize}
+        \item[可定制:] 混合使用, 运行时可变
+      \end{description}
+    }
+  \item 精细化, 可度量 \citeinbeamer{Bailis}{VLDB}{12}
+    \uncover<3->{
+      \begin{description}
+        \item[精细化:] ``在大多数情况下, 访问到一致数据''
+        \item[可度量:] 量化系统执行, 后验系统对一致性的满足程度 
+      \end{description}
+    }
+  \end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%
