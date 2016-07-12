@@ -1,0 +1,44 @@
+\section{附录}
+
+%%%%%%%%%%%%%%%
+\begin{frame}{数据一致性问题研究的历史阶段 (I; 1970s)}
+  \fignocaption{width = 0.40\textwidth}{figures/notes-on-distributed-databases.png}
+
+  \begin{center}
+	Tradeoff availability for consistency {\scriptsize (and simplicity)}.
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{数据一致性问题研究的历史阶段 (II; Middle 1990s)}
+  Eventual {\scriptsize (weak)} consistency \citeinbeamer{Terry}{PDIS}{94}, \citeinbeamer{Terry}{SOSP}{95} driven by mobile computing.
+  
+  \fignocaption{width = 0.40\textwidth}{figures/bayou-paper.png}
+
+  \begin{center}
+	Tradeoff consistency for availability.
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{数据一致性问题研究的历史阶段 (III; Early 2000s)}
+  \fignocaption{width = 0.50\textwidth}{figures/cap-theorem.pdf}
+  \todo{图: 重绘}
+
+  CAP定理: 分布式系统\question{无法}同时满足强一致性, 可用性和分区容错性.
+  \citeinbeamer{Brewer}{PODC}{00} \citeinbeamer{Gilbert}{SIGACT}{02}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{数据一致性问题研究的历史阶段 (IV; Late 2000s)}
+  \fignocaption{width = 0.30\textwidth}{figures/amazon-dynamo-logo.jpg}
+
+  \begin{columns}
+	\column{0.50\textwidth}
+	  %\fignocaption{width = 0.50\textwidth}{figures/}
+	\column{0.50\textwidth}
+	  %\fignocaption{width = 0.50\textwidth}{figures/}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{数据一致性问题研究的历史阶段 (V; 2010s)}
+  \fignocaption{width = 0.65\textwidth}{figures/pacelc-tradeoff.pdf}
+\end{frame}
+%%%%%%%%%%%%%%%
