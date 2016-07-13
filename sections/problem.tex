@@ -2,29 +2,12 @@
 
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题}
-  \todo{图: 从分布到共享} 
-
-  \begin{center}
-	读操作语义问题: 在分布数据环境下, 读操作允许返回什么值?
-  \end{center}
-
-  \pause
-  \vspace{1.00cm}
-
-  \begin{center}
-	\textcolor{blue}{\Large 数据一致性问题}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题}
-  数据一致与否是相对于应用逻辑而言的:
-  \pause
-  \begin{itemize}[<+->]
-	\setlength\itemsep{8pt}
-	\item 数据一致性模型多样
-	\item 数据一致性模型有强弱之分
-	\item 应用规约数据一致性需求
-	\item 数据不一致导致应用异常(anomalies)
+  读操作语义问题:
+  \begin{itemize}
+	\setlength{\itemsep}{10pt}
+	\item 共享数据环境: 返回\textcolor{red}{最新}写入的值
+	\item 分布数据环境: ``最新''没有定义 \textcolor{red}{\small (副本)}
+	\item \only<2->{\textcolor{red}{数据一致性}}问题: 在分布数据环境下, 读操作允许返回什么值?
   \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%
@@ -42,6 +25,36 @@
     \caption{多设备文件共享时, 更新丢失 ($\#N = 3, \#W = 2, \#R = 1$).}
   \end{figure}
 \end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{分布共享数据服务}
+  \begin{columns}
+	\column{0.50\textwidth}
+	  \todo{图: 分布共享数据服务 (简化图)}
+	  (数据)一致性模型是核心概念.
+	\column{0.50\textwidth}
+	  \begin{itemize}[<+->]
+		\setlength\itemsep{10pt}
+		\item 简化上层应用的开发
+		\item 提供共享数据的抽象
+		\item 屏蔽底层数据的分布性
+	  \end{itemize}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{数据一致性模型}
+\end{frame}
+%%%%%%%%%%%%%%%
+% \begin{frame}{数据一致性问题}
+%   数据一致与否是相对于应用逻辑而言的:
+%   \pause
+%   \begin{itemize}[<+->]
+% 	\setlength\itemsep{8pt}
+% 	\item 数据一致性模型多样
+% 	\item 数据一致性模型有强弱之分
+% 	\item 应用规约数据一致性需求
+% 	\item 数据不一致导致应用异常(anomalies)
+%   \end{itemize}
+% \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究的历史阶段}
   \fignocaption{width = 0.30\textwidth}{figures/taste-of-past.jpg}
@@ -61,68 +74,79 @@
   \fignocaption{width = 0.40\textwidth}{figures/sla-tools.jpg}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题研究的发展趋势}
-  \begin{columns}
-	\column{0.50\textwidth}
-	  \fignocaption{scale = 0.08}{figures/coin-flip.jpg}
-	\column{0.50\textwidth}
-	  \fignocaption{scale = 0.07}{figures/prism-spectrum.jpg}
-  \end{columns}
-
-  \vspace{0.50cm} 
-  \begin{center}
-	数据一致性``精细化'': 从二元到连续谱.
-  \end{center}
+\begin{frame}{数据一致性问题研究的发展趋势 (I)}
+  \begin{description}
+	\setlength{\itemsep}{20pt}
+	\item[精细化:] 从二元到连续谱
+	  \begin{columns}
+		\column{0.50\textwidth}
+		  \fignocaption{scale = 0.06}{figures/coin-flip.jpg}
+		\column{0.50\textwidth}
+		  \fignocaption{scale = 0.05}{figures/prism-spectrum.jpg}
+	  \end{columns}
+	\item[可度量:] think \textcolor{red}{\it probabilistically} \citeinbeamer{Brewer}{}{}
+	  \fignocaption{width = 0.25\textwidth}{figures/tape-measure.jpg}
+	  \begin{center}
+		量化系统执行, 后验系统对一致性的满足程度
+	  \end{center}
+  \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题研究的发展趋势}
-  \fignocaption{width = 0.40\textwidth}{figures/figure-placeholder.png}
-
-  \vspace{0.50cm} 
-  \begin{center}
-	数据一致性``多样化'': 从单一到融合.
-  \end{center}
+\begin{frame}{数据一致性问题研究的发展趋势 (II)}
+  \begin{description}
+	\setlength{\itemsep}{20pt}
+	\item[多样化:] 从单一到???
+	  \begin{itemize}
+		\item 一致性族: causality; read-your-writes {\scriptsize (RYW)}
+		\item 参数调节: 提供``有限度''的不一致 \citeinbeamer{Yu}{TOCS}{02}
+	  \end{itemize}
+	  \fignocaption{width = 0.30\textwidth}{figures/one-size-fit-all-table.jpg}
+	\item[可调节:] 混合使用, 运行时可变
+	  % \fignocaption{width = 0.20\textwidth}{figures/rudder.jpg}
+  \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题研究的发展趋势}
-  \begin{enumerate}
-    \setlength{\itemsep}{10pt}
-	\item 精细化, 可度量 \citeinbeamer{Bailis}{VLDB}{12}
-	  \vspace{5pt}
-	  \uncover<2->{
-		\begin{description}
-		  \setlength{\itemsep}{5pt}
-		  \item[精细化:] ``在大多数情况下, 访问到一致数据''
-		  \item[可度量:] 量化系统执行, 后验系统对一致性的满足程度 
-		\end{description}
-		\begin{textblock*}{6cm}(6.0cm, 1.5cm)
-		  \fignocaption{width = 0.60\textwidth}{figures/tape-measure.jpg}
-		\end{textblock*}
-	  }
-    % \begin{columns}
-	%   \column{0.50\textwidth}
-	% 	\fignocaption{width = 0.60\textwidth}{figures/tape-measure.jpg}
-	%   \column{0.50\textwidth}
-	% 	\fignocaption{width = 0.60\textwidth}{figures/figure-placeholder.png}
-	% \end{columns}
-    \item 多样化, 可定制 \citeinbeamer{Terry}{CACM}{13}
-	  \vspace{5pt}
-	  \uncover<3->{
-		\begin{description}
-		  \setlength{\itemsep}{5pt}
-		  \item[多样化:] 
-			\begin{itemize}
-			  \item 一致性族: causality; read-your-writes {\scriptsize (RYW)}
-			  \item 参数调节: 提供``有限度''的不一致 \citeinbeamer{Yu}{TOCS}{02}
-			\end{itemize}
-		  \item[可定制:] 混合使用, 运行时可变
-		\end{description}
-		\begin{textblock*}{6cm}(6.0cm, 6.5cm)
-		  \fignocaption{width = 0.35\textwidth}{figures/rudder.jpg}
-		\end{textblock*}
-	  }
-  \end{enumerate}
+\begin{frame}{我们的工作}
+  
 \end{frame}
+%%%%%%%%%%%%%%%
+% \begin{frame}{数据一致性问题研究的发展趋势}
+%   \begin{enumerate}
+%     \setlength{\itemsep}{15pt}
+% 	\item 精细化, 可度量 \citeinbeamer{Bailis}{VLDB}{12}
+% 	  \vspace{5pt}
+% 	  \uncover<2->{
+% 		\begin{description}
+% 		  \setlength{\itemsep}{5pt}
+% 		  \item[精细化:] ``在大多数情况下, 访问到一致数据''
+% 		  \item[可度量:] 量化系统执行, 后验系统对一致性的满足程度 
+% 		\end{description}
+% 	  }
+% 	  \only<2->{
+% 		\begin{textblock*}{6cm}(6.0cm, 1.5cm)
+% 		  \fignocaption{width = 0.60\textwidth}{figures/tape-measure.jpg}
+% 		\end{textblock*}
+% 	  }
+%     \item 多样化, 可定制 \citeinbeamer{Terry}{CACM}{13}
+% 	  \vspace{5pt}
+% 	  \uncover<3->{
+% 		\begin{description}
+% 		  \setlength{\itemsep}{5pt}
+% 		  \item[多样化:] 
+% 			\begin{itemize}
+% 			  \item 一致性族: causality; read-your-writes {\scriptsize (RYW)}
+% 			  \item 参数调节: 提供``有限度''的不一致 \citeinbeamer{Yu}{TOCS}{02}
+% 			\end{itemize}
+% 		  \item[可定制:] 混合使用, 运行时可变
+% 		\end{description}
+% 	  }
+% 	  \only<3->{
+% 		\begin{textblock*}{6cm}(6.0cm, 6.5cm)
+% 		  \fignocaption{width = 0.35\textwidth}{figures/rudder.jpg}
+% 		\end{textblock*}
+% 	  }
+%   \end{enumerate}
+% \end{frame}
 %%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%

@@ -25,10 +25,9 @@
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{分布数据典型应用 (I)}
-  \fig{width = 0.618\textwidth}{figures/dsss.pdf}
+  \fig{width = 0.55\textwidth}{figures/dsss.pdf}
   {分布式存储系统 (\textcolor{blue}{\scriptsize 开源 [左]} \& \textcolor{red}{\scriptsize 商用 [右]}).}
 
-  应用需求 \citeinbeamer{Facebook}{OSDI}{10} vs. ``分布数据'':
   \begin{description}
     \item[低延迟:] 就近访问副本数据
     \item[高可用性, 高容错性:] 备份容灾 
@@ -36,13 +35,12 @@
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{分布数据典型应用 (II)}
-  \fig{width = 0.85\textwidth}{figures/file-share.pdf}
+  \fig{width = 0.75\textwidth}{figures/file-share.pdf}
   {个人多设备文件共享 {(\textcolor{blue}{\scriptsize [基于云] C/S 结构 [左]} \& 
   \textcolor{red}{\scriptsize P2P 结构 [右]}).}}
 
-  应用需求与特点 \citeinbeamer{Strauss}{MIT Thesis}{10} vs. ``分布数据'':
   \begin{description}
-    \item[功能需求:] 文件副本
+    \item[功能需求:] 文件副本 \citeinbeamer{Strauss}{MIT Thesis}{10}
     \item[网络断连:] 备份容灾; 离线可用
   \end{description}
 \end{frame}
@@ -63,28 +61,4 @@
   
   \todo{重绘: 显示 partition \& replication}
 \end{frame}
-%%%%%%%%%%%%%%%
-\begin{frame}{分布共享数据服务}
-  \begin{columns}
-	\column{0.50\textwidth}
-	  \todo{图: 分布共享数据服务}
-	\column{0.50\textwidth}
-	  \begin{itemize}[<+->]
-		\setlength\itemsep{8pt}
-		\item 简化上层应用的开发
-		\item 提供共享数据的抽象
-		\item 屏蔽底层数据的分布性
-	  \end{itemize}
-  \end{columns}
-\end{frame}
-%%%%%%%%%%%%%%%
-% \begin{frame}{分布式应用}
-%     数据层中间件\mathbfblue{H^3L}特性:
-% 	\begin{itemize}
-% 	  \item high availability
-% 	  \item high fault-tolerance
-% 	  \item high scalability
-% 	  \item low latency
-% 	\end{itemize}
-% \end{frame}
 %%%%%%%%%%%%%%%
