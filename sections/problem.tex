@@ -57,9 +57,7 @@
 % \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究的历史阶段}
-  \fignocaption{width = 0.30\textwidth}{figures/taste-of-past.jpg}
-
-  \todo{图: ps}
+  \fignocaption{width = 0.40\textwidth}{figures/the-past.jpg}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究的历史阶段}
@@ -84,6 +82,7 @@
 		\column{0.50\textwidth}
 		  \fignocaption{scale = 0.05}{figures/prism-spectrum.jpg}
 	  \end{columns}
+	  \pause
 	\item[可度量:] think \textcolor{red}{\it probabilistically} \citeinbeamer{Brewer}{}{}
 	  \fignocaption{width = 0.25\textwidth}{figures/tape-measure.jpg}
 	  \begin{center}
@@ -94,15 +93,27 @@
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究的发展趋势 (II)}
   \begin{description}
-	\setlength{\itemsep}{20pt}
-	\item[多样化:] 从单一到???
+	\setlength{\itemsep}{10pt}
+	\item[多样化:] 从单一到融合 (mono- vs. multi-) \citeinbeamer{Terry}{CACM}{13} 
+	  \vspace{5pt}
 	  \begin{itemize}
-		\item 一致性族: causality; read-your-writes {\scriptsize (RYW)}
-		\item 参数调节: 提供``有限度''的不一致 \citeinbeamer{Yu}{TOCS}{02}
+		\setlength{\itemsep}{5pt}
+		\item 融合强弱一致性: 不同操作, 不同一致性需求 
+		\item 融合一致与不一致: 容忍``有限度''的不一致
 	  \end{itemize}
-	  \fignocaption{width = 0.30\textwidth}{figures/one-size-fit-all-table.jpg}
-	\item[可调节:] 混合使用, 运行时可变
-	  % \fignocaption{width = 0.20\textwidth}{figures/rudder.jpg}
+	  \pause
+	  \begin{columns}
+		\column{0.50\textwidth}
+		  \fignocaption{width = 0.50\textwidth}{figures/tradeoff.jpg} 
+		\column{0.50\textwidth}
+		  \fignocaption{width = 0.35\textwidth}{figures/one-size-fit-all-text.jpg} 
+	  \end{columns}
+	  \pause
+	\item[可调节:] think \textcolor{red}{\it dynamically} \citeinbeamer{Terry}{SOSP}{13}
+	  \vspace{10pt}
+	  \begin{center}
+	    依据应用需求/系统状态调节数据一致性
+	  \end{center}
   \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%
