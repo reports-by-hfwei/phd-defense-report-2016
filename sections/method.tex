@@ -4,11 +4,13 @@
 \subsection{理论模型:分布共享数据}
 
 %%%%%%%%%%%%%%%
-\begin{frame}{分布共享数据 (I)}
-  \fig{width = 0.40\textwidth}{figures/dsm4replicas-model.pdf}{分布数据共享服务.}
+\begin{frame}{数据的分布与共享}
+  从共享到分布
+
+  从分布到共享
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{分布共享数据 (II)}
+\begin{frame}{分布共享数据}
   \begin{center}
     \textcolor{cyan}{$x, y:$} 共享变量 \hspace{0.30cm} \textcolor{cyan}{$p_0, p_1:$} 
     客户进程
@@ -30,7 +32,26 @@
   \]} 
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{分布共享数据 (III)}
+\begin{frame}{分布共享数据服务}
+  \begin{columns}
+	\column{0.50\textwidth}
+	  \todo{图: 分布共享数据服务 (简化图)}
+	  (数据)一致性模型是核心概念.
+	\column{0.50\textwidth}
+	  \begin{itemize}[<+->]
+		\setlength\itemsep{10pt}
+		\item 简化上层应用的开发
+		\item 提供共享数据的抽象
+		\item 屏蔽底层数据的分布性
+	  \end{itemize}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{分布共享数据服务}
+  \fig{width = 0.40\textwidth}{figures/dsm4replicas-model.pdf}{分布数据共享服务.}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{分布共享数据服务}
   \begin{center}
     \textcolor{blue}{\large 基本定位: 传统概念应用于新型平台}
   \end{center}
