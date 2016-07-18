@@ -4,62 +4,92 @@
 \subsection{理论模型:分布共享数据}
 
 %%%%%%%%%%%%%%%
-\begin{frame}{数据的分布与共享}
-  从共享到分布
-
-  从分布到共享
+% \begin{frame}{理论模型}
+%   分布数据一致性:
+%   \begin{enumerate}
+% 	\item 精细化, 可度量
+% 	\item 多样化, 可调节
+%   \end{enumerate}
+% \end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{分布共享数据模型}
+  \begin{columns}
+	\column{0.50\textwidth}
+	  \fignocaption{width = 0.60\textwidth}{figures/shared-data-clients.pdf}
+	  \begin{center}
+		共享数据系统 (single copy)
+	  \end{center}
+	\pause
+	\column{0.50\textwidth}
+	  \fignocaption{width = 0.70\textwidth}{figures/distributed-data-clients.pdf}
+	  \begin{center}
+		分布数据系统 (replicas)
+	  \end{center}
+  \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{分布共享数据}
+\begin{frame}{分布共享数据模型}
+  \fignocaption{width = 0.48\textwidth}{figures/distributed-shared-data-clients.pdf}
   \begin{center}
-    \textcolor{cyan}{$x, y:$} 共享变量 \hspace{0.30cm} \textcolor{cyan}{$p_0, p_1:$} 
-    客户进程
+	\textcolor{blue!80}{分布共享数据模型:} 在分布数据之上提供共享数据的假象
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{分布共享数据模型}
+  \begin{center}
+    \textcolor{cyan}{$p_0, p_1:$} 客户进程 \hspace{0.30cm} \textcolor{cyan}{$x, y:$} 共享变量 
+  \end{center}
+  \pause
 
-  多进程并发提交 (读/写) 操作:
+  多进程并发读/写共享变量:
   
   \fignocaption{width = 0.55\textwidth}{figures/register-what-value.pdf}
+  \pause
 
   \begin{center}
-    \question{问题: 读操作允许返回什么值?}
+    \question{数据一致性问题: 读操作允许返回什么值?}
   \end{center}
 
   \answer{
   \[
-    \text{不同一致性}
+    \text{不同一致性模型}
     \xrightleftharpoons[\text{定义}]{\,\text{规定}\,}
     \text{不同合法返回值}
   \]} 
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{分布共享数据服务}
+  \fignocaption{width = 0.40\textwidth}{figures/dsds.pdf}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{分布共享数据服务}
   \begin{columns}
-	\column{0.50\textwidth}
-	  \todo{图: 分布共享数据服务 (简化图)}
-	  (数据)一致性模型是核心概念.
-	\column{0.50\textwidth}
-	  \begin{itemize}[<+->]
-		\setlength\itemsep{10pt}
-		\item 简化上层应用的开发
-		\item 提供共享数据的抽象
-		\item 屏蔽底层数据的分布性
-	  \end{itemize}
+	\column{0.60\textwidth}
+	\begin{center}
+	  \textcolor{red}{\large 分布共享数据服务:}\\
+	  \vspace{0.50cm} 
+	  分布共享内存模型 (多处理器系统)\\
+	  \textcolor{blue}{[传统概念]}\\
+	  \vspace{0.20cm} +\\ \vspace{0.20cm}
+	  分布数据系统\\
+	  \textcolor{blue}{[新平台]}
+	\end{center}
+	\column{0.40\textwidth}
+	  \fignocaption{scale = 0.30}{figures/more-old-wine-new-bottle-poster.jpg}
   \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{分布共享数据服务}
-  \fig{width = 0.40\textwidth}{figures/dsm4replicas-model.pdf}{分布数据共享服务.}
-\end{frame}
-%%%%%%%%%%%%%%%
-\begin{frame}{分布共享数据服务}
-  \begin{center}
-    \textcolor{blue}{\large 基本定位: 传统概念应用于新型平台}
-  \end{center}
-
-  \vspace{0.20cm}
-  \begin{center}
-    分布共享数据服务: 分布共享内存模型 + 分布数据系统
-  \end{center}
+\begin{frame}{我们的工作}
+  \begin{columns}
+	\column{0.40\textwidth}
+	  \fignocaption{scale = 0.30}{figures/more-old-wine-new-bottle-poster.jpg}
+	\column{0.40\textwidth}
+	  实现分布共享数据服务:
+	  \begin{enumerate}
+		\item 精细化, 可度量
+		\item 多样化, 可调节
+	  \end{enumerate}
+  \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
