@@ -4,14 +4,6 @@
 \subsection{理论模型:分布共享数据}
 
 %%%%%%%%%%%%%%%
-% \begin{frame}{理论模型}
-%   分布数据一致性:
-%   \begin{enumerate}
-% 	\item 精细化, 可度量
-% 	\item 多样化, 可调节
-%   \end{enumerate}
-% \end{frame}
-%%%%%%%%%%%%%%%
 \begin{frame}{分布共享数据模型}
   \begin{columns}
 	\column{0.50\textwidth}
@@ -62,59 +54,192 @@
   \fignocaption{width = 0.40\textwidth}{figures/dsds.pdf}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{分布共享数据服务}
+\begin{frame}{分布共享数据服务 (注)}
   \begin{columns}
 	\column{0.60\textwidth}
 	\begin{center}
-	  \textcolor{red}{\large 分布共享数据服务:}\\
-	  \vspace{0.50cm} 
 	  分布共享内存模型 (多处理器系统)\\
 	  \textcolor{blue}{[传统概念]}\\
-	  \vspace{0.20cm} +\\ \vspace{0.20cm}
+	  \vspace{0.10cm} +\\ \vspace{0.10cm}
 	  分布数据系统\\
 	  \textcolor{blue}{[新平台]}
+	  
+	  \uncover<2->{
+	  \color{red}\rule{\linewidth}{3pt}
+
+	  \begin{center}
+		\textcolor{blue}{新平台凸显应用价值观:}
+		\begin{enumerate}
+		  \centering
+		  \item 精细化, 可度量
+		  \item 多样化, 可调节
+		\end{enumerate}
+	  \end{center}
+	  }
 	\end{center}
 	\column{0.40\textwidth}
-	  \fignocaption{scale = 0.30}{figures/more-old-wine-new-bottle-poster.jpg}
-  \end{columns}
-\end{frame}
-%%%%%%%%%%%%%%%
-\begin{frame}{我们的工作}
-  \begin{columns}
-	\column{0.40\textwidth}
-	  \fignocaption{scale = 0.30}{figures/more-old-wine-new-bottle-poster.jpg}
-	\column{0.40\textwidth}
-	  实现分布共享数据服务:
-	  \begin{enumerate}
-		\item 精细化, 可度量
-		\item 多样化, 可调节
-	  \end{enumerate}
+	  \fignocaption{scale = 0.35}{figures/more-old-wine-new-bottle-poster.jpg}
   \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{技术途径: 三维框架}
+\subsection{技术框架}
 
 %%%%%%%%%%%%%%%
-\begin{frame}{分布共享内存中的数据一致性问题}
-      数据一致性问题的三个层面: 
-      \begin{description}
-	\item[1. 虚拟共享数据有什么?]
+\begin{frame}{分布数据一致性问题}
+  \begin{columns}
+	\column{0.50\textwidth}
+	  分布数据一致性问题:
 	  \begin{itemize}
-	    \item 数据类型
+		\item [\textcolor{blue}{\bf \cmark}] 分布: partition + replication
+		\item [\textcolor{red}{\bf \xmark}] 数据: 数据类型
+		\item [\textcolor{red}{\bf \xmark}] 一致性: 关键问题
 	  \end{itemize}
-	\item[2. 上层接口语义是什么?]
+	\pause
+	\column{0.50\textwidth}
+	  \textcolor{blue}{数据类型:}
 	  \begin{itemize}
-	    \item 一致性模型
+		\item 单独的变量 (\textcolor{cyan}{$x,y$})
+		\item 数据结构 (\textcolor{cyan}{\textsc{Set, List}})
+		\item 事务 (\textcolor{cyan}{\textsc{Tx}})
 	  \end{itemize}
-	\item[3. 底层消息传递为什么?]
+
+	  \pause
+	  \vspace{0.80cm}
+
+	  \textcolor{blue}{一致性关键问题:}
 	  \begin{itemize}
-	    \item 一致性保障
+		\item 语义 (semantics; \textcolor{red}{\texttt{WHAT}})
+		\item 机制 (mechanisms; \textcolor{red}{\texttt{HOW}})
+		\item 度量 (measurements; \textcolor{red}{???})
 	  \end{itemize}
-      \end{description}
+  \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{研究框架}
-  \fig{width = 0.75\textwidth}{figures/thesis-proposal-3d-framework-allinone.pdf}{数据一致性及保障技术研究框架}
+\begin{frame}{技术框架}
+  % \fig{width = 0.75\textwidth}{figures/thesis-proposal-3d-framework-allinone.pdf}{数据一致性及保障技术研究框架}
+  \todo{数据类型 + 一致性关键问题 技术框架}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{数据类型}
+  \begin{columns}
+	\column{0.60\textwidth}
+	  数据类型: 从个体到群组
+	  \begin{itemize}
+		\setlength{\itemsep}{8pt}
+		\item<1-> 单独读写变量 \textit{(read/write registers)}
+		\item<2-> 事务对象 \textit{(transactions)}
+		  \begin{itemize}
+			\setlength{\itemsep}{4pt}
+			\item 事务 $\triangleq$ 多个读写变量的操作序列
+			\item 支持 ``all-or-none'' 写语义
+			\item 易于开发并发应用
+		  \end{itemize}
+	  \end{itemize}
+	\column{0.40\textwidth}
+	  \uncover<1-> {
+		\fignocaption{width = 0.50\textwidth}{figures/cassandra-logo.png}
+	    \begin{center}
+		  Key-Value Store
+	    \end{center}
+	  }
+	  \uncover<2->{
+		\fignocaption{width = 0.50\textwidth}{figures/figure-placeholder.png}
+	  }
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{一致性模型}
+  一致性模型 \citeinbeamer{Steinke}{JACM}{04}:
+  \begin{itemize}
+	\item 规定读操作 (\textcolor{cyan}{\texttt{\it read}}) 所允许的返回值
+  \end{itemize}
+
+  \vspace{0.50cm}
+  \fig{width = 0.50\textwidth}{figures/consistency-model-tree.png}{来自 \citeinbeamer{Bailis}{VLDB}{14}}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{一致性模型}
+  一致性模型的\textcolor{blue}{集合}定义:
+  \begin{align*}
+	\uncover<2->{\textrm{系统执行 } \; e &\triangleq \textrm{该执行所产生的事件的序列} \\[3pt]}
+	\uncover<3->{\textrm{分布式系统 } \; \mathcal{S} &\triangleq \set{\textrm{该系统的所有可能执行}} \\[3pt]}
+	\uncover<4->{\textrm{一致性模型 } \; \mathcal{C} &\triangleq \set{\textrm{该模型所允许的所有系统执行}}}
+  \end{align*}
+
+  \uncover<2->{
+  \begin{columns}
+	\column{0.50\textwidth}
+	  \fignocaption{width = 0.30\textwidth}{figures/three-gears.jpg}
+	\column{0.50\textwidth}
+	  \fignocaption{width = 0.30\textwidth}{figures/gps-marks.png}
+  \end{columns}
+  }
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{一致性实现机制}
+  \begin{columns}
+	\column{0.60\textwidth}
+	  \begin{center}
+		给定一致性模型 $\mathcal{C}$, 设计维护算法及系统$\mathcal{S}$:
+	  \end{center}
+
+	  \[
+		\forall e \in \mathcal{S}: e \in \mathcal{C}.
+	  \]
+
+	  \[
+		\textrm{\it i.e., } \mathcal{S} \subseteq \mathcal{C}.
+	  \]
+	\column{0.40\textwidth}
+	  \fignocaption{width = 0.60\textwidth}{figures/specs.png}
+  \end{columns}
+
+  \pause
+  \vspace{0.30cm}
+
+  \begin{columns}
+	\column{0.60\textwidth}
+	  ``多样化, 可调节''的挑战:
+	  \begin{itemize}
+		\item 兼容的混合一致性模型
+		\item 手段之一: 参数化
+	  \end{itemize}
+	\column{0.40\textwidth}
+	  \fignocaption{width = 0.45\textwidth}{figures/volumn-knob-cropped.png}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{一致性度量方法}
+  \begin{columns}
+	\column{0.60\textwidth}
+	  给定分布式系统$\mathcal{S}$及某一致性模型$\mathcal{C}$, \\度量数据一致性:
+
+	  \pause
+	  \vspace{0.50cm}
+
+	  对于$e \in \mathcal{S}$:
+	  \begin{description}
+		\setlength{\itemsep}{6pt}
+		\item[验证 (verify):] $e \in \mathcal{C} \textcolor{red}{\mathbf{?}} \Rightarrow \set{0,1}$ 
+		\item[量化 (quantify):] $e \in \mathcal{C} \textcolor{red}{\mathbf{?}} \Rightarrow (0,1)$ 
+	  \end{description}
+	\column{0.40\textwidth}
+	  \fignocaption{width = 0.50\textwidth}{figures/qos-radio.png}
+  \end{columns}
+
+  \pause
+  \vspace{0.80cm}
+
+  \begin{columns}
+	\column{0.50\textwidth}
+	  ``精细化, 可度量''的挑战:
+	  \begin{itemize}
+		\item 问题复杂度分析, 算法设计
+		\item 数学建模与分析
+	  \end{itemize}
+	\column{0.50\textwidth}
+	  \fignocaption{width = 0.80\textwidth}{figures/george-box-model.jpg}
+  \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%

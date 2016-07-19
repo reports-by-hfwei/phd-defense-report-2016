@@ -8,26 +8,27 @@
 \usefonttheme[onlymath]{serif} % try "professionalfonts"
 \setCJKmainfont{Microsoft YaHei} % try SimSun
 
-% \usepackage{enumitem}
+\usepackage{amsmath, amsfonts, amssymb, mathtools, pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
 
-\setbeamertemplate{itemize items}[default]
-\setbeamertemplate{enumerate items}[default]
-
-\usepackage{amsmath, amsfonts, amssymb, mathtools}
 \usepackage{graphicx, subcaption}
 \usepackage[absolute, overlay]{textpos}
 \usepackage{adjustbox}
 \usepackage{mdframed}
-\usepackage{listings}
 
-\usepackage{biblatex}
-\addbibresource{phd-defense-report.bib}
+% \usepackage{biblatex}
+% \addbibresource{phd-defense-report.bib}
+
+\setbeamersize{text margin left = 1em, text margin right = 1em}
+
+\setbeamertemplate{itemize items}[default]
+\setbeamertemplate{enumerate items}[default]
 
 \usepackage{tikz}
 \usetikzlibrary{shapes, positioning, calc, backgrounds, fit}
 
 \theoremstyle{plain}
-\newtheorem{cdef}{定义}[section]
 \newtheorem{ctheorem}{定理}[section]
 \newtheorem{cquestion}{问题:}[section]
 
@@ -51,6 +52,7 @@
 % for cite: #1: author; #2: conference #3: year
 \newcommand{\citeinbeamer}[3]{{\scriptsize{\textcolor{blue}{[#1@#2'#3]}}}}
 
+\newcommand{\set}[1]{\{#1\}}
 \newcommand{\question}[1]{\textcolor{red}{\large #1}}
 \newcommand{\answer}[1]{\textcolor{blue}{\bf #1}}
 \newcommand{\alertred}[1]{\textcolor{red}{#1}}
