@@ -4,7 +4,7 @@
 \subsection{理论模型:分布共享数据}
 
 %%%%%%%%%%%%%%%
-\begin{frame}{分布共享数据模型}
+\begin{frame}{分布共享数据服务}
   \begin{columns}
 	\column{0.50\textwidth}
 	  \fignocaption{width = 0.60\textwidth}{figures/shared-data-clients.pdf}
@@ -20,34 +20,11 @@
   \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{分布共享数据模型}
+\begin{frame}{分布共享数据服务}
   \fignocaption{width = 0.48\textwidth}{figures/distributed-shared-data-clients.pdf}
   \begin{center}
-	\textcolor{blue!80}{分布共享数据模型:} 在分布数据之上提供共享数据的假象
+	\textcolor{blue!80}{分布共享数据服务:} 在分布数据之上提供共享数据的假象
   \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%
-\begin{frame}{分布共享数据模型}
-  \begin{center}
-    \textcolor{cyan}{$p_0, p_1:$} 客户进程 \hspace{0.30cm} \textcolor{cyan}{$x, y:$} 共享变量 
-  \end{center}
-  \pause
-
-  多进程并发读/写共享变量:
-  
-  \fignocaption{width = 0.55\textwidth}{figures/register-what-value.pdf}
-  \pause
-
-  \begin{center}
-    \question{数据一致性问题: 读操作允许返回什么值?}
-  \end{center}
-
-  \answer{
-  \[
-    \text{不同一致性模型}
-    \xrightleftharpoons[\text{定义}]{\,\text{规定}\,}
-    \text{不同合法返回值}
-  \]} 
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{分布共享数据服务}
@@ -91,7 +68,7 @@
 	\column{0.50\textwidth}
 	  分布数据一致性问题:
 	  \begin{itemize}
-		\item [\textcolor{blue}{\bf \cmark}] 分布: partition + replication
+		\item [\textcolor{blue}{\bf \cmark}] 分布: 分区 + 副本
 		\item [\textcolor{red}{\bf \xmark}] 数据: 数据类型
 		\item [\textcolor{red}{\bf \xmark}] 一致性: 关键问题
 	  \end{itemize}
@@ -99,9 +76,9 @@
 	\column{0.50\textwidth}
 	  \textcolor{blue}{数据类型:}
 	  \begin{itemize}
-		\item 单独的变量 (\textcolor{cyan}{$x,y$})
-		\item 数据结构 (\textcolor{cyan}{\textsc{Set, List}})
-		\item 事务 (\textcolor{cyan}{\textsc{Tx}})
+		\item 单独的变量 \textcolor{cyan}{\small ($x,y$)}
+		\item 数据结构 \textcolor{cyan}{\small (\textsc{Set, List})}
+		\item 事务 \textcolor{cyan}{\small (\textsc{Tx})}
 	  \end{itemize}
 
 	  \pause
@@ -109,9 +86,9 @@
 
 	  \textcolor{blue}{一致性关键问题:}
 	  \begin{itemize}
-		\item 语义 (semantics; \textcolor{red}{\texttt{WHAT}})
-		\item 机制 (mechanisms; \textcolor{red}{\texttt{HOW}})
-		\item 度量 (measurements; \textcolor{red}{???})
+		\item 模型 \textcolor{cyan}{\small (semantics; 是什么)}
+		\item 机制 \textcolor{cyan}{\small (mechanisms; 怎么做)}
+		\item 度量 \textcolor{cyan}{\small (measurements; 怎么样)}
 	  \end{itemize}
   \end{columns}
 \end{frame}
@@ -125,10 +102,12 @@
   \begin{columns}
 	\column{0.60\textwidth}
 	  数据类型: 从个体到群组
+	  \pause
+	  \vspace{0.20cm}
 	  \begin{itemize}
 		\setlength{\itemsep}{8pt}
-		\item<1-> 单独读写变量 \textit{(read/write registers)}
-		\item<2-> 事务对象 \textit{(transactions)}
+		\item<2-> 单独读写变量
+		\item<3-> 事务对象
 		  \begin{itemize}
 			\setlength{\itemsep}{4pt}
 			\item 事务 $\triangleq$ 多个读写变量的操作序列
@@ -137,25 +116,51 @@
 		  \end{itemize}
 	  \end{itemize}
 	\column{0.40\textwidth}
-	  \uncover<1-> {
-		\fignocaption{width = 0.50\textwidth}{figures/cassandra-logo.png}
-	    \begin{center}
-		  Key-Value Store
-	    \end{center}
+	  \uncover<2-> {
+		\fignocaption{width = 0.65\textwidth}{figures/key-value-wiki.png}
 	  }
-	  \uncover<2->{
-		\fignocaption{width = 0.50\textwidth}{figures/figure-placeholder.png}
+	  \uncover<3->{
+		\fignocaption{width = 0.60\textwidth}{figures/all-or-none.jpg}
 	  }
   \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%
+% \begin{frame}{一致性模型}
+%   \begin{center}
+%     \textcolor{cyan}{$p_0, p_1:$} 客户进程 \hspace{0.30cm} \textcolor{cyan}{$x, y:$} 共享变量 
+%   \end{center}
+%   \pause
+% 
+%   多进程并发读/写共享变量:
+%   
+%   \fignocaption{width = 0.55\textwidth}{figures/register-what-value.pdf}
+%   \pause
+% 
+%   \begin{center}
+%     \question{数据一致性问题: 读操作允许返回什么值?}
+%   \end{center}
+% 
+%   \answer{
+%   \[
+%     \text{不同一致性模型}
+%     \xrightleftharpoons[\text{定义}]{\,\text{规定}\,}
+%     \text{不同合法返回值}
+%   \]} 
+% \end{frame}
+%%%%%%%%%%%%%%%
 \begin{frame}{一致性模型}
-  一致性模型 \citeinbeamer{Steinke}{JACM}{04}:
+  一致性模型 \citeinbeamer{Steinke}{JACM}{04} \citeinbeamer{Adya}{Thesis}{99}:
   \begin{itemize}
-	\item 规定读操作 (\textcolor{cyan}{\texttt{\it read}}) 所允许的返回值
+    \item 多进程并发操作某数据类型
+	\item 规定各操作的语义
+	  \begin{itemize}
+		\setlength{\itemsep}{2pt}
+		\item 读写变量: 读操作允许的返回值 
+		\item 事务对象: 事务创建与提交操作的语义
+	  \end{itemize}
   \end{itemize}
 
-  \vspace{0.50cm}
+  \vspace{0.20cm}
   \fig{width = 0.50\textwidth}{figures/consistency-model-tree.png}{来自 \citeinbeamer{Bailis}{VLDB}{14}}
 \end{frame}
 %%%%%%%%%%%%%%%
@@ -181,7 +186,7 @@
   \begin{columns}
 	\column{0.60\textwidth}
 	  \begin{center}
-		给定一致性模型 $\mathcal{C}$, 设计维护算法及系统$\mathcal{S}$:
+		给定一致性模型 $\mathcal{C}$, 设计系统$\mathcal{S}$:
 	  \end{center}
 
 	  \[
@@ -196,15 +201,18 @@
   \end{columns}
 
   \pause
-  \vspace{0.30cm}
+  \vspace{0.40cm}
 
   \begin{columns}
 	\column{0.60\textwidth}
-	  ``多样化, 可调节''的挑战:
-	  \begin{itemize}
-		\item 兼容的混合一致性模型
-		\item 手段之一: 参数化
-	  \end{itemize}
+	  \begin{center}
+		``多样化, 可调节''的挑战:
+		\begin{itemize}
+		  \centering
+		  \item 兼容的混合一致性模型
+		  \item 实现手段之一: 参数化
+		\end{itemize}
+	  \end{center}
 	\column{0.40\textwidth}
 	  \fignocaption{width = 0.45\textwidth}{figures/volumn-knob-cropped.png}
   \end{columns}
@@ -213,31 +221,38 @@
 \begin{frame}{一致性度量方法}
   \begin{columns}
 	\column{0.60\textwidth}
-	  给定分布式系统$\mathcal{S}$及某一致性模型$\mathcal{C}$, \\度量数据一致性:
+	  \begin{center}
+		给定系统$\mathcal{S}$及一致性模型$\mathcal{C}$,
+	  \end{center}
 
 	  \pause
-	  \vspace{0.50cm}
 
-	  对于$e \in \mathcal{S}$:
-	  \begin{description}
-		\setlength{\itemsep}{6pt}
-		\item[验证 (verify):] $e \in \mathcal{C} \textcolor{red}{\mathbf{?}} \Rightarrow \set{0,1}$ 
-		\item[量化 (quantify):] $e \in \mathcal{C} \textcolor{red}{\mathbf{?}} \Rightarrow (0,1)$ 
-	  \end{description}
+	  \begin{center}
+		对于$e \in \mathcal{S}$:
+		\begin{description}
+		  \centering
+		  \setlength{\itemsep}{5pt}
+		  \item[验证 (verify):] $e \in \mathcal{C} \textcolor{red}{\mathbf{?}} \Rightarrow \set{0,1}$ 
+		  \item[量化 (quantify):] $e \in \mathcal{C} \textcolor{red}{\mathbf{?}} \Rightarrow (0,1)$ 
+		\end{description}
+	  \end{center}
 	\column{0.40\textwidth}
 	  \fignocaption{width = 0.50\textwidth}{figures/qos-radio.png}
   \end{columns}
 
   \pause
-  \vspace{0.80cm}
+  \vspace{0.40cm}
 
   \begin{columns}
 	\column{0.50\textwidth}
+	\begin{center}
 	  ``精细化, 可度量''的挑战:
-	  \begin{itemize}
-		\item 问题复杂度分析, 算法设计
-		\item 数学建模与分析
-	  \end{itemize}
+	  \begin{description}
+		\centering
+		\item[验证:] 算法设计
+		\item[量化:] 数学建模
+	  \end{description}
+	\end{center}
 	\column{0.50\textwidth}
 	  \fignocaption{width = 0.80\textwidth}{figures/george-box-model.jpg}
   \end{columns}
