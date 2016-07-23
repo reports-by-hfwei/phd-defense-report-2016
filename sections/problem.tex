@@ -1,22 +1,35 @@
 \section{研究问题}
 
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题}
-  读操作语义问题:
-  \begin{itemize}
-	\setlength{\itemsep}{10pt}
-	\item 共享数据环境: 返回\textcolor{red}{最新}写入的值
-	\item 分布数据环境: ``最新''没有定义 \textcolor{red}{\small (副本)}
-	\item \only<2->{\textcolor{red}{数据一致性}}问题: 在分布数据环境下, 读操作允许返回什么值?
-  \end{itemize}
+\begin{frame}{分布数据一致性问题}
+  \begin{columns}[t]
+	\column{0.50\textwidth}
+	  \fignocaption{width = 0.30\textwidth}{figures/blue-pill.jpg}
+	  理想情况 \term{The Blue Pill}:
+	  \begin{itemize}
+		\item one-size-fits-all 一致性模型
+		\item 始终观察到最新副本
+	  \end{itemize}
+	  \begin{center}
+		\textcolor{blue}{没有分布数据一致性问题}
+	  \end{center}
+    \pause
+	\column{0.50\textwidth}
+	  \fignocaption{width = 0.30\textwidth}{figures/red-pill.jpg}
+	  实际情况 \textcolor{red}{\scriptsize (The Red Pill)}:
+	  \fignocaption{width = 0.60\textwidth}{figures/tradeoff.jpg}
+	  \begin{center}
+		\textcolor{red}{分布数据一致性是分布共享\\数据服务的核心问题}
+	  \end{center}
+  \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题举例 (I)}
+\begin{frame}{分布数据一致性问题举例 (I)}
   \fig{width = 0.60\textwidth}{figures/data-inconsistency-comment-reordering.pdf}
   {社交网络中, 消息-评论乱序 \citeinbeamer{Lloyd}{CACM}{14}.}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题举例 (II)}
+\begin{frame}{分布数据一致性问题举例 (II)}
   \begin{figure}[h!]
     \centering
     \begin{adjustbox}{max totalsize = {0.65\textwidth}{0.65\textheight}, center}
@@ -26,61 +39,70 @@
   \end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性模型}
-\end{frame}
-%%%%%%%%%%%%%%%
-% \begin{frame}{数据一致性问题}
-%   数据一致与否是相对于应用逻辑而言的:
-%   \pause
-%   \begin{itemize}[<+->]
-% 	\setlength\itemsep{8pt}
-% 	\item 数据一致性模型多样
-% 	\item 数据一致性模型有强弱之分
-% 	\item 应用规约数据一致性需求
-% 	\item 数据不一致导致应用异常(anomalies)
-%   \end{itemize}
-% \end{frame}
-%%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究的历史阶段}
-  \fignocaption{width = 0.35\textwidth}{figures/taste-of-past.jpg}
+  \fignocaption{width = 0.30\textwidth}{figures/taste-of-past.jpg}
+
+  \vspace{0.20cm}
+
+  \begin{center}
+	\begin{enumerate}
+		\centering
+	  \item 理论 vs. 系统
+	  \item 以一致性为核心的 tradeoffs
+	\end{enumerate}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究的历史阶段}
   \fignocaption{width = 0.90\textwidth}{figures/consistency-model-history.pdf}
 \end{frame}
 %%%%%%%%%%%%%%%
+\begin{frame}{数据一致性问题研究的历史阶段 (多处理器系统)}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{数据一致性问题研究的历史阶段 (分布式系统)}
+  \fignocaption{width = 1.00\textwidth}{figures/consistency-model-distributed-system-history.pdf}
+\end{frame}
+%%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究的历史阶段}
-  \fignocaption{width = 0.90\textwidth}{figures/consistency-model-weak-history.pdf}
+  \begin{columns}
+	\column{0.40\textwidth}
+	  theory vs. system (egg)
+	\column{0.20\textwidth}
+	  \fignocaption{width = 0.80\textwidth}{figures/taste-of-past.jpg}
+	\column{0.40\textwidth}
+  \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究的发展趋势}
   \begin{center}
 	云计算凸显应用价值观
+
+	应用价值观拥抱 \texttt{tradeoffs}
   \end{center}
 
-  \fignocaption{width = 0.40\textwidth}{figures/sla-tools.jpg}
+  \fignocaption{width = 0.35\textwidth}{figures/sla-tools.jpg}
+
+  \pause
+
+  \begin{columns}[t]
+	\column{0.45\textwidth}
+      购物车 SLA \citeinbeamer{Terry}{SOSP}{13}:
+	  \begin{enumerate}
+		\item 优先 \textcolor{blue}{\texttt{read-my-writes}}
+		\item 可接受 \textcolor{blue}{\texttt{any consistency}} 只要延迟低于300ms
+	  \end{enumerate}
+	\pause
+	\column{0.55\textwidth}
+	  出租车实时位置查询 SLA:
+	  \begin{enumerate}
+		\item 所有读请求都要满足 \textcolor{blue}{2-atomicity}
+		\item 违反 \textcolor{blue}{atomicity} 的读请求低于$1\%$ 
+	  \end{enumerate}
+  \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究的发展趋势 (I)}
-  \begin{description}
-	\setlength{\itemsep}{20pt}
-	\item[精细化:] 从二元到连续谱
-	  \begin{columns}
-		\column{0.50\textwidth}
-		  \fignocaption{scale = 0.06}{figures/coin-flip.jpg}
-		\column{0.50\textwidth}
-		  \fignocaption{scale = 0.05}{figures/prism-spectrum.jpg}
-	  \end{columns}
-	  \pause
-	\item[可度量:] think \textcolor{red}{\it probabilistically} \citeinbeamer{Brewer}{}{}
-	  \fignocaption{width = 0.25\textwidth}{figures/tape-measure.jpg}
-	  \begin{center}
-		量化系统执行, 后验系统对一致性的满足程度
-	  \end{center}
-  \end{description}
-\end{frame}
-%%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题研究的发展趋势 (II)}
   \begin{description}
 	\setlength{\itemsep}{10pt}
 	\item[多样化:] 从单一到融合 (mono- vs. multi-) \citeinbeamer{Terry}{CACM}{13} 
@@ -102,6 +124,25 @@
 	  \vspace{10pt}
 	  \begin{center}
 	    依据应用需求/系统状态调节数据一致性
+	  \end{center}
+  \end{description}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{数据一致性问题研究的发展趋势 (II)}
+  \begin{description}
+	\setlength{\itemsep}{20pt}
+	\item[精细化:] 从二元到连续谱
+	  \begin{columns}
+		\column{0.50\textwidth}
+		  \fignocaption{scale = 0.06}{figures/coin-flip.jpg}
+		\column{0.50\textwidth}
+		  \fignocaption{scale = 0.05}{figures/prism-spectrum.jpg}
+	  \end{columns}
+	  \pause
+	\item[可度量:] think \textcolor{red}{\it probabilistically} \citeinbeamer{Brewer}{}{}
+	  \fignocaption{width = 0.25\textwidth}{figures/tape-measure.jpg}
+	  \begin{center}
+		量化系统执行, 后验系统对一致性的满足程度
 	  \end{center}
   \end{description}
 \end{frame}
