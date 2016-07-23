@@ -13,14 +13,17 @@
 \newcommand{\xmark}{\ding{55}}%
 
 \usepackage{graphicx, subcaption}
-\usepackage[absolute, overlay]{textpos}
+% textpos for textblock (putting objects at specified positions)
+% \usepackage[absolute, overlay]{textpos}  
 \usepackage{adjustbox}
 \usepackage{mdframed}
 
 % \usepackage{biblatex}
 % \addbibresource{phd-defense-report.bib}
 
-\setbeamersize{text margin left = 1em, text margin right = 1em}
+\setbeamersize{text margin left = 2em, text margin right = 1em}
+
+\setbeamercolor{footnote mark}{fg = teal}
 
 \setbeamertemplate{itemize items}[default]
 \setbeamertemplate{enumerate items}[default]
@@ -52,6 +55,7 @@
 % for cite: #1: author; #2: conference #3: year
 \newcommand{\citeinbeamer}[3]{{\scriptsize{\textcolor{blue}{[#1@#2'#3]}}}}
 
+\newcommand{\term}[1]{\textcolor{blue}{\scriptsize (#1)}}
 \newcommand{\set}[1]{\{#1\}}
 \newcommand{\question}[1]{\textcolor{red}{\large #1}}
 \newcommand{\answer}[1]{\textcolor{blue}{\bf #1}}
@@ -59,8 +63,10 @@
 \newcommand{\alertblue}[1]{\textcolor{blue}{#1}}
 \newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO:} #1}}
 \newcommand{\mathbfblue}[1]{\textcolor{blue}{$\mathbf{#1}$}}
+
+\newcommand{\papertitle}{分布数据一致性理论与技术研究}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-\title[分布共享数据服务理论与技术研究]{分布共享数据服务理论与技术研究}
+\title[\papertitle]{\papertitle}
 \subtitle{}
 
 \author[魏恒峰]{魏恒峰 \\导师: 吕建 \hspace{0.20cm} 黄宇}
@@ -69,7 +75,7 @@
 
 \AtBeginSection[]{
   \begin{frame}[noframenumbering, plain]
-    \frametitle{分布共享数据服务理论与技术研究}
+    \frametitle{\papertitle}
     \tableofcontents[currentsection, sectionstyle=show/shaded, subsectionstyle=show/show/hide]
   \end{frame}
 }
@@ -78,7 +84,7 @@
 % at the beginning of each subsection:
 \AtBeginSubsection[]{
   \begin{frame}[noframenumbering, plain]
-    \frametitle{分布共享数据服务理论与技术研究}
+    \frametitle{\papertitle}
       \tableofcontents[currentsection, sectionstyle=show/shaded, subsectionstyle=show/shaded/hide]
   \end{frame}
 }
