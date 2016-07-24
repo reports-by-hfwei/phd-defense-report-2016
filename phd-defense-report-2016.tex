@@ -16,7 +16,13 @@
 % textpos for textblock (putting objects at specified positions)
 % \usepackage[absolute, overlay]{textpos}  
 \usepackage{adjustbox}
-\usepackage{mdframed}
+% \usepackage{mdframed}
+\usepackage[normalem]{ulem} % strike through text
+\newcommand{\soutthick}[1]{%
+    \renewcommand{\ULthickness}{2.0pt}%
+       \sout{#1}%
+    \renewcommand{\ULthickness}{.4pt}% Resetting to ulem default
+}
 
 % \usepackage{biblatex}
 % \addbibresource{phd-defense-report.bib}
@@ -71,7 +77,7 @@
 
 \author[魏恒峰]{魏恒峰 \\导师: 吕建 \hspace{0.20cm} 黄宇}
 \institute{南京大学软件所}
-\date{\today}
+\date{2016年7月25日}
 
 \AtBeginSection[]{
   \begin{frame}[noframenumbering, plain]

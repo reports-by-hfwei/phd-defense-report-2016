@@ -10,34 +10,42 @@
 		\item one-size-fits-all 一致性模型
 		\item 始终观察到最新副本
 	  \end{itemize}
+	  \only<1-2>{
 	  \begin{center}
 		\textcolor{blue}{没有分布数据一致性问题}
 	  \end{center}
+	  }
+	  \only<3->{
+	  \begin{center}
+		\textcolor{blue}{\soutthick{没有分布数据一致性问题}}
+	  \end{center}
+	  }
     \pause
 	\column{0.50\textwidth}
 	  \fignocaption{width = 0.30\textwidth}{figures/red-pill.jpg}
 	  实际情况 \textcolor{red}{\scriptsize (The Red Pill)}:
-	  \fignocaption{width = 0.60\textwidth}{figures/tradeoff.jpg}
-	  \begin{center}
-		\textcolor{red}{分布数据一致性是分布共享\\数据服务的核心问题}
-	  \end{center}
+	  \fignocaption{width = 0.60\textwidth}{figures/consistency-centric-tradeoff.pdf}
   \end{columns}
+  \pause
+  \begin{center}
+	\textcolor{red}{分布数据一致性是分布共享数据服务的核心、挑战性问题}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{分布数据一致性问题举例 (I)}
-  \fig{width = 0.60\textwidth}{figures/data-inconsistency-comment-reordering.pdf}
-  {社交网络中, 消息-评论乱序 \citeinbeamer{Lloyd}{CACM}{14}.}
-\end{frame}
-%%%%%%%%%%%%%%%
-\begin{frame}{分布数据一致性问题举例 (II)}
-  \begin{figure}[h!]
-    \centering
-    \begin{adjustbox}{max totalsize = {0.65\textwidth}{0.65\textheight}, center}
-      \input{figures/data-inconsistency-update-lost}
-    \end{adjustbox}
-    \caption{多设备文件共享时, 更新丢失 ($\#N = 3, \#W = 2, \#R = 1$).}
-  \end{figure}
-\end{frame}
+% \begin{frame}{分布数据一致性问题举例 (I)}
+%   \fig{width = 0.60\textwidth}{figures/data-inconsistency-comment-reordering.pdf}
+%   {社交网络中, 消息-评论乱序 \citeinbeamer{Lloyd}{CACM}{14}.}
+% \end{frame}
+% %%%%%%%%%%%%%%%
+% \begin{frame}{分布数据一致性问题举例 (II)}
+%   \begin{figure}[h!]
+%     \centering
+%     \begin{adjustbox}{max totalsize = {0.65\textwidth}{0.65\textheight}, center}
+%       \input{figures/data-inconsistency-update-lost}
+%     \end{adjustbox}
+%     \caption{多设备文件共享时, 更新丢失 ($\#N = 3, \#W = 2, \#R = 1$).}
+%   \end{figure}
+% \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究的历史阶段}
   \fignocaption{width = 0.30\textwidth}{figures/taste-of-past.jpg}
@@ -46,9 +54,9 @@
 
   \begin{center}
 	\begin{enumerate}
-		\centering
-	  \item 理论 vs. 系统
+	  \centering
 	  \item 以一致性为核心的 tradeoffs
+	  \item 理论 vs. 系统
 	\end{enumerate}
   \end{center}
 \end{frame}
@@ -64,45 +72,57 @@
   \fignocaption{width = 1.00\textwidth}{figures/consistency-model-distributed-system-history.pdf}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题研究的历史阶段}
-  \begin{columns}
+\begin{frame}{数据一致性问题研究的发展趋势}
+  \begin{center}
+	云计算新平台凸显应用价值观
+
+	应用价值观积极拥抱 tradeoffs
+  \end{center}
+
+  \begin{columns}[t]
 	\column{0.40\textwidth}
-	  theory vs. system (egg)
+	  \uncover<2->{
+	　(1) 更丰富的 tradeoffs
+	  \fignocaption{width = 0.70\textwidth}{figures/consistency-centric-tradeoff.pdf}
+	  }
 	\column{0.20\textwidth}
 	  \fignocaption{width = 0.80\textwidth}{figures/taste-of-past.jpg}
 	\column{0.40\textwidth}
+	  \uncover<3->{
+	  (2) 应用价值观驱动的理论
+	  \fignocaption{width = 0.65\textwidth}{figures/theory-vs-system.pdf}
+	  } 
   \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究的发展趋势}
   \begin{center}
-	云计算凸显应用价值观
-
-	应用价值观拥抱 \texttt{tradeoffs}
+	以 SLA 为代表的应用价值观
   \end{center}
 
   \fignocaption{width = 0.35\textwidth}{figures/sla-tools.jpg}
 
   \pause
+  \vspace{0.30cm}
 
   \begin{columns}[t]
 	\column{0.45\textwidth}
       购物车 SLA \citeinbeamer{Terry}{SOSP}{13}:
 	  \begin{enumerate}
-		\item 优先 \textcolor{blue}{\texttt{read-my-writes}}
-		\item 可接受 \textcolor{blue}{\texttt{any consistency}} 只要延迟低于300ms
+		\item 优先 \textcolor{blue}{\texttt{\small read-my-writes}}
+		\item 可接受 \textcolor{blue}{\texttt{\small any consistency}} 只要延迟低于300ms
 	  \end{enumerate}
 	\pause
 	\column{0.55\textwidth}
 	  出租车实时位置查询 SLA:
 	  \begin{enumerate}
-		\item 所有读请求都要满足 \textcolor{blue}{2-atomicity}
-		\item 违反 \textcolor{blue}{atomicity} 的读请求低于$1\%$ 
+		\item 所有读请求都要满足 \textcolor{blue}{\texttt{\small 2-atomicity}}
+		\item 违反 \textcolor{blue}{\texttt{\small atomicity}} 的读请求低于$1\%$ 
 	  \end{enumerate}
   \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题研究的发展趋势 (I)}
+\begin{frame}{数据一致性问题研究的发展趋势及我们的工作 (I)}
   \begin{description}
 	\setlength{\itemsep}{10pt}
 	\item[多样化:] 从单一到融合 (mono- vs. multi-) \citeinbeamer{Terry}{CACM}{13} 
@@ -128,7 +148,7 @@
   \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题研究的发展趋势 (II)}
+\begin{frame}{数据一致性问题研究的发展趋势及我们的工作 (II)}
   \begin{description}
 	\setlength{\itemsep}{20pt}
 	\item[精细化:] 从二元到连续谱
@@ -147,7 +167,7 @@
   \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{我们的工作}
+\begin{frame}{数据一致性问题研究的发展趋势及我们的工作 (III)}
   
 \end{frame}
 %%%%%%%%%%%%%%%
