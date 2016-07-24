@@ -4,8 +4,7 @@
 \begin{frame}{分布数据一致性问题}
   \begin{columns}[t]
 	\column{0.50\textwidth}
-	  \fignocaption{width = 0.30\textwidth}{figures/blue-pill.jpg}
-	  理想情况 \term{The Blue Pill}:
+	  理想情况:
 	  \begin{itemize}
 		\item one-size-fits-all 一致性模型
 		\item 始终观察到最新副本
@@ -22,11 +21,11 @@
 	  }
     \pause
 	\column{0.50\textwidth}
-	  \fignocaption{width = 0.30\textwidth}{figures/red-pill.jpg}
-	  实际情况 \textcolor{red}{\scriptsize (The Red Pill)}:
+	  实际情况:
 	  \fignocaption{width = 0.60\textwidth}{figures/consistency-centric-tradeoff.pdf}
   \end{columns}
   \pause
+  \vspace{0.50cm}
   \begin{center}
 	\textcolor{red}{分布数据一致性是分布共享数据服务的核心、挑战性问题}
   \end{center}
@@ -48,11 +47,8 @@
 % \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究的历史阶段}
-  \fignocaption{width = 0.30\textwidth}{figures/taste-of-past.jpg}
-
-  \vspace{0.20cm}
-
   \begin{center}
+	考察两个历史阶段:
 	\begin{enumerate}
 	  \centering
 	  \item 以一致性为核心的 tradeoffs
@@ -80,17 +76,15 @@
   \end{center}
 
   \begin{columns}[t]
-	\column{0.40\textwidth}
+	\column{0.50\textwidth}
 	  \uncover<2->{
 	　(1) 更丰富的 tradeoffs
-	  \fignocaption{width = 0.70\textwidth}{figures/consistency-centric-tradeoff.pdf}
+	  \fignocaption{width = 0.60\textwidth}{figures/consistency-centric-tradeoff.pdf}
 	  }
-	\column{0.20\textwidth}
-	  \fignocaption{width = 0.80\textwidth}{figures/taste-of-past.jpg}
-	\column{0.40\textwidth}
+	\column{0.50\textwidth}
 	  \uncover<3->{
 	  (2) 应用价值观驱动的理论
-	  \fignocaption{width = 0.65\textwidth}{figures/theory-vs-system.pdf}
+	  \fignocaption{width = 0.60\textwidth}{figures/theory-vs-system.pdf}
 	  } 
   \end{columns}
 \end{frame}
