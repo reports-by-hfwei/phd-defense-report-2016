@@ -25,7 +25,14 @@
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{分布数据}
-  \fignocaption{width = 0.60\textwidth}{figures/distributed-data.pdf}
+  % \fignocaption{width = 0.60\textwidth}{figures/distributed-data.pdf}
+  \graphicspath{{tikz-in-beamer/}}
+  \begin{figure}[h!]
+    \centering
+    \begin{adjustbox}{max totalsize = {0.60\textwidth}{1.00\textheight}, center}
+	  \input{tikz-in-beamer/distributed-data-beamer}
+    \end{adjustbox}
+  \end{figure}
 
   \only<1-3>{应用数据:} \uncover<4->{ \textcolor{red}{分布数据 \term{distributed data}:}}
   \begin{enumerate}

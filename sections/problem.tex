@@ -69,11 +69,23 @@
   \fignocaption{width = 0.90\textwidth}{figures/consistency-model-history.pdf}
 \end{frame}
 %%%%%%%%%%%%%%%
-% \begin{frame}{数据一致性问题研究的历史阶段 (多处理器系统)}
-% \end{frame}
+%%%%% TODO: draw the history
+\begin{frame}{数据一致性问题研究的历史阶段 (多处理器系统)}
+  \fig{width = 0.35\textwidth}{figures/consistency-lattice.png}{一致性模型. 依据 \citeinbeamer{Steinke}{JACM}{04} 中 Fig.13 重绘.}
+
+  \begin{center}
+	核心 tradeoff: 一致性模型的计算能力 vs. 系统性能
+  \end{center}
+\end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究的历史阶段 (分布式系统)}
-  \fignocaption{width = 1.00\textwidth}{figures/consistency-model-distributed-system-history.pdf}
+  \graphicspath{{tikz-in-beamer/}}
+  \begin{figure}[h!]
+    \centering
+    \begin{adjustbox}{max totalsize = {1.00\textwidth}{1.00\textheight}, center}
+	  \input{tikz-in-beamer/consistency-model-distributed-system-history-beamer}
+    \end{adjustbox}
+  \end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究的历史阶段 (结论)}
