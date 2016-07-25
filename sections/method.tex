@@ -23,12 +23,15 @@
 \begin{frame}{分布共享数据服务}
   \fignocaption{width = 0.48\textwidth}{figures/distributed-shared-data-clients.pdf}
   \begin{center}
-	\textcolor{blue!80}{分布共享数据服务:} 在分布数据之上提供共享数据的假象
+	分布共享数据服务作为中间件管理分布数据
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{分布共享数据服务}
-  \fignocaption{width = 0.40\textwidth}{figures/dsds.pdf}
+  \fignocaption{width = 0.38\textwidth}{figures/dsds.pdf}
+  \begin{center}
+	\textcolor{blue!80}{分布共享数据服务 \term{中间件}:} 在分布数据之上提供共享数据的抽象
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{分布共享数据服务 (注)}
@@ -48,8 +51,8 @@
 		\textcolor{blue}{新平台凸显应用价值观:}
 		\begin{enumerate}
 		  \centering
-		  \item 精细化, 可度量
 		  \item 多样化, 可调节
+		  \item 精细化, 可度量
 		\end{enumerate}
 	  \end{center}
 	  }
@@ -87,8 +90,8 @@
 	  \textcolor{blue}{一致性关键问题:}
 	  \begin{itemize}
 		\item 模型 \textcolor{cyan}{\small (semantics; 是什么)}
-		\item 机制 \textcolor{cyan}{\small (mechanisms; 怎么做)}
-		\item 度量 \textcolor{cyan}{\small (measurements; 怎么样)}
+		\item 机制 \textcolor{cyan}{\small (mechanism; 怎么做)}
+		\item 度量 \textcolor{cyan}{\small (measurement; 怎么样)}
 	  \end{itemize}
   \end{columns}
 \end{frame}
@@ -123,29 +126,6 @@
 	  }
   \end{columns}
 \end{frame}
-%%%%%%%%%%%%%%%
-% \begin{frame}{一致性模型}
-%   \begin{center}
-%     \textcolor{cyan}{$p_0, p_1:$} 客户进程 \hspace{0.30cm} \textcolor{cyan}{$x, y:$} 共享变量 
-%   \end{center}
-%   \pause
-% 
-%   多进程并发读/写共享变量:
-%   
-%   \fignocaption{width = 0.55\textwidth}{figures/register-what-value.pdf}
-%   \pause
-% 
-%   \begin{center}
-%     \question{数据一致性问题: 读操作允许返回什么值?}
-%   \end{center}
-% 
-%   \answer{
-%   \[
-%     \text{不同一致性模型}
-%     \xrightleftharpoons[\text{定义}]{\,\text{规定}\,}
-%     \text{不同合法返回值}
-%   \]} 
-% \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{一致性模型}
   一致性模型 \citeinbeamer{Steinke}{JACM}{04} \citeinbeamer{Adya}{Thesis}{99}:
@@ -205,7 +185,7 @@
   \begin{columns}
 	\column{0.60\textwidth}
 	  \begin{center}
-		``多样化, 可调节''的挑战:
+		``多样化, 可调节''的难点:
 		\begin{itemize}
 		  \centering
 		  \item 兼容的混合一致性模型
@@ -245,7 +225,7 @@
   \begin{columns}
 	\column{0.50\textwidth}
 	\begin{center}
-	  ``精细化, 可度量''的挑战:
+	  ``精细化, 可度量''的难点:
 	  \begin{description}
 		\centering
 		\item[验证:] 算法设计

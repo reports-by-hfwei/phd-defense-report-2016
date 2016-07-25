@@ -21,7 +21,7 @@
 	  }
     \pause
 	\column{0.50\textwidth}
-	  实际情况:
+	  实际情况 (tradeoffs):
 	  \fignocaption{width = 0.60\textwidth}{figures/consistency-centric-tradeoff.pdf}
   \end{columns}
   \pause
@@ -47,76 +47,87 @@
 % \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究的历史阶段}
-  \begin{center}
-	考察两个历史阶段:
-	\begin{enumerate}
-	  \centering
-	  \item 以一致性为核心的 tradeoffs
-	  \item 理论 vs. 系统
-	\end{enumerate}
-  \end{center}
+  关于分布数据一致性问题:
+  \begin{description}
+	\item[基本观点:] 传统问题; 新平台带来新挑战
+	\item[我们的工作:] 总结并应对挑战
+  \end{description}
+
+  \pause
+  \vspace{0.80cm}
+
+  从\textcolor{blue}{``两个方面''}考察研究的历史阶段:
+  \vspace{8pt}
+  \begin{enumerate}
+	\setlength{\itemsep}{6pt}
+	\item 理论 vs. 系统
+	\item 以数据一致性为核心的 tradeoffs
+  \end{enumerate}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究的历史阶段}
   \fignocaption{width = 0.90\textwidth}{figures/consistency-model-history.pdf}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题研究的历史阶段 (多处理器系统)}
-\end{frame}
+% \begin{frame}{数据一致性问题研究的历史阶段 (多处理器系统)}
+% \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究的历史阶段 (分布式系统)}
   \fignocaption{width = 1.00\textwidth}{figures/consistency-model-distributed-system-history.pdf}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题研究的发展趋势}
+\begin{frame}{数据一致性问题研究的历史阶段 (结论)}
+  \uncover<1->{\textcolor{blue}{新平台的两个特点:}}
   \begin{center}
-	云计算新平台凸显应用价值观
+	\uncover<2->{(1) 云计算新平台凸显应用价值观}
 
-	应用价值观积极拥抱 tradeoffs
+	\uncover<3->{(2) 应用价值观积极拥抱 tradeoffs}
   \end{center}
+
+  \uncover<1->{\textcolor{blue}{需要什么样的数据一致性理论?}}
+  \vspace{0.30cm}
 
   \begin{columns}[t]
 	\column{0.50\textwidth}
 	  \uncover<2->{
-	　(1) 更丰富的 tradeoffs
-	  \fignocaption{width = 0.60\textwidth}{figures/consistency-centric-tradeoff.pdf}
-	  }
+	  (1) 与应用价值观相匹配
+	  \fignocaption{width = 0.50\textwidth}{figures/theory-vs-system.pdf}
+	  } 
 	\column{0.50\textwidth}
 	  \uncover<3->{
-	  (2) 应用价值观驱动的理论
-	  \fignocaption{width = 0.60\textwidth}{figures/theory-vs-system.pdf}
-	  } 
-  \end{columns}
-\end{frame}
-%%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题研究的发展趋势}
-  \begin{center}
-	以 SLA 为代表的应用价值观
-  \end{center}
-
-  \fignocaption{width = 0.35\textwidth}{figures/sla-tools.jpg}
-
-  \pause
-  \vspace{0.30cm}
-
-  \begin{columns}[t]
-	\column{0.45\textwidth}
-      购物车 SLA \citeinbeamer{Terry}{SOSP}{13}:
-	  \begin{enumerate}
-		\item 优先 \textcolor{blue}{\texttt{\small read-my-writes}}
-		\item 可接受 \textcolor{blue}{\texttt{\small any consistency}} 只要延迟低于300ms
-	  \end{enumerate}
-	\pause
-	\column{0.55\textwidth}
-	  出租车实时位置查询 SLA:
-	  \begin{enumerate}
-		\item 所有读请求都要满足 \textcolor{blue}{\texttt{\small 2-atomicity}}
-		\item 违反 \textcolor{blue}{\texttt{\small atomicity}} 的读请求低于$1\%$ 
-	  \end{enumerate}
+	　(2) 体现更丰富的 tradeoffs
+	  \fignocaption{width = 0.60\textwidth}{figures/consistency-centric-tradeoff.pdf}
+	  }
   \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究的发展趋势及我们的工作 (I)}
+  \begin{columns}[t]
+	\column{0.45\textwidth}
+	  购物车一致性需求 % \textcolor{blue}{\tiny [Terry@SOSP'13]} % \citeinbeamer{Terry}{SOSP}{13}:
+	  \begin{itemize}
+		\item 优先 \textcolor{blue}{\texttt{\small read-my-writes}}
+		\item 可接受 \textcolor{blue}{\texttt{\small any consistency}} 只要延迟低于300ms
+	  \end{itemize}
+	\column{0.55\textwidth}
+	  出租车实时位置查询一致性需求:
+	  \begin{itemize}
+		\item 所有读请求都要满足 \textcolor{blue}{\texttt{\small 2-atomicity}}
+		\item 违反 \textcolor{blue}{\texttt{\small atomicity}} 的读请求低于$1\%$ 
+	  \end{itemize}
+  \end{columns}
+
+  \pause
+  \vspace{1.00cm}
+
+  \textcolor{red}{应用价值观导向的数据一致性理论:}
+  \begin{enumerate}
+	\item 多样化, 可调节
+	\item 精细化, 可度量
+  \end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{数据一致性问题研究的发展趋势及我们的工作 (II)}
   \begin{description}
 	\setlength{\itemsep}{10pt}
 	\item[多样化:] 从单一到融合 (mono- vs. multi-) \citeinbeamer{Terry}{CACM}{13} 
@@ -126,14 +137,13 @@
 		\item 融合强弱一致性: 不同操作, 不同一致性需求 
 		\item 融合一致与不一致: 容忍``有限度''的不一致
 	  \end{itemize}
-	  \pause
 	  \begin{columns}
 		\column{0.50\textwidth}
 		  \fignocaption{width = 0.50\textwidth}{figures/tradeoff.jpg} 
 		\column{0.50\textwidth}
 		  \fignocaption{width = 0.35\textwidth}{figures/one-size-fit-all-text.jpg} 
 	  \end{columns}
-	  \pause
+	\pause
 	\item[可调节:] think \textcolor{red}{\it dynamically} \citeinbeamer{Terry}{SOSP}{13}
 	  \vspace{10pt}
 	  \begin{center}
@@ -142,18 +152,19 @@
   \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题研究的发展趋势及我们的工作 (II)}
+\begin{frame}{数据一致性问题研究的发展趋势及我们的工作 (III)}
   \begin{description}
 	\setlength{\itemsep}{20pt}
-	\item[精细化:] 从二元到连续谱
+	\item[精细化:] 从二元到连续谱 \citeinbeamer{Yu}{TOCS}{02}
 	  \begin{columns}
 		\column{0.50\textwidth}
-		  \fignocaption{scale = 0.06}{figures/coin-flip.jpg}
+		  % \fignocaption{scale = 0.06}{figures/coin-flip.jpg}
+		  \fignocaption{scale = 0.15}{figures/black-or-white.jpg}
 		\column{0.50\textwidth}
 		  \fignocaption{scale = 0.05}{figures/prism-spectrum.jpg}
 	  \end{columns}
 	  \pause
-	\item[可度量:] think \textcolor{red}{\it probabilistically} \citeinbeamer{Brewer}{}{}
+	\item[可度量:] think \textcolor{red}{\it probabilistically} \citeinbeamer{Brewer}{PODC}{00}
 	  \fignocaption{width = 0.25\textwidth}{figures/tape-measure.jpg}
 	  \begin{center}
 		量化系统执行, 后验系统对一致性的满足程度
@@ -162,44 +173,20 @@
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究的发展趋势及我们的工作 (III)}
-  
+  \begin{columns}[t]
+	\column{0.50\textwidth}
+	  2个理念:
+	  \begin{enumerate}
+		\item 多样化, 可调节
+		\item 精细化, 可度量
+	  \end{enumerate}
+	\column{0.50\textwidth}
+      3份工作:
+	  \begin{enumerate}
+		\item VPC
+		\item PA2AM
+		\item RVSI
+	  \end{enumerate}
+  \end{columns}
 \end{frame}
-%%%%%%%%%%%%%%%
-% \begin{frame}{数据一致性问题研究的发展趋势}
-%   \begin{enumerate}
-%     \setlength{\itemsep}{15pt}
-% 	\item 精细化, 可度量 \citeinbeamer{Bailis}{VLDB}{12}
-% 	  \vspace{5pt}
-% 	  \uncover<2->{
-% 		\begin{description}
-% 		  \setlength{\itemsep}{5pt}
-% 		  \item[精细化:] ``在大多数情况下, 访问到一致数据''
-% 		  \item[可度量:] 量化系统执行, 后验系统对一致性的满足程度 
-% 		\end{description}
-% 	  }
-% 	  \only<2->{
-% 		\begin{textblock*}{6cm}(6.0cm, 1.5cm)
-% 		  \fignocaption{width = 0.60\textwidth}{figures/tape-measure.jpg}
-% 		\end{textblock*}
-% 	  }
-%     \item 多样化, 可定制 \citeinbeamer{Terry}{CACM}{13}
-% 	  \vspace{5pt}
-% 	  \uncover<3->{
-% 		\begin{description}
-% 		  \setlength{\itemsep}{5pt}
-% 		  \item[多样化:] 
-% 			\begin{itemize}
-% 			  \item 一致性族: causality; read-your-writes {\scriptsize (RYW)}
-% 			  \item 参数调节: 提供``有限度''的不一致 \citeinbeamer{Yu}{TOCS}{02}
-% 			\end{itemize}
-% 		  \item[可定制:] 混合使用, 运行时可变
-% 		\end{description}
-% 	  }
-% 	  \only<3->{
-% 		\begin{textblock*}{6cm}(6.0cm, 6.5cm)
-% 		  \fignocaption{width = 0.35\textwidth}{figures/rudder.jpg}
-% 		\end{textblock*}
-% 	  }
-%   \end{enumerate}
-% \end{frame}
 %%%%%%%%%%%%%%%
