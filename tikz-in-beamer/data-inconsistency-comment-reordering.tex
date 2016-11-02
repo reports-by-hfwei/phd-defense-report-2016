@@ -1,0 +1,68 @@
+% This example is from WYATT LLOYD@CACM14 (Don't Settle For Eventual Consistency)
+\begin{tikzpicture}
+  % replica A at west coast
+  \begin{scope}[font = \Large, wnode/.style = {fill = blue!60, circle}]
+    \node (west-start) [] at (0,0) {};
+    \node (west-end) [below = 8cm of west-start] {};
+
+	\uncover<2->{
+    \draw [>=Stealth, ->, ultra thick] (west-start) to (west-end);
+
+    \node (west-a-lost) [wnode, label = 180: $A_{\textrm{lost}}$] at ($(west-start) !0.10! (west-end)$) {};
+    \node (west-a-found) [wnode, label = 180: $A_{\textrm{found}}$] at ($(west-start) !0.30! 
+    (west-end)$) {};
+    \node (west-b-glad) [wnode, label = 180: $B_{\textrm{glad}}$] at ($(west-start) !0.60! (west-end)$) {};
+
+    % text
+    \node (west-text) [above left = 1.5cm and -3.00cm of west-start, align = center, font = \LARGE] {{\bf A}lice: I've {\bf lost} my ring.
+    \\ $\qquad$ {\bf A}lice: I {\bf found} it upstairs. 
+    \\ $\qquad$ {\bf B}ob: {\bf Glad} to hear that.};
+  }
+
+    % replica A at west coast
+	\uncover<1->{
+	  \node (replicaA) [above = -0.20cm of west-start, font = \LARGE, draw = blue, rectangle, rounded corners] {\textcolor{blue}{Replica A}};}
+  \end{scope}
+
+  % replica B at east coast
+  \begin{scope}[xshift = 8.0cm, font = \Large, enode/.style = {fill = brown!60, circle}]
+    \node (east-start) [] at (0,0) {};
+    \node (east-end) [below = 8cm of east-start] {};
+	\uncover<3->{
+	\draw [>=Stealth, ->, ultra thick] (east-start) to (east-end);
+
+    \node (east-a-lost) [enode, label = 0: $A_{\textrm{lost}}$] at ($(east-start) !0.20! (east-end)$) {};
+    \node (east-b-glad) [enode, label = 0: $B_{\textrm{glad}}$] at ($(east-start) !0.40! 
+    (east-end)$) {};
+    \node (east-a-found) [enode, label = 0: $A_{\textrm{found}}$] at ($(east-start) !0.85! (east-end)$) {};
+
+  % message-passing and message-reordering
+  \begin{scope}[>=Stealth, ->, thick, dashed, red]
+    \draw (west-a-lost) to (east-a-lost);
+    \draw (west-a-found) to (east-a-found);
+    \draw (west-b-glad) to (east-b-glad);
+  \end{scope}
+  }
+    
+    % replica B at east coast
+	\uncover<1->{
+	  \node (replicaB) [above = -0.20cm of east-start, font = \LARGE, draw = brown, rectangle, rounded corners] {\textcolor{brown}{Replica B}};}
+  \end{scope}
+
+  \uncover<4->{
+  \begin{scope}[font = \Large]
+    % data inconsistency in replicaB
+    \draw [line width = 5pt, red] (east-b-glad) -- (east-a-found) 
+	node (inconsistency) [above, midway, sloped, outer sep = 5pt] {inconsistency};
+    % text
+    \node (east-text) [draw = red, very thick, rectangle, 
+	above right = 1.5cm and -3.00cm of east-start, align = center, font = \LARGE, 
+	  outer sep = 5pt] 
+	  {{\bf A}lice: I've {\bf lost} my ring.  
+	  \\ $\qquad$ {\bf B}ob: {\bf Glad} to hear that.};
+	% link
+    \draw [>=Stealth, very thick, red, <->] 
+	  (inconsistency) -| ($(east-text.south) + (30pt,0)$);
+  \end{scope}
+  }
+\end{tikzpicture}

@@ -2,6 +2,33 @@
 
 %%%%%%%%%%%%%%%
 \begin{frame}{分布数据一致性问题}
+  \graphicspath{{tikz-in-beamer/}}
+  \begin{figure}[h!]
+    \centering
+    \begin{adjustbox}{max totalsize = {0.60\textwidth}{1.00\textheight}, center}
+	  \input{tikz-in-beamer/distributed-data-overlay-for-problem}
+    \end{adjustbox}
+  \end{figure}
+
+  \uncover<2->{
+	\textcolor{red}{分布数据 \term{distributed data}} $\Leftarrow$ 共享 (集中式) 数据 \term{shared data}:}
+  \begin{description}
+	\item<3->[上层应用:] 分布数据的语义是什么? 如何``方便''地使用分布数据?
+	\item<4->[数据副本:] 以何种顺序应用更新? 对应用提供什么保证?
+  \end{description}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{分布数据一致性问题}
+  \begin{figure}[h!]
+    \centering
+    \begin{adjustbox}{max totalsize = {0.70\textwidth}{1.00\textheight}, center}
+	  \input{tikz-in-beamer/data-inconsistency-comment-reordering}
+    \end{adjustbox}
+	\caption{社交网络中, 消息-评论乱序 \citeinbeamer{Lloyd}{CACM}{14}.}
+  \end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{分布数据一致性问题}
   \begin{columns}[t]
 	\column{0.50\textwidth}
 	  理想情况:
@@ -21,13 +48,14 @@
 	  }
     \pause
 	\column{0.50\textwidth}
-	  实际情况 (tradeoffs):
+	实际情况 (tradeoffs) \citeinbeamer{Guerraoui}{TCDE}{16}:
 	  \fignocaption{width = 0.60\textwidth}{figures/consistency-centric-tradeoff.pdf}
   \end{columns}
   \pause
   \vspace{0.50cm}
   \begin{center}
-	\textcolor{red}{分布数据一致性是分布共享数据服务的核心、挑战性问题}
+	% \textcolor{red}{分布数据一致性问题是分布共享数据服务中的核心问题}
+	\textcolor{blue}{以数据一致性为核心的权衡使得该问题具有挑战性}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%
@@ -46,23 +74,20 @@
 %   \end{figure}
 % \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题研究的历史阶段}
-  关于分布数据一致性问题:
-  \begin{description}
-	\item[基本观点:] 传统问题; 新平台带来新挑战
-	\item[我们的工作:] 总结并应对挑战
-  \end{description}
+\begin{frame}{分布数据一致性问题}
+  \mdf{red}{blue}{论文研究问题}{teal}{考虑到上述权衡, \\ 面向大规模分布式系统的\\分布数据一致性理论应具有什么特性?}
 
   \pause
   \vspace{0.80cm}
 
-  从\textcolor{blue}{``两个方面''}考察研究的历史阶段:
+  考察分布数据一致性问题研究的历史:
   \vspace{8pt}
-  \begin{enumerate}
+  \begin{itemize}
 	\setlength{\itemsep}{6pt}
-	\item 理论 vs. 系统
-	\item 以数据一致性为核心的 tradeoffs
-  \end{enumerate}
+	\item 核心权衡与解决方案 
+	  \pause
+	\item 理论与系统
+  \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究的历史阶段}
@@ -71,10 +96,10 @@
 %%%%%%%%%%%%%%%
 %%%%% TODO: draw the history
 \begin{frame}{数据一致性问题研究的历史阶段 (多处理器系统)}
-  \fig{width = 0.35\textwidth}{figures/consistency-lattice.png}{一致性模型. 依据 \citeinbeamer{Steinke}{JACM}{04} 中 Fig.13 重绘.}
+  \fig{width = 0.35\textwidth}{figures/consistency-lattice.png}{一致性模型 {\scriptsize (依据 \citeinbeamer{Steinke}{JACM}{04} 中 Figure~13 重绘)}.}
 
   \begin{center}
-	核心 tradeoff: 一致性模型的计算能力 vs. 系统性能
+	核心权衡: 一致性模型的计算能力 vs. 系统性能
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%
@@ -185,20 +210,17 @@
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究的发展趋势及我们的工作 (III)}
-  \begin{columns}[t]
-	\column{0.50\textwidth}
-	  2个理念:
-	  \begin{enumerate}
-		\item 多样化, 可调节
-		\item 精细化, 可度量
-	  \end{enumerate}
-	\column{0.50\textwidth}
-      3份工作:
-	  \begin{enumerate}
-		\item VPC
-		\item PA2AM
-		\item RVSI
-	  \end{enumerate}
-  \end{columns}
+  \mdf{red}{red}{论文研究问题}{teal}{如何在大规模分布式系统中\\落实\idea{}\\这一体现应用价值观的数据一致性问题研究理念?}
+
+  \pause
+
+  \mdf{blue}{blue}{论文主要贡献}{black}{
+	\begin{description}[<+->]
+	  \item[理念:] 提出``以应用为导向的''、\idea{} 的一致性问题研究理念
+	  \item[VPC:]
+	  \item[PA2AM:]
+	  \item[RVSI:]
+	\end{description}
+  }
 \end{frame}
 %%%%%%%%%%%%%%%

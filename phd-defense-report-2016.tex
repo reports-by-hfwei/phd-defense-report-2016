@@ -2,9 +2,10 @@
 
 \usepackage{xeCJK}
 \usepackage{fontspec}
+\usepackage{comment}
 
 \usetheme{CambridgeUS} % try Madrid
-\usecolortheme{beaver}
+\usecolortheme{beaver} % try beaver, dolphin, seahorse
 \usefonttheme[onlymath]{serif} % try "professionalfonts"
 \setCJKmainfont{Microsoft YaHei} % try SimSun
 
@@ -16,7 +17,9 @@
 % textpos for textblock (putting objects at specified positions)
 % \usepackage[absolute, overlay]{textpos}  
 \usepackage{adjustbox}
-% \usepackage{mdframed}
+
+\usepackage[framemethod=TikZ]{mdframed}
+
 \usepackage[normalem]{ulem} % strike through text
 \newcommand{\soutthick}[1]{%
     \renewcommand{\ULthickness}{2.0pt}%
@@ -28,14 +31,12 @@
 % \addbibresource{phd-defense-report.bib}
 
 \setbeamersize{text margin left = 2em, text margin right = 1em}
-
 \setbeamercolor{footnote mark}{fg = teal}
-
 \setbeamertemplate{itemize items}[default]
 \setbeamertemplate{enumerate items}[default]
 
 \usepackage{tikz}
-\usetikzlibrary{shapes, positioning, calc, backgrounds, fit}
+\usetikzlibrary{arrows.meta, shapes, positioning, calc, backgrounds, fit}
 
 \theoremstyle{plain}
 \newtheorem{cdef}{定义}[section]
@@ -62,7 +63,7 @@
 }
 
 % for cite: #1: author; #2: conference #3: year
-\newcommand{\citeinbeamer}[3]{{\scriptsize{\textcolor{blue}{[#1@#2'#3]}}}}
+\newcommand{\citeinbeamer}[3]{{\tiny{\textcolor{blue}{[#1@#2'#3]}}}}
 
 \newcommand{\term}[1]{\textcolor{blue}{\scriptsize (#1)}}
 \newcommand{\set}[1]{\{#1\}}
@@ -73,14 +74,17 @@
 \newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO:} #1}}
 \newcommand{\mathbfblue}[1]{\textcolor{blue}{$\mathbf{#1}$}}
 
-\newcommand{\papertitle}{分布数据一致性理论与技术研究}
+\newcommand{\papertitle}{分布数据一致性技术研究}
+\newcommand{\idea}{``多样化, 可调节; 精细化, 可度量''}
+\newcommand{\ideadt}{``多样化, 可调节''}
+\newcommand{\idearm}{``精细化, 可度量''}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 \title[\papertitle]{\papertitle}
 \subtitle{}
 
 \author[魏恒峰]{魏恒峰 \\导师: 吕建 \hspace{0.20cm} 黄宇}
 \institute{南京大学软件所}
-\date{2016年7月25日}
+\date{\today}
 
 \AtBeginSection[]{
   \begin{frame}[noframenumbering, plain]
@@ -105,24 +109,43 @@
 \renewcommand\figurename{图} 
 \renewcommand\tablename{表} 
 
+% mdf: mdframed; #1: frame color; #2: frame title color; #3: frame title; #4: text color; #5: text
+\newcommand{\mdf}[5]{
+\begin{mdframed}[frametitle={
+  \tikz[baseline = (current bounding box.east), outer sep = 0pt]
+  \node[anchor = east, rectangle, fill = #1!20, font = \small]{\strut \textcolor{#2}{#3:}};},
+  innertopmargin = 2pt, linecolor = #1!20, linewidth = 2pt, topline = true,
+  frametitleaboveskip=\dimexpr-\ht\strutbox\relax]
+  \begin{center}
+	\textcolor{#4}{#5}
+  \end{center}
+\end{mdframed}
+}
+
 \maketitle
 
 \begin{frame}[noframenumbering, plain]
-  \frametitle{分布数据一致性理论与技术研究}
-  \begin{enumerate}
-    \setlength{\itemsep}{15pt}
-	\item \textcolor{blue}{研究背景:} {\footnotesize 分布数据}
-	\item \textcolor{blue}{研究问题:} {\footnotesize 数据一致性}
-	\item \textcolor{blue}{研究方法:} {\footnotesize 理论模型 + 技术框架}
-    \item 主要工作: {\footnotesize VPC + PA2AM + RVSI}
-    \item 未来工作
-  \end{enumerate}
+  \frametitle{\papertitle}
+  \tableofcontents[currentsection, sectionstyle=show, subsectionstyle=show/show/hide]
 \end{frame}
+
+% \begin{frame}[noframenumbering, plain]
+%   \frametitle{分布数据一致性理论与技术研究}
+%   \begin{enumerate}
+%     \setlength{\itemsep}{15pt}
+% 	\item {\bf 研究背景:} {\footnotesize 分布数据}
+% 	\item \textcolor{blue}{研究问题:} {\footnotesize 数据一致性}
+% 	\item \textcolor{blue}{研究方法:} {\footnotesize 理论模型 + 技术框架}
+% 	\item \textcolor{blue}{主要工作:} {\footnotesize VPC + PA2AM + RVSI}
+% 	\item \textcolor{blue}{未来工作}
+%   \end{enumerate}
+% \end{frame}
 
 \input{sections/background}
 \input{sections/problem}
-\input{sections/method}
-\input{sections/work}
-\input{sections/future}
+\input{sections/related-work}
+% \input{sections/method}
+% \input{sections/work}
+% \input{sections/future}
 
 \end{document}
