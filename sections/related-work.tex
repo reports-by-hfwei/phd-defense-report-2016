@@ -1,16 +1,46 @@
 \section{相关工作}	\label{section:related-work}
 
 %%%%%%%%%%%%%%%
-\begin{frame}{\ideadt{}的研究理念}
-  \begin{table}
-	\centering
-	\begin{tabular}{|c|c|c|c|c|}
-	  \hline
-	  & 读写寄存器 & 事务
-	\end{tabular}
-	\caption{相关工作一: \ideadt{}的研究理念}
-	\label{tbl:ideadt-related-work}
-  \end{table}
+\begin{frame}{相关工作分类}
+  
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{\ideadt{}的研究理念 (一)}
+  \ideadt{}的\textcolor{red}{读写寄存器}一致性模型 \textcolor{blue}{\footnotesize (多处理器系统)}:
+  \pause
+  \vspace{8pt}
+  \begin{description}
+	\setlength{\itemsep}{5pt}
+	\item[典型:] Hybrid consistency \citeinbeamer{Attiya}{SIAM J. Comput.}{98}
+	\item[思想:] 将操作分为强弱两类
+	  \pause
+	\item[其它:] ``带同步的''一致性模型 \citeinbeamer{Dubois}{IEEE Computer}{88} \citeinbeamer{Steinke}{JACM}{04}
+	\item[特点:] 强调正确性 {\footnotesize (properly synchronized)}
+	\item[总评:] 相关工作丰富; 理论扎实
+  \end{description}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{\ideadt{}的研究理念 (二)}
+  \ideadt{}的\textcolor{red}{读写寄存器}一致性模型 \textcolor{blue}{\footnotesize (分布式系统)}:
+  \vspace{8pt}
+  \begin{description}
+	\setlength{\itemsep}{5pt}
+	\item[思想:] 借鉴并发展 Hybrid consistency 的思想
+	\item[典型:] 
+	  \begin{itemize}
+		\item Causal/immediate/forced consistency \citeinbeamer{Ladin}{TOCS}{92}
+		\item RedBlue consistency \citeinbeamer{Li}{OSDI}{12}
+		\item Apache Cassandra~\footnote{\url{http://cassandra.apache.org/}} \citeinbeamer{Facebook}{SIGOPS OSR}{10}
+		\item Pileus \citeinbeamer{Terry}{SOSP}{13}
+	  \end{itemize}
+	  \pause
+	\item[特点:] 更细粒度的多一致性模型共存、更能容忍数据不一致
+	\item[总评:] 已成趋势; 缺少基础理论工作
+  \end{description}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{\ideadt{}的研究理念 (三)}
+  \ideadt{}的\textcolor{red}{事务}一致性模型 \textcolor{blue}{\footnotesize (分布式系统)}:
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{\idearm{}的研究理念}
