@@ -1,4 +1,4 @@
-\documentclass[shownotes]{beamer}
+\documentclass[shownotes, xcolor = table]{beamer}
 
 \usepackage{xeCJK}
 \usepackage{fontspec}
@@ -12,6 +12,7 @@
 \usepackage{amsmath, amsfonts, amssymb, mathtools, pifont}
 \newcommand{\cmark}{\ding{51}}%
 \newcommand{\xmark}{\ding{55}}%
+\def\checkmark{\tikz\fill[scale=0.5](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
 
 \usepackage{graphicx, subcaption}
 % textpos for textblock (putting objects at specified positions)
@@ -43,6 +44,8 @@
 \newtheorem{ctheorem}{定理}[section]
 \newtheorem{cquestion}{问题:}[section]
 
+% for tables
+\usepackage{multirow}
 \newcommand{\innercell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
 
 % for fig without caption: #1: width/size; #2: fig file
