@@ -1,7 +1,8 @@
-\section{研究方法}
+\section{技术框架}
 
+\begin{comment}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{理论模型:分布共享数据}
+\subsection{理论模型:分布共享数据服务}
 
 %%%%%%%%%%%%%%%
 \begin{frame}{分布共享数据服务}
@@ -9,122 +10,105 @@
 	\column{0.50\textwidth}
 	  \fignocaption{width = 0.60\textwidth}{figures/shared-data-clients.pdf}
 	  \begin{center}
-		共享数据系统 (single copy)
+		共享数据系统
 	  \end{center}
 	\pause
 	\column{0.50\textwidth}
 	  \fignocaption{width = 0.70\textwidth}{figures/distributed-data-clients.pdf}
 	  \begin{center}
-		分布数据系统 (replicas)
+		分布数据系统
 	  \end{center}
   \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{分布共享数据服务}
-  \fignocaption{width = 0.48\textwidth}{figures/distributed-shared-data-clients.pdf}
+  \fignocaption{width = 0.45\textwidth}{figures/distributed-shared-data-clients.pdf}
   \begin{center}
 	分布共享数据服务作为中间件管理分布数据
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{分布共享数据服务}
-  \fignocaption{width = 0.38\textwidth}{figures/dsds.pdf}
+  \fignocaption{width = 0.35\textwidth}{figures/dsds.pdf}
   \begin{center}
 	\textcolor{blue!80}{分布共享数据服务 \term{中间件}:} 在分布数据之上提供共享数据的抽象
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{分布共享数据服务 (注)}
-  \begin{columns}
-	\column{0.60\textwidth}
-	\begin{center}
-	  分布共享内存模型 (多处理器系统)\\
-	  \textcolor{blue}{[传统概念]}\\
-	  \vspace{0.10cm} +\\ \vspace{0.10cm}
-	  分布数据系统\\
-	  \textcolor{blue}{[新平台]}
-	  
-	  \uncover<2->{
-	  \color{red}\rule{\linewidth}{3pt}
+  \begin{center}
+	分布共享内存模型 (多处理器系统)\\
+	\textcolor{blue}{[传统概念]}\\
+	\vspace{0.10cm} +\\ \vspace{0.10cm}
+	分布数据系统\\
+	\textcolor{blue}{[新平台]}
+	
+	\uncover<2->{
+	  \vspace{0.3cm}
+	\color{red}\rule{0.618\linewidth}{3pt}
+	  \vspace{0.2cm}
 
-	  \begin{center}
-		\textcolor{blue}{新平台凸显应用价值观:}
-		\begin{enumerate}
-		  \centering
-		  \item 多样化, 可调节
-		  \item 精细化, 可度量
-		\end{enumerate}
-	  \end{center}
-	  }
+	\begin{center}
+	  \textcolor{blue}{新平台凸显应用价值观:}
+	  \begin{enumerate}
+		\centering
+		\item 多样化, 可调节
+		\item 精细化, 可度量
+	  \end{enumerate}
 	\end{center}
-	\column{0.40\textwidth}
-	  \fignocaption{scale = 0.35}{figures/more-old-wine-new-bottle-poster.jpg}
-  \end{columns}
+	}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{技术框架}
+\end{comment}
 
 %%%%%%%%%%%%%%%
 \begin{frame}{分布数据一致性问题}
-  \begin{columns}
-	\column{0.50\textwidth}
-	  分布数据一致性问题:
-	  \begin{itemize}
-		\item [\textcolor{blue}{\bf \cmark}] 分布: 分区 + 副本
-		\item [\textcolor{red}{\bf \xmark}] 数据: 数据类型
-		\item [\textcolor{red}{\bf \xmark}] 一致性: 关键问题
-	  \end{itemize}
-	\pause
-	\column{0.50\textwidth}
-	  \textcolor{blue}{数据类型:}
-	  \begin{itemize}
-		\item 单独的变量 \textcolor{cyan}{\small ($x,y$)}
-		\item 数据结构 \textcolor{cyan}{\small (\textsc{Set, List})}
-		\item 事务 \textcolor{cyan}{\small (\textsc{Tx})}
-	  \end{itemize}
-
-	  \pause
-	  \vspace{0.80cm}
-
-	  \textcolor{blue}{一致性关键问题:}
-	  \begin{itemize}
-		\item 模型 \textcolor{cyan}{\small (semantics; 是什么)}
-		\item 机制 \textcolor{cyan}{\small (mechanism; 怎么做)}
-		\item 度量 \textcolor{cyan}{\small (measurement; 怎么样)}
-	  \end{itemize}
-  \end{columns}
+  \fignocaption{width = 0.618\textwidth}{figures/distributed-data-consistency-explained.pdf}
 \end{frame}
+
+% 分布数据一致性问题:
+% \begin{itemize}
+%   \item [\textcolor{blue}{\bf \cmark}] 分布: 分区 + 副本
+%   \item [\textcolor{red}{\bf \xmark}] 数据: 数据类型
+%   \item [\textcolor{red}{\bf \xmark}] 一致性: 关键问题
+% \end{itemize}
+
+% \textcolor{blue}{数据类型:}
+% \begin{itemize}
+%   \item 读写寄存器/变量 \textcolor{cyan}{\small ($x,y$)}
+%   \item 数据结构 \textcolor{cyan}{\small (\textsc{Set, List})}
+%   \item 事务 \textcolor{cyan}{\small (\textsc{Tx})}
+% \end{itemize}
+
+% \textcolor{blue}{一致性关键问题:}
+% \begin{itemize}
+%   \item 模型 \textcolor{cyan}{\small (semantics; 是什么)}
+%   \item 机制 \textcolor{cyan}{\small (mechanism; 怎么做)}
+%   \item 度量 \textcolor{cyan}{\small (measurement; 怎么样)}
+% \end{itemize}
 %%%%%%%%%%%%%%%
 \begin{frame}{技术框架}
-  \fignocaption{width = 0.60\textwidth}{figures/1+3-framework.pdf}
+  \fignocaption{width = 0.60\textwidth}{figures/3d-framework.pdf}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{数据类型}
-  \begin{columns}
-	\column{0.60\textwidth}
-	  数据类型: 从个体到群组
-	  \pause
-	  \vspace{0.20cm}
-	  \begin{itemize}
-		\setlength{\itemsep}{8pt}
-		\item<2-> 单独读写变量
-		\item<3-> 事务对象
-		  \begin{itemize}
-			\setlength{\itemsep}{4pt}
-			\item 事务 $\triangleq$ 多个读写变量的操作序列
-			\item 支持 ``all-or-none'' 写语义
-			\item 易于开发并发应用
-		  \end{itemize}
-	  \end{itemize}
-	\column{0.40\textwidth}
-	  \uncover<2-> {
-		\fignocaption{width = 0.65\textwidth}{figures/key-value-wiki.png}
-	  }
-	  \uncover<3->{
-		\fignocaption{width = 0.60\textwidth}{figures/all-or-none.jpg}
-	  }
-  \end{columns}
+	数据类型: 从个体到群组
+	\pause
+	\vspace{0.20cm}
+	\begin{itemize}
+	  \setlength{\itemsep}{8pt}
+	  \item<2-> 读写寄存器
+	  \item<3-> 事务对象
+		\begin{itemize}
+		  \setlength{\itemsep}{4pt}
+		  \item 事务 $\triangleq$ 多个读写寄存器的操作序列
+		  \item 支持 ``all-or-none'' 语义
+		  \item 易于开发并发应用
+		\end{itemize}
+	\end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{一致性模型}
@@ -140,25 +124,25 @@
   \end{itemize}
 
   \vspace{0.20cm}
-  \fig{width = 0.50\textwidth}{figures/consistency-model-tree.png}{来自 \citeinbeamer{Bailis}{VLDB}{14}}
+  \fig{width = 0.50\textwidth}{figures/consistency-model-tree.png}{一致性模型强弱关系 \scriptsize {(来自 \citeinbeamer{Bailis}{VLDB}{14})}.}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{一致性模型}
   一致性模型的\textcolor{blue}{集合}定义:
   \begin{align*}
-	\uncover<2->{\textrm{系统执行 } \; e &\triangleq \textrm{该执行所产生的事件的序列} \\[3pt]}
-	\uncover<3->{\textrm{分布式系统 } \; \mathcal{S} &\triangleq \set{\textrm{该系统的所有可能执行}} \\[3pt]}
+	\uncover<2->{\textrm{系统执行 } \; e &\triangleq \textrm{该执行所产生的事件的序列} \\[5pt]}
+	\uncover<3->{\textrm{分布式系统 } \; \mathcal{S} &\triangleq \set{\textrm{该系统的所有可能执行}} \\[5pt]}
 	\uncover<4->{\textrm{一致性模型 } \; \mathcal{C} &\triangleq \set{\textrm{该模型所允许的所有系统执行}}}
   \end{align*}
 
-  \uncover<2->{
-  \begin{columns}
-	\column{0.50\textwidth}
-	  \fignocaption{width = 0.30\textwidth}{figures/three-gears.jpg}
-	\column{0.50\textwidth}
-	  \fignocaption{width = 0.30\textwidth}{figures/gps-marks.png}
-  \end{columns}
-  }
+  % \uncover<2->{
+  % \begin{columns}
+  %   \column{0.50\textwidth}
+  %     \fignocaption{width = 0.30\textwidth}{figures/three-gears.jpg}
+  %   \column{0.50\textwidth}
+  %     \fignocaption{width = 0.30\textwidth}{figures/gps-marks.png}
+  % \end{columns}
+  % }
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{一致性实现机制}
@@ -227,7 +211,7 @@
 	\begin{center}
 	  ``精细化, 可度量''的难点:
 	  \begin{description}
-		\centering
+		% \centering
 		\item[验证:] 算法设计
 		\item[量化:] 数学建模
 	  \end{description}
