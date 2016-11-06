@@ -3,19 +3,20 @@
 %%%%%%%%%%%%%%%
 \begin{frame}{分布式应用}
   \fignocaption{width = 0.45\textwidth}{figures/sina-weibo-world-map.pdf}
+  \vspace{0.50cm}
 
   \begin{columns}
-	\column{0.50\textwidth}
-	新浪微博社交网站 \footnotemark:
+	\column{0.40\textwidth}
+	新浪微博社交应用~\footnotemark:
 	\begin{itemize}
-	  \item 日均用户近一亿
+	  \item 日均用户近一亿名
 	  \item 日均消息近一亿条
 	\end{itemize}
 
 	\column{0.50\textwidth}
-	底层数据服务系统特性需求 \term{$H^{3}L$}: 
+	底层数据服务系统特性需求~\term{$H^{3}L$}: 
 	\begin{itemize}
-	  \item 低延迟, 高可用性 (4个9 \footnotemark)
+	  \item 低延迟, 高可用性 (4个9~\footnotemark)
 	  \item 高容错性, 高可扩展性
 	\end{itemize}
   \end{columns}
@@ -28,7 +29,7 @@
   \graphicspath{{tikz-in-beamer/}}
   \begin{figure}[h!]
     \centering
-    \begin{adjustbox}{max totalsize = {0.60\textwidth}{1.00\textheight}, center}
+    \begin{adjustbox}{max totalsize = {0.50\textwidth}{1.00\textheight}, center}
 	  \input{tikz-in-beamer/distributed-data-overlay-for-background}
     \end{adjustbox}
   \end{figure}

@@ -5,13 +5,14 @@
   \graphicspath{{tikz-in-beamer/}}
   \begin{figure}[h!]
     \centering
-    \begin{adjustbox}{max totalsize = {0.60\textwidth}{1.00\textheight}, center}
+    \begin{adjustbox}{max totalsize = {0.50\textwidth}{1.00\textheight}, center}
 	  \input{tikz-in-beamer/distributed-data-overlay-for-problem}
     \end{adjustbox}
   \end{figure}
 
   \uncover<2->{
 	\textcolor{red}{分布数据 \term{distributed data}} $\Leftarrow$ 共享 (集中式) 数据 \term{shared data}:}
+  \vspace{0.30cm}
   \begin{description}
 	\item<3->[上层应用:] 分布数据的语义是什么? 如何``方便''地使用分布数据?
 	\item<4->[数据副本:] 以何种顺序应用更新? 对应用提供什么保证?
@@ -30,10 +31,10 @@
 %%%%%%%%%%%%%%%
 \begin{frame}{分布数据一致性问题}
   \begin{columns}[t]
-	\column{0.50\textwidth}
+	\column{0.40\textwidth}
 	  理想情况:
 	  \begin{itemize}
-		\item one-size-fits-all 一致性模型
+		\item one-size-fits-all\\一致性模型
 		\item 始终观察到最新副本
 	  \end{itemize}
 	  \only<1-2>{
@@ -47,15 +48,15 @@
 	  \end{center}
 	  }
     \pause
-	\column{0.50\textwidth}
-	实际情况 (tradeoffs) \citeinbeamer{Guerraoui}{TCDE}{16}:
+	\column{0.48\textwidth}
+	实际情况 (tradeoffs):
 	  \fignocaption{width = 0.60\textwidth}{figures/consistency-centric-tradeoff.pdf}
   \end{columns}
   \pause
   \vspace{0.50cm}
   \begin{center}
 	% \textcolor{red}{分布数据一致性问题是分布共享数据服务中的核心问题}
-	\textcolor{blue}{以数据一致性为核心的权衡使得该问题具有挑战性}
+	\textcolor{blue}{以数据一致性为核心的权衡 \citeinbeamer{Guerraoui}{TCDE}{16} 使得该问题具有挑战性}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%
@@ -75,7 +76,7 @@
 % \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{分布数据一致性问题}
-  \mdf{red}{blue}{论文研究问题}{teal}{考虑到上述权衡, \\ 面向大规模分布式系统的\\分布数据一致性理论应具有什么特性?}
+  \mdf{red}{blue}{论文研究动机}{teal}{考虑到上述权衡, \\ 面向大规模分布式系统的\\分布数据一致性理论应具有什么特性?}
 
   \pause
   \vspace{0.80cm}
@@ -113,58 +114,76 @@
   \end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题研究的历史阶段 (结论)}
-  \uncover<1->{\textcolor{blue}{新平台的两个特点:}}
-  \begin{center}
-	\uncover<2->{(1) 云计算新平台凸显应用价值观}
+% \begin{frame}{数据一致性问题研究的历史阶段 (结论)}
+%   \begin{columns}[T]
+% 	\column{0.40\textwidth}
+% 	  新平台, 新特点:
+% 	  \vspace{0.30cm}
+% 	  \begin{itemize}
+% 		\item 更丰富的应用
+% 		\item 更复杂的权衡
+% 	  \end{itemize}
+% 	\column{0.45\textwidth}
+% 	\only<2->{更具\textcolor{brown}{``柔性''}的数据一致性理论:}
+% 	  \vspace{0.30cm}
+% 	  \begin{itemize}
+% 		\item<3-> 多样化, 可调节
+% 		\item<4-> 精细化, 可度量
+% 	  \end{itemize}
+%   \end{columns}
+% \end{frame}
 
-	\uncover<3->{(2) 应用价值观积极拥抱 tradeoffs}
+  % \uncover<1->{\textcolor{blue}{需要什么样的数据一致性理论?}}
+  % \vspace{0.30cm}
+
+  % \begin{columns}[t]
+  %   \column{0.50\textwidth}
+  %     \uncover<2->{
+  %     (1) 
+  %     } 
+  %   \column{0.50\textwidth}
+  %     \uncover<3->{
+  %   　(2) 体现更丰富的 tradeoffs
+  %     \fignocaption{width = 0.60\textwidth}{figures/consistency-centric-tradeoff.pdf}
+  %     }
+  % \end{columns}
+%%%%%%%%%%%%%%%
+\begin{frame}{数据一致性问题研究理念 (I)}
+  \begin{center}
+	\textcolor{red}{新平台, 新特点:} 更丰富的应用、更复杂的权衡
   \end{center}
 
-  \uncover<1->{\textcolor{blue}{需要什么样的数据一致性理论?}}
-  \vspace{0.30cm}
+  \vspace{0.50cm}
+  \only<2>{
+  棒球赛应用一致性需求~\citeinbeamer{Terry}{SOSP}{13}:
+  \begin{description}
+	\item[记分员:] 采用 \textcolor{blue}{\texttt{\small read-my-writes consistency}} 更新比赛得分
+	\item[电台记者:] 采用 \textcolor{blue}{\texttt{\small monotonic reads consistency}} 避免读到陈旧比分
+  \end{description}
+  }
 
-  \begin{columns}[t]
-	\column{0.50\textwidth}
-	  \uncover<2->{
-	  (1) 与应用价值观相匹配
-	  \fignocaption{width = 0.50\textwidth}{figures/theory-vs-system.pdf}
-	  } 
-	\column{0.50\textwidth}
-	  \uncover<3->{
-	　(2) 体现更丰富的 tradeoffs
-	  \fignocaption{width = 0.60\textwidth}{figures/consistency-centric-tradeoff.pdf}
-	  }
-  \end{columns}
-\end{frame}
-%%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题研究的发展趋势及我们的工作 (I)}
-  \begin{columns}[t]
-	\column{0.45\textwidth}
-	  购物车一致性需求 % \textcolor{blue}{\tiny [Terry@SOSP'13]} % \citeinbeamer{Terry}{SOSP}{13}:
-	  \begin{itemize}
-		\item 优先 \textcolor{blue}{\texttt{\small read-my-writes}}
-		\item 可接受 \textcolor{blue}{\texttt{\small any consistency}} 只要延迟低于300ms
-	  \end{itemize}
-	\column{0.55\textwidth}
-	  出租车实时位置查询一致性需求:
-	  \begin{itemize}
-		\item 所有读请求都要满足 \textcolor{blue}{\texttt{\small 2-atomicity}}
-		\item 违反 \textcolor{blue}{\texttt{\small atomicity}} 的读请求低于$1\%$ 
-	  \end{itemize}
-  \end{columns}
+  \vspace{0.25cm}
+  \only<3>{
+  出租车实时位置查询一致性需求:
+  \begin{description}
+	\item[权衡:] 为了保证低延迟, 允许违反 \textcolor{blue}{\texttt{\small atomicity}}
+	\item[有界:] 所有读请求都要满足 \textcolor{blue}{\texttt{\small 2-atomicity}}
+	\item[量化需求:] 违反 \textcolor{blue}{\texttt{\small atomicity}} 的读请求低于$1\%$ 
+  \end{description}
+  }
 
-  \pause
   \vspace{1.00cm}
-
-  \textcolor{red}{应用价值观导向的数据一致性理论:}
+  \only<4->{
+	\centerline{更具\textcolor{brown}{``柔性''}的数据一致性理论:}
+  }
   \begin{enumerate}
-	\item 多样化, 可调节
-	\item 精细化, 可度量
+	\centering
+	\item<5-> 多样化, 可调节
+	\item<6-> 精细化, 可度量
   \end{enumerate}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题研究的发展趋势及我们的工作 (II)}
+\begin{frame}{数据一致性问题研究理念 (II)}
   \begin{description}
 	\setlength{\itemsep}{10pt}
 	\item[多样化:] 从单一到融合 (mono- vs. multi-) \citeinbeamer{Terry}{CACM}{13} 
@@ -189,7 +208,7 @@
   \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题研究的发展趋势及我们的工作 (III)}
+\begin{frame}{数据一致性问题研究理念 (III)}
   \begin{description}
 	\setlength{\itemsep}{20pt}
 	\item[精细化:] 从二元到连续谱 \citeinbeamer{Yu}{TOCS}{02}
@@ -202,24 +221,24 @@
 	  \end{columns}
 	  \pause
 	\item[可度量:] think \textcolor{red}{\it probabilistically} \citeinbeamer{Brewer}{PODC}{00}
-	  \fignocaption{width = 0.25\textwidth}{figures/tape-measure.jpg}
+	  \vspace{10pt}
 	  \begin{center}
 		量化系统执行, 后验系统对一致性的满足程度
 	  \end{center}
   \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题研究的发展趋势及我们的工作 (III)}
-  \mdf{red}{red}{论文研究问题}{teal}{如何在大规模分布式系统中\\落实\idea{}\\这一体现应用价值观的数据一致性问题研究理念?}
+\begin{frame}{数据一致性问题研究理念 (IV)}
+  \mdf{red}{red}{论文研究问题}{teal}{如何在大规模分布式系统中\\落实\idea{}的\\数据一致性问题研究理念?}
 
   \pause
 
   \mdf{blue}{blue}{论文主要贡献}{black}{
-	\begin{description}[<+->]
-	  \item[理念:] 提出``以应用为导向的''、\idea{} 的一致性问题研究理念
-	  \item[VPC:]
-	  \item[PA2AM:]
-	  \item[RVSI:]
+	\begin{description}
+	  \item<2->[理念:] 提出\idea{}的数据\\一致性问题研究理念
+	  \item<3->[VPC:] 验证 Pipelined-RAM Consistency \hfill \textcolor{brown}{\scriptsize [``精细化, 可度量'']}
+	  \item<3->[PA2AM:]	量化 2-atomicity 协议 \hfill \textcolor{brown}{\scriptsize [``精细化, 可度量'']} 
+	  \item<3->[RVSI:] 可调节 Snapshot Isolation \hfill \textcolor{brown}{\scriptsize [``多样化, 可调节'']}
 	\end{description}
   }
 \end{frame}
