@@ -1,6 +1,7 @@
 \documentclass[shownotes, xcolor = table]{beamer}
 
 \usepackage{xeCJK}
+\usepackage{zhnumber}	% counters in Chinese
 \usepackage{fontspec}
 \usepackage{comment}
 
@@ -35,6 +36,8 @@
 \setbeamercolor{footnote mark}{fg = teal}
 \setbeamertemplate{itemize items}[default]
 \setbeamertemplate{enumerate items}[default]
+
+% \setlength{\leftmarginii}{5pt}
 
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, shapes, positioning, calc, backgrounds, fit}
@@ -71,7 +74,7 @@
 
 \newcommand{\term}[1]{\textcolor{blue}{\scriptsize (#1)}}
 \newcommand{\set}[1]{\{#1\}}
-\newcommand{\question}[1]{\textcolor{red}{\large #1}}
+\newcommand{\question}[1]{\textcolor{red}{\centerline{#1}}}
 \newcommand{\answer}[1]{\textcolor{blue}{\bf #1}}
 \newcommand{\alertred}[1]{\textcolor{red}{#1}}
 \newcommand{\alertblue}[1]{\textcolor{blue}{#1}}
@@ -88,23 +91,23 @@
 
 \author[魏恒峰]{魏恒峰 \\导师: 吕建 \hspace{0.20cm} 黄宇}
 \institute{南京大学软件所}
-\date{\today}
+\date{\zhtoday}
 
 \AtBeginSection[]{
   \begin{frame}[noframenumbering, plain]
     \frametitle{\papertitle}
-    \tableofcontents[currentsection, sectionstyle=show/shaded, subsectionstyle=show/show/hide]
+    \tableofcontents[currentsection, sectionstyle=show/shaded, subsectionstyle=hide/hide/hide]
   \end{frame}
 }
 
 % Delete this, if you do not want the table of contents to pop up 
 % at the beginning of each subsection:
-\AtBeginSubsection[]{
-  \begin{frame}[noframenumbering, plain]
-    \frametitle{\papertitle}
-      \tableofcontents[currentsection, sectionstyle=show/shaded, subsectionstyle=show/shaded/hide]
-  \end{frame}
-}
+% \AtBeginSubsection[]{
+%   \begin{frame}[noframenumbering, plain]
+%     \frametitle{\papertitle}
+%       \tableofcontents[currentsection, sectionstyle=show/shaded, subsectionstyle=show/shaded/hide]
+%   \end{frame}
+% }
 
 % \bibliography{phd-defense-report.bib}
 %%%%%%%%%%%%%%%%%%%%
@@ -149,7 +152,7 @@
 \input{sections/problem}
 \input{sections/method}
 \input{sections/related-work}
-% \input{sections/work}
-% \input{sections/future}
+\input{sections/work}
+\input{sections/future}
 
 \end{document}

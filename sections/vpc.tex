@@ -1,0 +1,72 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\subsection{VPC: Pipelined-RAM 一致性验证}
+
+%%%%%%%%%%%%%%%
+\begin{frame}{VPC 工作在技术框架中的位置}
+  \fig{width = 0.50\textwidth}{figures/3d-framework-vpc.pdf}{VPC --- Pipelined-RAM 一致性验证.}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{VPC 问题定义}
+  \begin{cdef}[VPC: Verifying PRAM Consistency]
+    VPC 判定问题:
+	\vspace{8pt}
+    \begin{description}
+	  \setlength{\itemsep}{8pt}
+      \item[实例:] 系统执行 {\small (execution $e$; 即, 读写操作序列)}
+      \item[问题:] 该执行是否满足 PRAM 一致性模型 {\small ($\mathcal{C}$)}? 
+		\[
+		  e \in \mathcal{C} \Rightarrow \set{0,1}?
+		\]
+    \end{description}    
+  \end{cdef}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{研究动机}
+  \question{问题: 为什么要验证 Pipelined-RAM {\small (PRAM)} 一致性?}
+  \vspace{0.50cm}
+
+  \begin{description}
+    \setlength{\itemsep}{15pt}
+    \item[验证:] 用户与商家就数据一致性签订 SLA 协议 \\
+	  \citeinbeamer{Amazon}{SOSP}{07} \citeinbeamer{Golab}{PODC}{11}
+	  \vspace{5pt}
+	  \begin{itemize}
+		\item \textcolor{teal}{[商家:]} 系统测试手段之一
+		\item \textcolor{teal}{[用户:]} 确认系统是否提供了其所声称的数据一致性 
+	  \end{itemize}
+	\pause
+	\item[PRAM:] 存储系统常提供``会话'' {\small (session)} 一致性\\
+      \citeinbeamer{Saito}{CSUR}{05} \citeinbeamer{Terry}{CACM}{13}
+	  \vspace{5pt}
+      \begin{itemize}
+		\item 包含了弱一致性的诸多变体 
+		\item 近似于 PRAM 一致性 \citeinbeamer{Brzezi$\acute{\text{n}}$ski}{PDP}{04} \citeinbeamer{Bailis}{VLDB}{13}
+      \end{itemize}
+  \end{description}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{对VPC 问题的系统性研究}
+  %%%%%%%%%%%% table: variants of VPC %%%%%%%%%%
+  \begin{table}[!t]
+    \centering
+	\caption{VPC 问题的四种变体 (按``执行''的类型) 及复杂度分析 ($\textcolor{red}{[\ast]}$\textcolor{red}{: 本文工作}).}
+	\renewcommand\arraystretch{1.2}
+    \begin{tabular}{|c|c|c|}
+      \hline
+      & \it (S)ingle variable  & \it (M)ultiple variables
+      \\ \hline
+	  {\it write (D)uplicate values} &
+      \innercell{c}{VPC-SD \\ (NPC) $\textcolor{red}{[\ast]}$} &
+      \innercell{c}{VPC-MD \\ (NPC) $\textcolor{red}{[\ast]}$}
+      \\ \hline
+	  \only<1>{\it write (U)nique value}\only<2>{\cellcolor{brown!80}{\it write (U)nique value}} &
+      \innercell{c}{VPC-SU \\ (P) \citeinbeamer{Golab}{PODC}{11}} &
+      \innercell{c}{VPC-MU \\ (P) $\textcolor{red}{[\ast]}$}
+      \\ \hline
+    \end{tabular}
+  \end{table}
+
+  \vspace{10pt}
+  
+  \uncover<2->{\textcolor{brown}{\centerline{Read-mapping \citeinbeamer{Gibbons}{SICOMP}{97}: $\forall r, f(r) = w$.}}}
+\end{frame}
