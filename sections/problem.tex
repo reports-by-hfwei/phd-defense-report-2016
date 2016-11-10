@@ -56,7 +56,8 @@
   \vspace{0.50cm}
   \begin{center}
 	% \textcolor{red}{分布数据一致性问题是分布共享数据服务中的核心问题}
-	\textcolor{blue}{以数据一致性为核心的权衡 \citeinbeamer{Guerraoui}{TCDE}{16} 使得该问题具有挑战性}
+	\textcolor{blue}{在分布式系统中, \\以数据一致性为核心的权衡 \citeinbeamer{Guerraoui}{TCDE}{16} \\
+  		使得分布数据一致性问题成为核心难题.}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%
@@ -76,43 +77,124 @@
 % \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{分布数据一致性问题}
-  \mdf{red}{blue}{论文研究动机}{teal}{考虑到上述权衡, \\ 面向大规模分布式系统的\\分布数据一致性理论应具有什么特性?}
+  \mdf{red}{red}{论文研究动机}{blue}{考虑到上述权衡, \\面向大规模分布式系统的\\分布数据一致性理论应体现什么特性?}
 
   \pause
   \vspace{0.80cm}
 
-  考察分布数据一致性问题研究的历史:
-  \vspace{8pt}
-  \begin{itemize}
-	\setlength{\itemsep}{6pt}
-	\item 核心权衡与解决方案 
-	  \pause
-	\item 理论与系统
-  \end{itemize}
-\end{frame}
-%%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题研究的历史阶段}
-  \fignocaption{width = 0.90\textwidth}{figures/consistency-model-history.pdf}
-\end{frame}
-%%%%%%%%%%%%%%%
-%%%%% TODO: draw the history
-\begin{frame}{数据一致性问题研究的历史阶段 (多处理器系统)}
-  \fig{width = 0.35\textwidth}{figures/consistency-lattice.png}{一致性模型 {\scriptsize (依据 \citeinbeamer{Steinke}{JACM}{04} 中 Figure~13 重绘)}.}
-
   \begin{center}
-	核心权衡: 一致性模型的计算能力 vs. 系统性能
+	分布式系统设计与其应用有哪些特点,\\对分布数据一致性理论有何影响?
   \end{center}
+
+  % 考察分布数据一致性问题研究的历史:
+  % \vspace{8pt}
+  % \begin{itemize}
+  %   \setlength{\itemsep}{6pt}
+  %   \item 核心权衡与解决方案 
+  %     \pause
+  %   \item 理论与系统
+  % \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题研究的历史阶段 (分布式系统)}
-  \graphicspath{{tikz-in-beamer/}}
-  \begin{figure}[h!]
-    \centering
-    \begin{adjustbox}{max totalsize = {1.00\textwidth}{1.00\textheight}, center}
-	  \input{tikz-in-beamer/consistency-model-distributed-system-history-beamer}
-    \end{adjustbox}
+\begin{frame}{多处理器系统领域中的数据一致性理论}
+  \textcolor{gray}{\small (分布)} 数据一致性问题是多处理器系统领域中的传统问题:
+  \vspace{0.50cm}
+
+  \begin{figure}
+	\begin{subfigure}{0.50\textwidth}
+	  \centering
+	  \includegraphics[width = 0.85\textwidth]{figures/lamport-paper79.png}
+	  \caption{Sequential Consistency \citeinbeamer{Lamport}{TC}{79}.}
+	\end{subfigure}%
+	\begin{subfigure}{0.45\textwidth}
+	  \centering
+	  \includegraphics[width = 0.80\textwidth]{figures/ieee-computer-tutorial.png}
+	  \caption{Tutorial \citeinbeamer{Adve}{IEEE Computer}{96}.}
+	\end{subfigure}
   \end{figure}
 \end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{多处理器系统领域中的数据一致性理论}
+  \answer{``以程序为导向、强调正确性''}
+  \vspace{0.20cm}
+
+  ``相对于 SC {\small (Sequential Consistency)}''的正确性~\footnote{术语称为 SCNF: Sequential Consistency Normal Form.} \citeinbeamer{Adve}{ISCA}{90}:
+
+  \begin{columns}
+	\column{0.60\textwidth}
+	  \begin{description}
+		\item[一致性:] 一致性模型 + \textcolor{red}{编程模型}
+		\item[程序:] 遵循预定规则
+		\item[系统:] 提供 SC 保证
+		\item<3>[权衡:] 易编程性 vs. 性能
+	  \end{description}
+	\column{0.35\textwidth}
+	\uncover<2->{\fignocaption{width = 0.50\textwidth}{figures/jsr133-jmm.png}}
+  \end{columns}
+
+  % \fig{width = 0.35\textwidth}{figures/consistency-lattice.png}{一致性模型 {\scriptsize (依据 \citeinbeamer{Steinke}{JACM}{04} 中 Figure~13 重绘)}.}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{分布式系统领域中的数据一致性理论}
+  分布数据一致性问题是分布式系统设计的核心问题之一:
+  \vspace{0.50cm}
+
+  \begin{figure}
+	\begin{subfigure}{0.48\textwidth}
+	  \centering
+	  \includegraphics[width = 0.90\textwidth]{figures/bayou-paper.png}
+	  \caption{Eventual Consistency \citeinbeamer{Terry}{SOSP}{95}.}
+	\end{subfigure}%
+	\begin{subfigure}{0.48\textwidth}
+	  \centering
+	  \includegraphics[width = 0.85\textwidth]{figures/dsss.pdf}
+	  \caption{分布式存储系统 {\tiny (\textcolor{blue}{左: 开源}; \textcolor{red}{右: 商用})}.} % (\textcolor{blue}{\scriptsize 开源 [左]} \& \textcolor{red}{\scriptsize 商用 [右]})
+	\end{subfigure}
+  \end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%
+% \begin{frame}{数据一致性问题研究的历史阶段}
+%   \fignocaption{width = 0.90\textwidth}{figures/consistency-model-history.pdf}
+% 
+% \end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{分布式系统领域中的数据一致性理论}
+  \answer{更复杂的权衡\only<1-2>{:} \uncover<3->{$\Longrightarrow$ 一致性理论不追求``相对于 SC''的正确性}}
+
+  \fignocaption{width = 0.30\textwidth}{figures/consistency-centric-tradeoff.pdf}
+  \vspace{-0.80cm}
+
+  \uncover<2->{
+  \begin{columns}
+	\column{0.45\textwidth}
+	  \fig{width = 0.50\textwidth}{figures/cap-theorem.pdf}{CAP 定理 \citeinbeamer{Brewer}{PODC}{00}}
+	\column{0.50\textwidth}
+	  \fig{width = 0.65\textwidth}{figures/pacelc-tradeoff-new.pdf}{PACELC 权衡 \citeinbeamer{Abadi}{IEEE Computer}{12}}
+  \end{columns}
+  }
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{分布式系统领域中的数据一致性理论}
+  \answer{更丰富的应用\only<1>{:} \uncover<2>{$\Longrightarrow$ 一致性理论应体现应用的多样性}}
+  \vspace{0.50cm}
+
+  \begin{columns}
+	\column{0.45\textwidth}
+	  \fig{width = 0.75\textwidth}{figures/cassandra-and-datastax.jpg}{Cassandra 分布式存储系统.}
+	\column{0.45\textwidth}
+	  \fig{width = 0.90\textwidth}{figures/cassandra-datastax-customers.png}{Cassandra \& DataStax 客户.}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%
+% \begin{frame}{分布式系统领域数据一致性理论}
+%   \graphicspath{{tikz-in-beamer/}}
+%   \begin{figure}[h!]
+%     \centering
+%     \begin{adjustbox}{max totalsize = {1.00\textwidth}{1.00\textheight}, center}
+% 	  \input{tikz-in-beamer/consistency-model-distributed-system-history-beamer}
+%     \end{adjustbox}
+%   \end{figure}
+% \end{frame}
 %%%%%%%%%%%%%%%
 % \begin{frame}{数据一致性问题研究的历史阶段 (结论)}
 %   \begin{columns}[T]
@@ -148,9 +230,9 @@
   %     }
   % \end{columns}
 %%%%%%%%%%%%%%%
-\begin{frame}{数据一致性问题研究理念 (I)}
+\begin{frame}{分布数据一致性问题研究理念 (I)}
   \begin{center}
-	\textcolor{red}{新平台, 新特点:} 更丰富的应用、更复杂的权衡
+	\textcolor{red}{新平台, 新特点:} 更复杂的权衡、更丰富的应用
   \end{center}
 
   \vspace{0.50cm}
@@ -174,12 +256,12 @@
 
   \vspace{1.00cm}
   \only<4->{
-	\centerline{更具\textcolor{brown}{``柔性''}的数据一致性理论:}
+	\centerline{需要更具\textcolor{brown}{``柔性''}的数据一致性理论:}
   }
   \begin{enumerate}
 	\centering
-	\item<5-> 多样化, 可调节
-	\item<6-> 精细化, 可度量
+	\item<5> 多样化, 可调节
+	\item<5> 精细化, 可度量
   \end{enumerate}
 \end{frame}
 %%%%%%%%%%%%%%%

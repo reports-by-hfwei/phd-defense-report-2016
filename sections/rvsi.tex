@@ -86,12 +86,6 @@
   \fig{width = 0.45\textwidth}{figures/chameleon-framework.pdf}{\chameleon 系统组件图.}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{}
-  \fignocaption{width = 0.50\textwidth}{figures/chameleon-build-passing.png}
-
-  \textcolor{red}{\small \url{https://github.com/hengxin/chameleon-transactional-kvstore}}
-\end{frame}
-%%%%%%%%%%%%%%%
 \begin{frame}{RVSI 维护算法}
   \[
     \textcolor{blue}{\text{RC} \supset \text{RVSI}(k_1, k_2, k_3) \supset \text{SI}}
@@ -102,9 +96,12 @@
   RVSI 维护算法:
   \begin{itemize}
     \item 以分布式 RC 和 SI 协议 为基础
-    \item 事务执行时, 添加 RVSI ``版本约束'' ($k_1, k_2, k_3$ 相关)
+    \item 事务执行时, 添加 RVSI ``版本约束'' ($k_1, k_2, k_3$ 相关不等式)
     \item 事务提交时, 检查 RVSI ``版本约束''
   \end{itemize}
+
+  % \fignocaption{width = 0.50\textwidth}{figures/chameleon-build-passing.png}
+  \textcolor{red}{\small \url{https://github.com/hengxin/chameleon-transactional-kvstore}}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{RVSI 实验评估}
