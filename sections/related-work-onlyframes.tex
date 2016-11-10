@@ -1,0 +1,296 @@
+%%%%%%%%%%%%%%%
+\begin{frame}[label = related-work-categories]{相关工作分类}
+  \begin{table}[]
+	\centering
+	\caption{\idea{}研究理念相关工作.}
+	\renewcommand\arraystretch{2}
+	\resizebox{\textwidth}{!}{%
+	  \begin{tabular}{cc|c|c|c|c|}
+		\cline{3-6}
+		\multicolumn{2}{c|}{} & \multicolumn{2}{c|}{\textbf{读写寄存器}} & \multicolumn{2}{c|}{\textbf{事务}} \\ \cline{3-6}
+		\multicolumn{2}{c|}{} & 多处理器系统 & 分布式系统 & \only<1>{多处理器系统}\only<2>{\textcolor{gray}{多处理器系统}} & 分布式系统 \\ \hline
+		\multicolumn{2}{|c|}{\textbf{\ideadt{}}} &  &  
+		& \uncover<2>{\multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}\textcolor{gray}{软件}\\ \textcolor{gray}{事务内存}\end{tabular}}} &  
+		% \\ \hline
+		\\ \cline{1-4} \cline{6-6}
+		\multicolumn{1}{|c|}{\multirow{2}{*}{\textbf{\idearm{}}}} & 验证 &  &  &  &  
+		% \\ \cline{2-6}
+		\\ \cline{2-4} \cline{6-6}
+		\multicolumn{1}{|c|}{} & 量化 &  &  &  &  
+		\\ \hline
+	  \end{tabular}
+    }
+  \end{table}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{\ideadt{}的研究理念 (一)}
+  \begin{table}[]
+	\centering
+	\renewcommand\arraystretch{1.5}
+	\resizebox{\textwidth}{!}{%
+	  \begin{tabular}{cc|c|c|c|c|}
+		\cline{3-6}
+		\multicolumn{2}{c|}{} & \multicolumn{2}{c|}{\textbf{读写寄存器}} & \multicolumn{2}{c|}{\textbf{事务}} \\ \cline{3-6} 
+		\multicolumn{2}{c|}{} & 多处理器系统 & 分布式系统 & 多处理器系统 & 分布式系统 \\ \hline
+		\multicolumn{2}{|c|}{\textbf{\ideadt{}}} & \only<1-3>{\textcolor{red}{\bf \checkmark}} 
+		\only<4->{\begin{tabular}[c]{@{}c@{}}\textcolor{red}{相关工作丰富}\\ \textcolor{red}{理论扎实}\end{tabular}} &  &  &  \\ \hline
+	  \end{tabular}%
+	}
+  \end{table}
+
+  \pause 
+
+  \begin{description}
+	\setlength{\itemsep}{5pt}
+	\item[典型:] Hybrid consistency \citeinbeamer{Attiya}{SICOMP}{98}
+	\item[思想:] 将操作分为强弱两类
+	  \pause
+	\item[其它:] ``带同步的''一致性模型 \citeinbeamer{Dubois}{IEEE Computer}{88} \citeinbeamer{Steinke}{JACM}{04}
+	\item[特点:] 强调正确性 {\footnotesize (properly synchronized)}
+  \end{description}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{\ideadt{}的研究理念 (二)}
+  \begin{table}[]
+	\centering
+	\renewcommand\arraystretch{1.5}
+	\resizebox{\textwidth}{!}{%
+	  \begin{tabular}{cc|c|c|c|c|}
+		\cline{3-6}
+		\multicolumn{2}{c|}{} & \multicolumn{2}{c|}{\textbf{读写寄存器}} & \multicolumn{2}{c|}{\textbf{事务}} \\ \cline{3-6} 
+		\multicolumn{2}{c|}{} & 多处理器系统 & 分布式系统 & 多处理器系统 & 分布式系统 \\ \hline
+		\multicolumn{2}{|c|}{\textbf{\ideadt{}}} & {\begin{tabular}[c]{@{}c@{}}{\small 相关工作丰富}\\ {\small 理论扎实}\end{tabular}}
+		& \only<1-3>{\textcolor{red}{\bf \checkmark}} 
+		\only<4->{\begin{tabular}[c]{@{}c@{}}\textcolor{red}{渐成趋势}\\ \textcolor{red}{理论欠缺}\end{tabular}} &  &  \\ \hline
+	  \end{tabular}%
+	}
+  \end{table}
+
+  \pause 
+
+  \begin{description}
+	\setlength{\itemsep}{5pt}
+	\item[思想:] 借鉴并发展 Hybrid consistency 的思想
+	\item[典型:] 
+	  \begin{itemize}
+		\item Causal+forced+immediate operations \citeinbeamer{Ladin}{TOCS}{92}
+		\item RedBlue consistency \citeinbeamer{Li}{OSDI}{12}
+		% \item Apache Cassandra~\footnote{\url{http://cassandra.apache.org/}} \citeinbeamer{Facebook}{SIGOPS OSR}{10}
+		\item Pileus \citeinbeamer{Terry}{SOSP}{13}
+	  \end{itemize}
+	  \pause
+	\item[特点:] 更细粒度的多一致性模型共存、更能容忍数据不一致
+  \end{description}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{\ideadt{}的研究理念 (三)}
+  \begin{table}[]
+	\centering
+	\renewcommand\arraystretch{1.5}
+	\resizebox{\textwidth}{!}{%
+	  \begin{tabular}{cc|c|c|c|c|}
+		\cline{3-6}
+		\multicolumn{2}{c|}{} & \multicolumn{2}{c|}{\textbf{读写寄存器}} & \multicolumn{2}{c|}{\textbf{事务}} \\ \cline{3-6} 
+		\multicolumn{2}{c|}{} & 多处理器系统 & 分布式系统 & 多处理器系统 & 分布式系统 \\ \hline
+		\multicolumn{2}{|c|}{\textbf{\ideadt{}}} & {\begin{tabular}[c]{@{}c@{}}{\small 相关工作丰富}\\ {\small 理论扎实}\end{tabular}}
+		& \begin{tabular}[c]{@{}c@{}}{\small 渐成趋势}\\ {\small 理论欠缺}\end{tabular} 
+		& \textcolor{gray}{\small 软件事务内存}
+		& \only<1-2>{\textcolor{red}{\bf \checkmark}} 
+		  \only<3->{\textcolor{red}{探索阶段}} \\ \hline
+		  % \only<4->{\begin{tabular}[c]{@{}c@{}}\textcolor{red}{探索阶段}\\ \textcolor{red}{系统、理论欠缺}\end{tabular}} \\ \hline
+	  \end{tabular}
+	}
+  \end{table}
+
+  \begin{description}
+	\setlength{\itemsep}{5pt}
+	\item[思想:] 多个事务一致性模型共存
+	\item[典型:] 
+	  \begin{itemize}
+		\item RC-SR {\scriptsize (relaxed currency serializability)} \citeinbeamer{Bernstein}{SIGMOD}{06}
+		\item Pileus consistency choices \citeinbeamer{Terry}{MSR-TR}{13}
+		\item Multi-level CSI {\scriptsize (Causal Snapshot Isolation)} \citeinbeamer{Tripathi}{BigData}{15}
+	  \end{itemize}
+	  \pause
+	\item[挑战:] ``多样化''事务语义; 可扩展的系统实现
+  \end{description}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{\idearm{}的研究理念 (一)}
+  \begin{table}[]
+	\centering
+	\renewcommand\arraystretch{1.6}
+	\resizebox{\textwidth}{!}{%
+	  \begin{tabular}{cc|c|c|c|c|}
+		\cline{3-6}
+		\multicolumn{2}{c|}{} & \multicolumn{2}{c|}{\textbf{读写寄存器}} & \multicolumn{2}{c|}{\textbf{事务}} \\ \cline{3-6} 
+		\multicolumn{2}{c|}{} & 多处理器系统 & 分布式系统 & 多处理器系统 & 分布式系统 \\ \hline
+		\multicolumn{1}{|c|}{\only<1-2>{\multirow{2}{*}{\textbf{\idearm{}}}}\only<3>{\multirow{2}{*}[-0.5em]{\textbf{\idearm{}}}}\only<4->{\multirow{2}{*}[-1em]{\textbf{\idearm{}}}}} 
+		& 验证 
+		& \only<2>{\textcolor{red}{\bf \checkmark}}\only<3>{\begin{tabular}[c]{@{}c@{}}\textcolor{red}{典型模型}\\ \textcolor{red}{理论全面}\end{tabular}}\only<4>{\begin{tabular}[c]{@{}c@{}}{\small 典型模型}\\ {\small 理论全面}\end{tabular}} &  &  &  \\ \cline{2-6} 
+		\multicolumn{1}{|c|}{} & 量化 & \only<4->{\begin{tabular}[c]{@{}c@{}}\textcolor{red}{暂无}\\ \textcolor{red}{强调正确性}\end{tabular}} &  &  &  \\ \hline
+	  \end{tabular}
+	}
+  \end{table}
+
+  \pause
+
+  典型的一致性模型验证 \textcolor{blue}{\small (Verify)} 问题:
+  \begin{itemize}
+	\item VSC {\scriptsize (Sequential Consistency)}, VL {\scriptsize (Linearizability)} \citeinbeamer{Gibbons}{SICOMP}{97}
+	\item VMC {\scriptsize (Memory Coherence)} \citeinbeamer{Cantin}{SPAA}{03} \citeinbeamer{Cantin}{TPDS}{05}
+	\item VTSO {\scriptsize (Total Store Order)} \citeinbeamer{Hangal}{ISCA}{03} \citeinbeamer{Manovit}{SPAA}{05} 
+	  \citeinbeamer{Roy}{CAV}{06} \citeinbeamer{Baswana}{CAV}{08}
+  \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{\idearm{}的研究理念 (二)}
+  \begin{table}[]
+	\centering
+	\renewcommand\arraystretch{1.6}
+	\resizebox{\textwidth}{!}{%
+	  \begin{tabular}{cc|c|c|c|c|}
+		\cline{3-6}
+		\multicolumn{2}{c|}{} & \multicolumn{2}{c|}{\textbf{读写寄存器}} & \multicolumn{2}{c|}{\textbf{事务}} \\ \cline{3-6} 
+		\multicolumn{2}{c|}{} & 多处理器系统 & 分布式系统 & 多处理器系统 & 分布式系统 \\ \hline
+		\multicolumn{1}{|c|}{\multirow{2}{*}[-1em]{\textbf{\idearm{}}}} & 验证 
+		& \begin{tabular}[c]{@{}c@{}}{\small 典型模型}\\ {\small 理论全面}\end{tabular} 
+		& \only<1-2>{\textcolor{red}{\bf \checkmark}}\only<3->{\begin{tabular}[c]{@{}c@{}}\textcolor{red}{弱模型验证}\\ \textcolor{red}{有待研究}\end{tabular}} &  &  \\ \cline{2-6} 
+		\multicolumn{1}{|c|}{} & 量化 & \begin{tabular}[c]{@{}c@{}}{\small 暂无}\\ {\small 强调正确性}\end{tabular} &  &  &  \\ \hline
+	  \end{tabular}
+	}
+  \end{table}
+
+  \begin{description}
+	\item[动机:] 商业条款 SLA {\scriptsize (Service Level Agreement)} \citeinbeamer{Amazon}{SOSP}{07}
+	  \pause
+	\item[特点:] 在线验证 safeness, regularity, atomicity \citeinbeamer{Golab}{PODC}{11}
+	  \pause
+	\item[不足:] 常用 Pipelined-RAM consistency, causal consistency, \\hybrid consistency 验证问题有待研究
+  \end{description}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{\idearm{}的研究理念 (三)}
+  \begin{table}[]
+	\centering
+	\renewcommand\arraystretch{1.6}
+	\resizebox{\textwidth}{!}{%
+	  \begin{tabular}{cc|c|c|c|c|}
+		\cline{3-6}
+		\multicolumn{2}{c|}{} & \multicolumn{2}{c|}{\textbf{读写寄存器}} & \multicolumn{2}{c|}{\textbf{事务}} \\ \cline{3-6} 
+		\multicolumn{2}{c|}{} & 多处理器系统 & 分布式系统 & 多处理器系统 & 分布式系统 \\ \hline
+		\multicolumn{1}{|c|}{\multirow{2}{*}[-1em]{\textbf{\idearm{}}}} & 验证 
+		& \begin{tabular}[c]{@{}c@{}}{\small 典型模型}\\ {\small 理论全面}\end{tabular} 
+		& \begin{tabular}[c]{@{}c@{}}{\small 弱模型验证}\\ {\small 有待研究}\end{tabular} 
+		&  &  \\ \cline{2-6} 
+		\multicolumn{1}{|c|}{} & 量化 
+		& \begin{tabular}[c]{@{}c@{}}{\small 暂无}\\ {\small 强调正确性}\end{tabular}
+		& \only<2>{\textcolor{red}{\bf \checkmark}}\only<3>{\begin{tabular}[c]{@{}c@{}}\textcolor{red}{量化执行易}\\ \textcolor{red}{量化协议难}\end{tabular}}
+		&  &  \\ \hline
+	  \end{tabular}
+	}
+  \end{table}
+
+  \pause
+
+  \begin{description}
+	\item[量化执行:] $k$/$\Delta$/$\Gamma$-atomicity {\tiny{\textcolor{blue}{[Golab@PODC'11, ICDCS'13, ICDCS'14, PODC'15]}}}
+	\item[量化协议:] probabilistic regularity/atomicity \\ \citeinbeamer{Yu}{DISC}{03} \citeinbeamer{Lee}{DC}{05} \citeinbeamer{Gramoli}{OPODIS}{07} \citeinbeamer{Bailis}{PVLDB}{12}
+  \end{description}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{\idearm{}的研究理念 (四)}
+  \begin{table}[]
+	\centering
+	\renewcommand\arraystretch{1.6}
+	\resizebox{\textwidth}{!}{%
+	  \begin{tabular}{cc|c|c|c|c|}
+		\cline{3-6}
+		\multicolumn{2}{c|}{} & \multicolumn{2}{c|}{\textbf{读写寄存器}} & \multicolumn{2}{c|}{\textbf{事务}} \\ \cline{3-6} 
+		\multicolumn{2}{c|}{} & 多处理器系统 & 分布式系统 & \textcolor{gray}{多处理器系统} & 分布式系统 \\ \hline
+		\multicolumn{1}{|c|}{\multirow{2}{*}[-1em]{\textbf{\idearm{}}}} & 验证 
+		& \begin{tabular}[c]{@{}c@{}}{\small 典型模型}\\ {\small 理论全面}\end{tabular} 
+		& \begin{tabular}[c]{@{}c@{}}{\small 弱模型验证}\\ {\small 有待研究}\end{tabular} 
+		& \multirow{2}{*}[-1em]{\begin{tabular}[c]{@{}c@{}}\textcolor{gray}{\small 软件事务内存}\end{tabular}}
+		& \only<1-2>{\textcolor{red}{\bf \checkmark}}\only<3->{\begin{tabular}[c]{@{}c@{}}\textcolor{red}{理论全面}\\ \textcolor{red}{指导协议设计}\end{tabular}}
+		\\ \cline{2-4} \cline{6-6}
+		\multicolumn{1}{|c|}{} & 量化 
+		& \begin{tabular}[c]{@{}c@{}}{\small 暂无}\\ {\small 强调正确性}\end{tabular}
+		& \begin{tabular}[c]{@{}c@{}}{\small 量化执行易}\\ {\small 量化协议难}\end{tabular}
+		&  &  \\ \hline
+	  \end{tabular}
+	}
+  \end{table}
+
+  \begin{itemize}
+	\item SR {\scriptsize (Serializability)} 强一致性模型及变体  
+	  \\ \citeinbeamer{Papadimitriou}{JACM}{79} \citeinbeamer{Bernstein}{TODS}{83} \citeinbeamer{Yannakakis}{JACM}{84} 
+	\item SI {\scriptsize (Snapshot Isolation)} 等弱一致性模型 
+	  \\ \citeinbeamer{Adya}{Phd-Thesis}{99} \citeinbeamer{Fekete}{TODS}{05} \citeinbeamer{Cahill}{SIGMOD}{08} \citeinbeamer{Zellag}{VLDB}{14}
+  \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{\idearm{}的研究理念 (五)}
+  \begin{table}[]
+	\centering
+	\renewcommand\arraystretch{1.6}
+	\resizebox{\textwidth}{!}{%
+	  \begin{tabular}{cc|c|c|c|c|}
+		\cline{3-6}
+		\multicolumn{2}{c|}{} & \multicolumn{2}{c|}{\textbf{读写寄存器}} & \multicolumn{2}{c|}{\textbf{事务}} \\ \cline{3-6} 
+		\multicolumn{2}{c|}{} & 多处理器系统 & 分布式系统 & \textcolor{gray}{多处理器系统} & 分布式系统 \\ \hline
+		\multicolumn{1}{|c|}{\multirow{2}{*}[-1em]{\textbf{\idearm{}}}} & 验证 
+		& \begin{tabular}[c]{@{}c@{}}{\small 典型模型}\\ {\small 理论全面}\end{tabular} 
+		& \begin{tabular}[c]{@{}c@{}}{\small 弱模型验证}\\ {\small 有待研究}\end{tabular} 
+		& \multirow{2}{*}[-1em]{\begin{tabular}[c]{@{}c@{}}\textcolor{gray}{\small 软件事务内存}\end{tabular}}
+		& \begin{tabular}[c]{@{}c@{}}{\small 理论全面}\\ {\small 指导协议设计}\end{tabular}
+		\\ \cline{2-4} \cline{6-6}
+		\multicolumn{1}{|c|}{} & 量化 
+		& \begin{tabular}[c]{@{}c@{}}{\small 暂无}\\ {\small 强调正确性}\end{tabular}
+		& \begin{tabular}[c]{@{}c@{}}{\small 量化执行易}\\ {\small 量化协议难}\end{tabular}
+		&  
+		& \begin{tabular}[c]{@{}c@{}}\textcolor{red}{量化协议难}\\ \textcolor{red}{相关工作少}\end{tabular} 
+		\\ \hline
+	  \end{tabular}
+	}
+  \end{table}
+
+  \begin{itemize}
+	\item 量化 SI {\scriptsize (Snapsho Isolation)} 与 RC {\scriptsize (Read Committed)} 协议 \citeinbeamer{Fekete}{PVLDB}{09}
+  \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}[label = related-work-summary]{相关工作总结}
+  \begin{table}[]
+	\centering
+	\caption{\idea{}研究理念相关工作.}
+	\renewcommand\arraystretch{1.6}
+	\resizebox{\textwidth}{!}{%
+	  \begin{tabular}{cc|c|c|c|c|}
+		\cline{3-6}
+		\multicolumn{2}{c|}{} & \multicolumn{2}{c|}{\textbf{读写寄存器}} & \multicolumn{2}{c|}{\textbf{事务}} \\ \cline{3-6} 
+		\multicolumn{2}{c|}{} & 多处理器系统 & \cellcolor{red!80}{分布式系统} & \textcolor{gray}{多处理器系统} & \cellcolor{red!80}{分布式系统} \\ \hline
+
+		\multicolumn{2}{|c|}{\textbf{\ideadt{}}} & {\begin{tabular}[c]{@{}c@{}}{\small 相关工作丰富}\\ {\small 理论扎实}\end{tabular}}
+		& \begin{tabular}[c]{@{}c@{}}{\small 渐成趋势}\\ {\small 理论欠缺}\end{tabular} 
+		& \multirow{2}{*}[-3em]{\begin{tabular}[c]{@{}c@{}}\textcolor{gray}{\small 软件}\\ \textcolor{gray}{\small 事务内存}\end{tabular}}
+		& \cellcolor{teal!80}{\small 探索阶段} \\ \cline{1-4} \cline{6-6}
+
+		\multicolumn{1}{|c|}{\multirow{2}{*}[-1em]{\textbf{\idearm{}}}} & 验证 
+		& \begin{tabular}[c]{@{}c@{}}{\small 典型模型}\\ {\small 理论全面}\end{tabular} 
+		& \cellcolor{blue!60}{\begin{tabular}[c]{@{}c@{}}{\small 弱模型验证}\\ {\small 有待研究}\end{tabular}}
+		& 
+		& \begin{tabular}[c]{@{}c@{}}{\small 理论全面}\\ {\small 指导协议设计}\end{tabular}
+		\\ \cline{2-4} \cline{6-6}
+
+		\multicolumn{1}{|c|}{} & 量化 
+		& \begin{tabular}[c]{@{}c@{}}{\small 暂无}\\ {\small 强调正确性}\end{tabular}
+		& \cellcolor{brown!80}{\begin{tabular}[c]{@{}c@{}}{\small 量化执行易}\\ {\small 量化协议难}\end{tabular}}
+		&  
+		& \begin{tabular}[c]{@{}c@{}}{\small 量化协议难}\\ {\small 相关工作少}\end{tabular} 
+		\\ \hline
+	  \end{tabular}
+	}
+  \end{table}
+\end{frame}
+%%%%%%%%%%%%%%%

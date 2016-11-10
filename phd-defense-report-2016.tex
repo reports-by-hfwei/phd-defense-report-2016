@@ -52,6 +52,16 @@
 \newcommand{\innercell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
 \usepackage{colortbl}
 
+%%%%%%%%%%%%%% for appendix %%%%%%%%%%%%%%%%
+% http://www-ljk.imag.fr/membres/Jerome.Lelong/latex/appendixnumberbeamer.sty
+% Reference: http://tex.stackexchange.com/questions/2541/beamer-frame-numbering-in-appendix
+\usepackage{appendixnumberbeamer}
+% Add total frame count to slides, optional. From Stefan,
+% http://www.latex-community.org/forum/viewtopic.php?f=4&t=2173
+\expandafter\def\expandafter\insertshorttitle\expandafter{%
+  \insertshorttitle\hfill\insertframenumber\,/\,\inserttotalframenumber}
+%%%%%%%%%%%%%% for appendix %%%%%%%%%%%%%%%%
+
 % for fig without caption: #1: width/size; #2: fig file
 \newcommand{\fignocaption}[2]{
   \begin{figure}[htp]
@@ -154,5 +164,6 @@
 \input{sections/related-work}
 \input{sections/work}
 \input{sections/future}
+\input{sections/appendix}
 
 \end{document}
