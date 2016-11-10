@@ -1,48 +1,66 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-\section{未来工作}
+\section{总结与展望}
 
+%%%%%%%%%%%%%%%
 \begin{frame}{工作总结}
+  \mdf{blue}{blue}{论文主要贡献}{black}{
+	\begin{description}
+	  \item[理念:] 提出\idea{}的数据\\一致性问题研究理念
+	  \item[VPC:] 验证 Pipelined-RAM Consistency \hfill \textcolor{brown}{\scriptsize [``精细化, 可度量'']}
+	  \item[PA2AM:]	量化 2-atomicity 协议 \hfill \textcolor{brown}{\scriptsize [``精细化, 可度量'']} 
+	  \item[RVSI:] 可调节 Snapshot Isolation \hfill \textcolor{brown}{\scriptsize [``多样化, 可调节'']}
+	\end{description}
+  }
 \end{frame}
-
+%%%%%%%%%%%%%%%
 \begin{frame}{未来工作}
-  \textcolor{blue}{多样化, 可定制; 精细化, 可度量:}
+  落实\idea{}的数据一致性问题研究理念:
+
+  \pause
+  \vspace{0.30cm}
+
   \begin{enumerate}
-    \item 支持``多写''的 atomic 变量 (扩展 2AM 工作)
-      \uncover<2,5>
-      {
-      \begin{itemize}
-        \setlength\itemsep{3pt}
-        \item \textcolor{blue}{\bf 前提:} 读操作只需一轮网络通信 \emph{(fast read)}
-        \item \textcolor{blue}{\bf 理论问题:} 是否存在允许 fast read 的 ($k$-)atomicity 算法?
-        \item \question{可度量:} 如何定义\&量化 $p$AM ($p:$ probabilistic)?
-      \end{itemize}
-      }
-    \vspace{0.30cm}
-    \item 支持 P2P 架构的``一致性可定制''实现
-      \uncover<3,5>
-      {
-      \begin{itemize}
-        \setlength\itemsep{3pt}
-        \item \textcolor{blue}{\bf 已有工作:} 非事务, 可定制, master-slave 架构 
-          \citeinbeamer{Terry}{SOSP}{13}
-        \item \textcolor{blue}{\bf 动机:} Cassandra 采用 P2P 架构 
-          \citeinbeamer{Facebook}{SIGOPS OSR}{10}
-        \item \question{可定制:} 一致性模型的兼容性与重定义
-      \end{itemize}
-      }
-    \vspace{0.30cm}
-    \item 事务与非事务一致性模型的统一框架
-      \uncover<4,5>
-      {
-      \begin{itemize}
-        \item \textcolor{blue}{\bf 异:} ``all-or-none'' 语义
-        \item \textcolor{blue}{\bf 同:} 操作间序关系
-        \item \question{多样化:} 更丰富, 更结构化的一致性模型
-      \end{itemize}
-      }
+	\setlength{\itemsep}{8pt}
+	\item VHC {\small (HC: Hybrid Consistency)} 问题 \citeinbeamer{Attiya}{SICOMP}{98} \textcolor{brown}{\small (遵循 VPC 工作思路)}
+	  \pause
+	\item ``多写模型''下的 atomic 寄存器 \textcolor{brown}{\small (扩展 PA2AM 工作)}
+      \begin{description}
+		\setlength{\itemsep}{3pt}
+        \item[低延迟:] 读操作只需一轮网络通信
+        \item[可能性问题:] 是否存在低延迟 ($k$-)atomicity 算法?
+		\item[尽可能强:] 如何定义并量化 $p$AM ($p$: probabilistic)?
+      \end{description}
+	  \pause
+	\item 考虑更丰富的数据类型 {\small (replicated data types)} \citeinbeamer{Burckhardt}{POPL}{14}
   \end{enumerate}
 \end{frame}
-
+%%%%%%%%%%%%%%%
+\begin{frame}{发表论文}
+  \begin{itemize}
+	\item \textcolor{blue}{[TC'16]} {\bf Hengfeng Wei}, Yu Huang, Jian Lu. 
+	  Probabilistically-Atomic 2-Atomicity: Enabling Almost Strong Consistency in Distributed Storage Systems. 
+	  In {\it IEEE Trans. Comput.}, xx(x):x--x, PrePrints, 2016.
+	\item \textcolor{blue}{[TPDS'16]} {\bf Hengfeng Wei}, Marzio De Biasi, Yu Huang, Jiannong Cao, Jian Lu. 
+	  Verifying Pipelined-RAM Consistency over Read/Write Traces of Data Replicas.
+	  In {\it IEEE Trans. Parallel Distrib. Syst.}, 27(5):1511--1523, 2016.
+	\item \textcolor{blue}{[PerCom'12]} {\bf Hengfeng Wei}, Yu Huang, Jiannong Cao, Xiaoxing Ma, Jian Lu. 
+	  Formal Specification and Runtime Detection of Temporal Properties for Asynchronous Context. 
+	  In {\it Proceedings of the 10th IEEE International Conference on Pervasive Computing and Communications},
+	  pages 30--38, 2012.
+	\item \textcolor{gray}{[Unpublished]} {\bf Hengfeng Wei}, Yu Huang, Jian Lu.
+	  Relaxed Version Snapshot Isolation in Distributed Transactional Key-Value Stores. 
+  \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{致谢}
+  \begin{itemize}
+	\setlength{\itemsep}{15pt}
+	\item 导师: 吕建教授、黄宇副教授
+	\item 软件所全体师生
+	\item 论文评审与答辩老师
+  \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%
 \begin{frame}[noframenumbering]
   \fignocaption{width = 0.20\textwidth}{figures/qa.png}
   \vspace{-0.8cm}
@@ -50,14 +68,6 @@
     \textcolor{blue}{\bf \large hengxin0912@gmail.com}
   \end{center}
   \vspace{-0.5cm}
-  \fignocaption{width = 0.55\textwidth}{figures/thankyou.jpg}
+  \fignocaption{width = 0.50\textwidth}{figures/thankyou.jpg}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{未来工作}
-  数据一致性问题的发展趋势:
-  \begin{enumerate}
-	\item give more consideration to SLA $\Rightarrow$ 应用价值观导向的数据一致性 (我们追随的发展趋势)
-	\item poor definition of consistency $\Rightarrow$ 为弱一致性奠定理论基础
-	\item poor understanding of boundaries $\Rightarrow$ 探索更强的数据一致性模型及理论界限
-  \end{enumerate}
-\end{frame}
