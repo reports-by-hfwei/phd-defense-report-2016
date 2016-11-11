@@ -1,9 +1,15 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{VPC: Pipelined-RAM 一致性验证}
 
+\newcommand{\pram}{Pipelined-RAM}
+\newcommand{\vpc}[1]{\ifthenelse{\isempty{#1}{}}{\textsf{VPC}}{\textsf{VPC-\MakeUppercase{#1}}}} 
+\newcommand{\npc}{$\sf{NP}$-complete}
+\newcommand{\npcn}{$\sf{NP}$-completeness}
+\newcommand{\rwclosure}{\textsc{RW-Closure}}
+\newcommand{\readcentric}{\textsc{Read-Centric}}
 %%%%%%%%%%%%%%%
 \begin{frame}{VPC 工作在技术框架中的位置}
-  \fig{width = 0.50\textwidth}{figures/3d-framework-vpc.pdf}{VPC --- Pipelined-RAM 一致性验证.}
+  \fig{width = 0.50\textwidth}{figures/3d-framework-vpc.pdf}{VPC --- \pram{} 一致性验证.}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{VPC 问题定义}
@@ -19,25 +25,28 @@
 		\]
     \end{description}    
   \end{cdef}
+
+  \vspace{0.30cm}
+  实例规模 $n$: 系统执行中操作的总数
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{研究动机}
   \question{问题: 为什么要验证 Pipelined-RAM {\small (PRAM)} 一致性?}
-  \vspace{0.50cm}
+  \vspace{0.10cm}
 
   \begin{description}
-    \setlength{\itemsep}{15pt}
+    \setlength{\itemsep}{10pt}
     \item[验证:] 用户与商家就数据一致性签订 SLA 协议 \\
 	  \citeinbeamer{Amazon}{SOSP}{07} \citeinbeamer{Golab}{PODC}{11}
-	  \vspace{5pt}
+	  \vspace{2pt}
 	  \begin{itemize}
-		\item \textcolor{teal}{[商家:]} 系统测试手段之一
-		\item \textcolor{teal}{[用户:]} 确认系统是否提供了其所声称的数据一致性 
+		\item \textcolor{teal}{[商家]} 系统测试手段之一
+		\item \textcolor{teal}{[用户]} 确认系统是否提供了其所声称的数据一致性 
 	  \end{itemize}
 	\pause
 	\item[PRAM:] 存储系统常提供``会话'' {\small (session)} 一致性\\
       \citeinbeamer{Saito}{CSUR}{05} \citeinbeamer{Terry}{CACM}{13}
-	  \vspace{5pt}
+	  \vspace{2pt}
       \begin{itemize}
 		\item 包含了弱一致性的诸多变体 
 		\item 近似于 PRAM 一致性 \citeinbeamer{Brzezi$\acute{\text{n}}$ski}{PDP}{04} \citeinbeamer{Bailis}{VLDB}{13}
@@ -45,8 +54,7 @@
   \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{对VPC 问题的系统性研究}
-  %%%%%%%%%%%% table: variants of VPC %%%%%%%%%%
+\begin{frame}{VPC 问题分类}
   \begin{table}[!t]
     \centering
 	\caption{VPC 问题的四种变体 (按``执行''的类型) 及复杂度分析 ($\textcolor{red}{[\ast]}$\textcolor{red}{: 本文工作}).}
@@ -56,8 +64,8 @@
       & \it (S)ingle variable  & \it (M)ultiple variables
       \\ \hline
 	  {\it write (D)uplicate values} &
-      \innercell{c}{VPC-SD \\ (NPC) $\textcolor{red}{[\ast]}$} &
-      \innercell{c}{VPC-MD \\ (NPC) $\textcolor{red}{[\ast]}$}
+	  \innercell{c}{VPC-SD \\ (\npc{}) $\textcolor{red}{[\ast]}$} &
+	  \innercell{c}{VPC-MD \\ (\npc{}) $\textcolor{red}{[\ast]}$}
       \\ \hline
 	  \only<1>{\it write (U)nique value}\only<2>{\cellcolor{brown!80}{\it write (U)nique value}} &
       \innercell{c}{VPC-SU \\ (P) \citeinbeamer{Golab}{PODC}{11}} &
@@ -70,3 +78,56 @@
   
   \uncover<2->{\textcolor{brown}{\centerline{Read-mapping \citeinbeamer{Gibbons}{SICOMP}{97}: $\forall r, f(r) = w$.}}}
 \end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{VPC-SD (VPC-MD) 是 \npc{} 问题}
+  \fig{width = 0.40\textwidth}{figures/vpcsd-npc.pdf}{对应于 \textsc{Unary 3-Partition} 实例 $A = \{2,2,1,1,1,1\}, m = 2, B = 4$ 的 VPC 执行.} 
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{VPC-MU 的多项式算法 \rwclosure{}}
+  \begin{figure}[h!]
+    \centering
+    \begin{adjustbox}{max totalsize = {0.65\textwidth}{1.00\textheight}, center}
+	  \input{tikz-in-beamer/rw-closure-example}
+    \end{adjustbox}
+	\caption{\rwclosure{} 算法示例: 在传递闭包之上迭代应用 $w'wr$ 规则.}
+  \end{figure}
+
+  TODO: 规则c
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{VPC-MU 的多项式算法 \rwclosure{}}
+  \begin{ctheorem}[\rwclosure{} 算法正确性]
+	\vpc{mu} 实例满足 \pram{} 一致性当且仅当 \rwclosure{} 算法所得图是有向无环图.
+  \end{ctheorem}
+
+  \pause 
+  TODO: proof
+
+  \pause
+  \centerline{\rwclosure{} 算法复杂度: $O(n^2) \cdot O(n^3) = O(n^5)$}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{VPC-MU 的多项式算法 \readcentric{}}
+  关键点:
+
+  \begin{ctheorem}[\rwclosure{} 算法正确性]
+	\vpc{mu} 实例满足 \pram{} 一致性当且仅当 \readcentric{} 算法所得图是有向无环图.
+  \end{ctheorem}
+
+  \pause
+  \centerline{\rwclosure{} 算法复杂度: }
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{实验评估}
+  
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{VPC 的意义}
+  \mdf{red}{blue}{}{teal}{
+	\begin{enumerate}
+	  \item \readcentric{} 算法可用于测试系统是否正确实现了 \pram{} 一致性模型
+	  \item \npcn{} 结果有助于理解弱一致性模型的复杂度
+	\end{enumerate}
+  }
+\end{frame}
+%%%%%%%%%%%%%%%
