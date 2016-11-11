@@ -5,12 +5,40 @@
 
 %%%%%%%%%%%%%%%
 \begin{frame}{工作概述}
+  \begin{table}[]
+	\centering
+	\caption{本文落实\idea{}研究理念.}
+	\renewcommand\arraystretch{1.6}
+	\resizebox{\textwidth}{!}{%
+	  \begin{tabular}{cc|c|c|c|c|}
+		\cline{3-6}
+		\multicolumn{2}{c|}{} & \multicolumn{2}{c|}{\textbf{读写寄存器}} & \multicolumn{2}{c|}{\textbf{事务}} \\ \cline{3-6} 
+		\multicolumn{2}{c|}{} & 多处理器系统 & \cellcolor{red!80}{分布式系统} & \textcolor{gray}{多处理器系统} & \cellcolor{red!80}{分布式系统} \\ \hline
+
+		\multicolumn{2}{|c|}{\textbf{\ideadt{}}} & {\begin{tabular}[c]{@{}c@{}}{\small 相关工作丰富}\\ {\small 理论扎实}\end{tabular}}
+		& \begin{tabular}[c]{@{}c@{}}{\small 渐成趋势}\\ {\small 理论欠缺}\end{tabular} 
+		& \multirow{2}{*}[-3em]{\begin{tabular}[c]{@{}c@{}}\textcolor{gray}{\small 软件}\\ \textcolor{gray}{\small 事务内存}\end{tabular}}
+		& \cellcolor{brown!80}{\begin{tabular}[c]{@{}c@{}}{\small 探索阶段}\\ {(RVSI)}\end{tabular}} \\ \cline{1-4} \cline{6-6}
+
+		\multicolumn{1}{|c|}{\multirow{2}{*}[-1em]{\textbf{\idearm{}}}} & 验证 
+		& \begin{tabular}[c]{@{}c@{}}{\small 典型模型}\\ {\small 理论全面}\end{tabular} 
+		& \cellcolor{brown!80}{\begin{tabular}[c]{@{}c@{}}{\small 弱模型验证}\\ {(VPC)}\end{tabular}}
+		& 
+		& \begin{tabular}[c]{@{}c@{}}{\small 理论全面}\\ {\small 指导协议设计}\end{tabular}
+		\\ \cline{2-4} \cline{6-6} \hhline{*{3}{~}-*{2}{~}}
+
+		\multicolumn{1}{|c|}{} & 量化 
+		& \begin{tabular}[c]{@{}c@{}}{\small 暂无}\\ {\small 强调正确性}\end{tabular}
+		& \cellcolor{brown!80}{\begin{tabular}[c]{@{}c@{}}{\small 量化协议}\\ {(PA2AM)}\end{tabular}}
+		&  
+		& \begin{tabular}[c]{@{}c@{}}{\small 量化协议难}\\ {\small 相关工作少}\end{tabular} 
+		\\ \hline
+	  \end{tabular}
+	}
+  \end{table}
 \end{frame}
 %%%%%%%%%%%%%%%
 \input{sections/vpc}
 \input{sections/pa2am}
 \input{sections/rvsi}
-%%%%%%%%%%%%%%%
-\begin{frame}{工作总结}
-\end{frame}
 %%%%%%%%%%%%%%%

@@ -1,0 +1,40 @@
+\begin{table}[]
+  \renewcommand{\arraystretch}{1.1}
+  \centering
+  \caption{事务负载参数表.\protected\\(\textcolor{blue}
+	{评估目标: RVSI 对事务中止率的影响})}
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|c||c|c|c|}
+	\hline
+	{\bfseries Parameter}   & {\bfseries F(ixed)/V(ariable)/R(andom)}	
+	& {\bfseries Value}		& {\bfseries Explanation}
+	\\ \hline  \hline
+	\#keys  				& F		& 5  				&  	size of keyspace
+	\\ \hline
+	\cellcolor{brown}mpl	& \textcolor{red}{\bf V}		& 5, 10, 15, 20, 25, 30
+	& \innercell{c}{multiprogramming level: \\ number of concurrent clients} \\ \hline
+	\#txs/client					& F		& 1000 						
+	& \innercell{c}{number of txs per client}
+	\\ \hline
+	\#ops/tx					& R		& $\sim$ Binomial(20, 0.5)	
+	&  \innercell{c}{number of operations per tx}
+	\\ \hline
+	\cellcolor{brown}rwRatio & \textcolor{red}{\bf V} 
+	  & 1:2, 1:1, 4:1 & {\#reads}/{\#writes}
+	\\ \hline
+	zipfExponent			& F		& 1		& parameter for Zipfian distribution
+	\\ \hline  \hline
+	\cellcolor{brown}$(k_1, k_2, k_3)$		& \textcolor{red}{\bf V}
+		&  \innercell{c}{(1,0,0) \\ (1,0,2) (1,1,0) \\ (2,0,0) (2,1,2) (2,2,1)}	
+		&  for \konebv{}, \ktwofv{}, and \kthreesv{}
+	\\ \hline  \hline
+	minInterval				& F		& 0ms		& minimum inter-transactions time
+	\\ \hline
+	maxInterval				& F		& 10ms		& maximum inter-transactions time
+	\\ \hline
+	meanInterval			& R		& 5ms		
+	& \innercell{c}{mean inter-transactions time \\ for exponential distribution}
+	\\ \hline
+  \end{tabular}
+  }
+\end{table}
