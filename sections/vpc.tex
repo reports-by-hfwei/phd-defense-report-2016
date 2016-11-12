@@ -2,6 +2,7 @@
 \subsection{VPC: Pipelined-RAM 一致性验证}
 
 \newcommand{\pram}{Pipelined-RAM}
+\newcommand{\PRAM}{PRAM}
 \newcommand{\vpc}[1]{\ifthenelse{\isempty{#1}{}}{\textsf{VPC}}{\textsf{VPC-\MakeUppercase{#1}}}} 
 \newcommand{\npc}{$\sf{NP}$-complete}
 \newcommand{\npcn}{$\sf{NP}$-completeness}
@@ -31,7 +32,7 @@
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{研究动机}
-  \question{问题: 为什么要验证 Pipelined-RAM {\small (PRAM)} 一致性?}
+  \question{问题: 为什么要验证 Pipelined-RAM {\small (\PRAM{})} 一致性?}
   \vspace{0.10cm}
 
   \begin{description}
@@ -86,46 +87,116 @@
 \begin{frame}{VPC-MU 的多项式算法 \rwclosure{}}
   \begin{figure}[h!]
     \centering
-    \begin{adjustbox}{max totalsize = {0.65\textwidth}{1.00\textheight}, center}
+    \begin{adjustbox}{max totalsize = {0.60\textwidth}{1.00\textheight}, center}
 	  \input{tikz-in-beamer/rw-closure-example}
     \end{adjustbox}
 	\caption{\rwclosure{} 算法示例: 在传递闭包之上迭代应用 $w'wr$ 规则.}
   \end{figure}
 
-  TODO: 规则c
+  \uncover<4->{\fig{width = 0.25\textwidth}{figures/wprimewr-order.pdf}{$w'wr$ 规则.}}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{VPC-MU 的多项式算法 \rwclosure{}}
   \begin{ctheorem}[\rwclosure{} 算法正确性]
-	\vpc{mu} 实例满足 \pram{} 一致性当且仅当 \rwclosure{} 算法所得图是有向无环图.
+	\vpc{mu} 实例满足 \PRAM{} 一致性当且仅当 \rwclosure{} 算法所得图是有向无环图.
   \end{ctheorem}
 
   \pause 
-  TODO: proof
+
+  \begin{cproof}
+    按 ``program order'' 对读操作作归纳.
+  \end{cproof}
 
   \pause
-  \centerline{\rwclosure{} 算法复杂度: $O(n^2) \cdot O(n^3) = O(n^5)$}
+  \vspace{0.60cm}
+
+  \rwclosure{} 算法复杂度: 
+  \[
+    \underbrace{O(n^2)}_{\textrm{\#loops}} \cdot
+	\underbrace{O(n^3)}_{\textrm{transitive closure}}  = O(n^5).
+  \]
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{VPC-MU 的多项式算法 \readcentric{}}
-  关键点:
-
-  \begin{ctheorem}[\rwclosure{} 算法正确性]
-	\vpc{mu} 实例满足 \pram{} 一致性当且仅当 \readcentric{} 算法所得图是有向无环图.
-  \end{ctheorem}
+  \rwclosure{} 算法的缺点:
+  \begin{itemize}
+	\item 在全图上应用 $w'wr$ 规则
+	\item 应用 $w'wr$ 规则无特定顺序
+  \end{itemize}
 
   \pause
-  \centerline{\rwclosure{} 算法复杂度: }
+  \vspace{0.50cm}
+
+  \readcentric{} 算法要点:
+  \begin{itemize}
+	\item \textcolor{blue}{增量式}调度每个读操作
+	\item 在读操作诱导的\textcolor{blue}{局部子图}上按\textcolor{blue}{逆拓扑序}应用 $w'wr$ 规则
+  \end{itemize}
+
+  \pause
+  \vspace{0.60cm}
+  \rwclosure{} 算法复杂度: 
+  \[
+    \underbrace{O(n)}_{\textrm{iterations}} \cdot
+	\underbrace{O(n^3)}_{\textsc{Topo-Schedule}} = O(n^4).
+  \]
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{实验评估}
-  
+  实验目的:
+  \begin{enumerate}
+	\item 考察 \readcentric{} 算法的实际效率
+	\item 对比 \readcentric{} 算法与 \rwclosure{} 算法的效率
+  \end{enumerate}
+
+  \pause
+  \vspace{0.50cm}
+
+  两组实验:
+  \begin{enumerate}
+	\item 随机生成的读写记录
+	\item 满足 \PRAM{} 一致性的读写记录 \textcolor{red}{\small (最坏输入)}
+  \end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{实验评估}
+  \begin{figure}[t]
+	\centering
+	\begin{subfigure}[t]{0.50\textwidth}
+	  \includegraphics[width = 0.80\textwidth]{figures/vpc-random-cmp.pdf}
+	\end{subfigure}%
+	~
+	\begin{subfigure}[t]{0.50\textwidth}
+	  \includegraphics[width = 0.80\textwidth]{figures/vpc-valid-cmp.pdf}
+	\end{subfigure}
+	\caption{\rwclosure{} 算法与 \readcentric{} 算法在
+	\textcolor{blue!80}{ (左) 随机生成}的读写记录及\textcolor{red!80}{ (右) 
+	  满足 \PRAM{} 一致性}的读写记录上的运行时间。}
+  \end{figure}
+
+  \pause
+  \begin{center}
+	\textcolor{red}{(右)} 20个进程、8,000 个操作: 
+
+	\readcentric{} 可获得 694 倍加速.
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{实验评估}
+  \fig{width = 0.50\textwidth}{figures/vpc-scalability-more.pdf}
+  {\readcentric{} 算法在满足 \PRAM{} 一致性的读写记录上的运行时间.}
+
+  \begin{description}
+	\centering
+	\item[\readcentric{}:] 20个进程、60,000个操作 < 600s
+	\item[\rwclosure{}:] 20个进程、8,000个操作 > 3,000s
+  \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{VPC 的意义}
-  \mdf{red}{blue}{}{teal}{
+  \mdf{red}{blue}{对 VPC 问题的系统研究}{teal}{
 	\begin{enumerate}
-	  \item \readcentric{} 算法可用于测试系统是否正确实现了 \pram{} 一致性模型
+	  \item \readcentric{} 算法可用于测试系统是否正确实现了 \PRAM{} 一致性模型
 	  \item \npcn{} 结果有助于理解弱一致性模型的复杂度
 	\end{enumerate}
   }
