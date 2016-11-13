@@ -5,6 +5,9 @@
 \newcommand{\konebv}{$k_1$-BV}
 \newcommand{\ktwofv}{$k_2$-FV}
 \newcommand{\kthreesv}{$k_3$-SV}
+\newcommand{\mpord}[1]{\mathcal{O}_{#1}}
+\newcommand{\tsts}[1]{#1.{sts}}
+\newcommand{\tcts}[1]{#1.{cts}}
 %%%%%%%%%%%%%%%
 \begin{frame}{RVSI 工作在技术框架中的位置}
   \fig{width = 0.50\textwidth}{figures/3d-framework-rvsi.pdf}
@@ -13,7 +16,7 @@
 %%%%%%%%%%%%%%%
 \begin{frame}{研究动机}
   \question{问题: 为什么要提出 Relaxed Version Snapshot Isolation {\small (RVSI)} 一致性?}
-  \vspace{0.20cm}
+  \vspace{0.15cm}
 
   \begin{description}
     \setlength{\itemsep}{5pt}
@@ -37,16 +40,28 @@
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{RVSI 定义}
-  RVSI 定义原则:
+  RVSI {\small (Relaxed Version Snapshot Isolation)} 定义原则:
   \begin{itemize}
-    \item 参数 $k_1, k_2, k_3$ 控制``异常''程度
-    \item $\text{RC} \supset \text{RVSI}(k_1, k_2, k_3) \supset \text{SI}$
-    \item $\text{RVSI}(\infty,\infty,\infty) = \text{RC}; \qquad \text{RVSI}(1,0,\ast) = \text{SI}$
+    \item<1-> $\text{RC} \supset \text{RVSI}(k_1, k_2, k_3) \supset \text{SI}$
+    \item<2-> 参数 $k_1, k_2, k_3$ 控制``异常''程度
+    \item<2-> $\text{RVSI}(\infty,\infty,\infty) = \text{RC}; \qquad \text{RVSI}(1,0,\ast) = \text{SI}$
   \end{itemize}
 
-  \vspace{0.20cm}
+  \vspace{0.60cm}
 
-  \begin{cdef}[RVSI: Relaxed Version Snapshot Isolation]
+  \uncover<1->{
+  \begin{description}
+	\item[RC {\small (Read Committed)}:] 只能读取成功提交的更新
+	\item[SI {\small (Snapshot Isolation)}:] 读取最近的系统快照 + 无写冲突事务
+  \end{description}
+  }
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{RVSI 定义}
+  \begin{cdef}[RVSI {\small (要点)}]
+	弱化 SI 关于 ``读取\textcolor{red}{最近的}系统\textcolor{red}{快照}''的要求.
+	\vspace{5pt}
+
     \begin{description}
       \item[单变量读 $\texttt{read}(x)$:] \hfill 
         \begin{enumerate}
@@ -56,7 +71,7 @@
       \item[多变量读 $\texttt{read}(x), \texttt{read}{(y)}$:] \hfill
         \begin{enumerate}
           \setcounter{enumi}{2}
-		\item $\textrm{dist}(\textsl{snap}{(x)},\textsl{snap}{(y)}) \le k_3$
+		\item $\textsl{dist}(\textsl{snap}{(x)},\textsl{snap}{(y)}) \le k_3$
         \end{enumerate}
     \end{description}
   \end{cdef}
@@ -73,16 +88,6 @@
   \fignocaption{width = 0.55\textwidth}{figures/chameleon-arch.pdf}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{\chameleon{} 分布式事务键值存储原型系统设计}
-  \begin{description}
-	\item[系统组件:] 客户端库 + 数据中心
-	\item<2->[数据分区:] 分布式事务原子提交协议 {\small (2PC)}
-	\item<2->[数据副本:] 懒惰复制 {\small (lazy replication)} 协议
-  \end{description}
-
-  \fignocaption{width = 0.42\textwidth}{figures/chameleon-framework.pdf}
-\end{frame}
-%%%%%%%%%%%%%%%
 \begin{frame}{RVSI 维护算法}
   \[
     \textcolor{blue}{\text{RC} \supset \text{RVSI}(k_1, k_2, k_3) \supset \text{SI}}
@@ -93,12 +98,27 @@
   RVSI 维护算法:
   \begin{itemize}
     \item 以分布式 RC 和 SI 协议 为基础
-    \item 事务执行时, 添加 RVSI ``版本约束'' ($k_1, k_2, k_3$ 相关不等式)
+    \item 事务提交前, 计算 RVSI ``版本约束'' ($k_1, k_2, k_3$ 相关不等式)
+	  \begin{description}
+		\item[\konebv{}:] $\mpord{x}(\tsts{T_i}) - \mpord{x}(\tcts{T_j}) < k_1$
+		\item[\ktwofv{}:] $\mpord{x}(\tcts{T_j}) - \mpord{x}(\tsts{T_i}) \le k_2$
+		\item[\kthreesv{}:] $\mpord{x}(\tcts{T_l}) - \mpord{x}(\tcts{T_j}) \le k_3$
+	  \end{description}
     \item 事务提交时, 检查 RVSI ``版本约束''
   \end{itemize}
 
   % \fignocaption{width = 0.50\textwidth}{figures/chameleon-build-passing.png}
-  \textcolor{red}{\small \url{https://github.com/hengxin/chameleon-transactional-kvstore}}
+  % \textcolor{red}{\small \url{https://github.com/hengxin/chameleon-transactional-kvstore}}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{RVSI 维护算法}
+  \begin{description}
+	\item[系统组件:] 客户端库 + 数据中心
+	\item<2->[数据分区:] 分布式事务原子提交协议 {\small (2PC)}
+	\item<2->[数据副本:] 懒惰复制 {\small (lazy replication)} 协议
+  \end{description}
+
+  \fignocaption{width = 0.42\textwidth}{figures/chameleon-framework.pdf}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{RVSI 实验评估}
