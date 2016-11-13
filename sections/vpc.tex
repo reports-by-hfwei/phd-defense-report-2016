@@ -19,7 +19,7 @@
 	\vspace{8pt}
     \begin{description}
 	  \setlength{\itemsep}{8pt}
-      \item[实例:] 系统执行 {\small (execution $e$; 即, 读写操作序列)}
+      \item[实例:] 系统执行 {\small (execution $e$)}
       \item[问题:] 该执行是否满足 PRAM 一致性模型 {\small ($\mathcal{C}$)}? 
 		\[
 		  e \in \mathcal{C} \Rightarrow \set{0,1}?
@@ -29,6 +29,36 @@
 
   \vspace{0.30cm}
   实例规模 $n$: 系统执行中操作的总数
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{VPC 问题定义}
+  \begin{cdef}[系统执行]
+	系统执行 ($e$) $\triangleq$ $\{h_p \mid h_p: \text{进程 } \;p \text{ 上的读写操作序列}\}$
+  \end{cdef}
+
+  \fignocaption{width = 0.50\textwidth}{figures/execution-example.pdf}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{VPC 问题定义}
+  \begin{cdef}[\pram{} 一致性模型]
+	\begin{center}
+	  系统执行 $e$ 满足 \PRAM{} 一致性 \\
+	  $\iff$\\
+	  $\forall p:$ $p$ 上\textcolor{blue}{所有操作}与其它进程上所有\textcolor{blue}{写操作}存在\textcolor{red}{合法}调度.
+	\end{center}
+  \end{cdef}
+
+  \fignocaption{width = 0.50\textwidth}{figures/execution-example.pdf}
+
+  \pause
+  \vspace{-0.80cm}
+
+  \begin{gather*}
+	p_{0}: Wf2\; Wf1\; Wz2\; Wz1\; Wy2\; Wy1\; \textcolor{brown}{Rf1} 
+	Wx5\; Wx3\; Wx2\; Wc1\; \textcolor{brown}{Rc1} \\
+	\textcolor{brown}{Rz1} \textcolor{brown}{Ry1}
+	Wa1\; \textcolor{brown}{Ra1} Wb1\; \textcolor{brown}{Rb1} \textcolor{brown}{Rx2}
+  \end{gather*}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{研究动机}
@@ -65,22 +95,24 @@
       & \it (S)ingle variable  & \it (M)ultiple variables
       \\ \hline
 	  {\it write (D)uplicate values} &
-	  \innercell{c}{VPC-SD \\ (\npc{}) $\textcolor{red}{[\ast]}$} &
-	  \innercell{c}{VPC-MD \\ (\npc{}) $\textcolor{red}{[\ast]}$}
+	  \innercell{c}{VPC-SD \\ \uncover<2->{\textcolor{red}{\small (\npc{}) $[\ast]$}}} &
+	  \innercell{c}{VPC-MD \\ \uncover<2->{\textcolor{red}{\small (\npc{}) $[\ast]$}}}
       \\ \hline
-	  \only<1>{\it write (U)nique value}\only<2>{\cellcolor{brown!80}{\it write (U)nique value}} &
-      \innercell{c}{VPC-SU \\ (P) \citeinbeamer{Golab}{PODC}{11}} &
-      \innercell{c}{VPC-MU \\ (P) $\textcolor{red}{[\ast]}$}
+	  \only<1-2>{\it write (U)nique value}\only<3>{\cellcolor{brown!80}{\it write (U)nique value}} &
+	  \innercell{c}{VPC-SU \\ \uncover<2->{\textcolor{blue}{\small (P) \citeinbeamer{Golab}{PODC}{11}}}} &
+	  \innercell{c}{VPC-MU \\ \uncover<2->{\textcolor{red}{\small (P) $[\ast]$}}}
       \\ \hline
     \end{tabular}
   \end{table}
 
   \vspace{10pt}
   
-  \uncover<2->{\textcolor{brown}{\centerline{Read-mapping \citeinbeamer{Gibbons}{SICOMP}{97}: $\forall r, f(r) = w$.}}}
+  \uncover<3->{\textcolor{brown}{\centerline{Read-mapping \citeinbeamer{Gibbons}{SICOMP}{97}: $\forall r, f(r) = w$.}}}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{VPC-SD (VPC-MD) 是 \npc{} 问题}
+  多项式规约: 从 \textsc{Unary 3-Partition} 到 \vpc{sd}.
+
   \fig{width = 0.40\textwidth}{figures/vpcsd-npc.pdf}{对应于 \textsc{Unary 3-Partition} 实例 $A = \{2,2,1,1,1,1\}, m = 2, B = 4$ 的 VPC 执行.} 
 \end{frame}
 %%%%%%%%%%%%%%%
@@ -98,14 +130,12 @@
 %%%%%%%%%%%%%%%
 \begin{frame}{VPC-MU 的多项式算法 \rwclosure{}}
   \begin{ctheorem}[\rwclosure{} 算法正确性]
-	\vpc{mu} 实例满足 \PRAM{} 一致性当且仅当 \rwclosure{} 算法所得图是有向无环图.
+	\begin{center}
+	  \vpc{mu} 实例满足 \PRAM{} 一致性\\
+		$\iff$\\
+	  \rwclosure{} 算法所得图是 DAG 图.
+	\end{center}
   \end{ctheorem}
-
-  \pause 
-
-  \begin{cproof}
-    按 ``program order'' 对读操作作归纳.
-  \end{cproof}
 
   \pause
   \vspace{0.60cm}
@@ -113,7 +143,7 @@
   \rwclosure{} 算法复杂度: 
   \[
     \underbrace{O(n^2)}_{\textrm{\#loops}} \cdot
-	\underbrace{O(n^3)}_{\textrm{transitive closure}}  = O(n^5).
+	\underbrace{O(n^3)}_{\textrm{transitive closure}}  = O(n^5)
   \]
 \end{frame}
 %%%%%%%%%%%%%%%
@@ -138,14 +168,15 @@
   \rwclosure{} 算法复杂度: 
   \[
     \underbrace{O(n)}_{\textrm{iterations}} \cdot
-	\underbrace{O(n^3)}_{\textsc{Topo-Schedule}} = O(n^4).
+	\underbrace{O(n^3)}_{\textsc{Topo-Schedule}} = O(n^4)
   \]
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{实验评估}
   实验目的:
   \begin{enumerate}
-	\item 考察 \readcentric{} 算法的实际效率
+	\item 考察 \readcentric{} 算法的实际效率 
+	  \textcolor{blue}{\small ({\it vs.} 渐近时间复杂度)}
 	\item 对比 \readcentric{} 算法与 \rwclosure{} 算法的效率
   \end{enumerate}
 
@@ -155,7 +186,7 @@
   两组实验:
   \begin{enumerate}
 	\item 随机生成的读写记录
-	\item 满足 \PRAM{} 一致性的读写记录 \textcolor{red}{\small (最坏输入)}
+	\item 满足 \PRAM{} 一致性的读写记录 \textcolor{red}{\small ($\approx$ 最坏情况输入)}
   \end{enumerate}
 \end{frame}
 %%%%%%%%%%%%%%%

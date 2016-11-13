@@ -24,8 +24,8 @@
 
   ``低延迟''至关重要:
   \begin{itemize}
-	\item 100ms 额外延迟 $\Rightarrow$ 1\% 销售下滑 \citeinbeamer{Amazon}{Blog}{06}
-	\item 100$\sim$400ms 额外延迟 $\Rightarrow$ 0.2\%$\sim$0.6\% 搜索量下降 \citeinbeamer{Google}{Blog}{09}
+	\item 100ms 额外延迟 $\Rightarrow$ 1\% 销售下滑 \href{http://glinden.blogspot.com/2006/11/marissa-mayer-at-web-20.html}{\citeinbeamer{Amazon}{Blog}{06}}
+	\item 100$\sim$400ms 额外延迟 $\Rightarrow$ 0.2\%$\sim$0.6\% 搜索量下降 \href{Speed Matters for Google Web Search}{\citeinbeamer{Google}{Blog}{09}}
   \end{itemize}
 
   % {\small
@@ -85,48 +85,79 @@
   \question{问题: PA2AM 算法在多大程度上违反了 atomicity?}
   \vspace{0.10cm}
 
-  \begin{itemize}
-    \setlength{\itemsep}{10pt}
-	\item 充要条件: ONI (old-new inversion) \citeinbeamer{Attiya}{JACM}{95}
-      \fignocaption{width = 0.45\textwidth}{figures/2atomicity-case.pdf}
-    \item PA2AM 量化分析: 计算 $\mathbb{P}(\textrm{ONI})$, 其值越小越好
-      \begin{enumerate}
-        \setlength{\itemsep}{3pt}
-        \item $\textrm{ONI} \triangleq \textrm{CP} \cap \textrm{RWP}$
-        \item 排队论建模, 计算 $\mathbb{P}(\textrm{CP})$ \item 带时间的球盒模型, 计算 
-          $\mathbb{P}(\textrm{RWP|CP})$
-        % \item 实验统计 $\mathbb{P}(\textrm{CP})$, $\mathbb{P}(\textrm{RWP|CP})$ 与 
-        % $\mathbb{P}(\textrm{ONI})$, 以作对照
-      \end{enumerate}
-  \end{itemize}
+  充要条件: ONI (old-new inversion) \citeinbeamer{Attiya}{JACM}{95}
+  \fignocaption{width = 0.40\textwidth}{figures/2atomicity-case.pdf}
+
+  \pause
+  将 ONI 分解为``并发模式''与``读写模式'':
+
+  \begin{columns}
+	\column{0.45\textwidth}
+	  \begin{cdef}[CP: Concurrency Pattern]
+		\begin{enumerate}
+		  \item $r_{st} \in [w_{st}, w_{ft}]$;
+		  \item $w'$ immediately precedes $w$;
+		  \item $r'_{ft} \in [w_{st}, r_{st}]$.
+		\end{enumerate}
+	  \end{cdef}
+	\column{0.45\textwidth}
+	  \begin{cdef}[RWP: Read-Write Pattern]
+		\begin{enumerate}
+		  \setcounter{enumi}{3}
+		  \item $r = R(w')$;
+		  \item $r' = R(w)$.
+		\end{enumerate}
+	  \end{cdef}
+  \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{PA2AM 量化分析}
-  公式推导:
+  PA2AM 量化分析: 计算 $\mathbb{P}(\textrm{ONI})$, 其值越小越好
+
+  \begin{enumerate}
+	\setlength{\itemsep}{3pt}
+	\item $\textrm{ONI} \triangleq \textrm{CP}  \cap \textrm{RWP}$
+	\item 排队论建模, 计算 $\mathbb{P}(\textrm{CP})$ 
+	\item 带时间的球盒模型, 计算 $\mathbb{P}(\textrm{RWP|CP})$
+  \end{enumerate}
+
   \begin{figure}
 	\begin{subfigure}{0.50\textwidth}
 	  \centering
-	  \includegraphics[width = 0.70\textwidth]{figures/cp.png}
+	  \includegraphics[width = 0.80\textwidth]{figures/cp.png}
 	\end{subfigure}%
 	\begin{subfigure}{0.50\textwidth}
 	  \centering
-	  \includegraphics[width = 0.70\textwidth]{figures/rwp.png}
+	  \includegraphics[width = 0.80\textwidth]{figures/rwp.png}
 	\end{subfigure}
   \end{figure}
-
-  \vspace{0.10cm}
-
-  数值结果 (左一) 与实验结果 (右二): 
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{PA2AM 量化分析}
   \begin{figure}
-	\begin{subfigure}{0.45\textwidth}
+	\begin{subfigure}{0.40\textwidth}
 	  \centering
-	  \includegraphics[width = 0.60\textwidth]{figures/oni-pgfplot.pdf}
+	  \includegraphics[width = 0.80\textwidth]{figures/oni-pgfplot.pdf}
+	  \caption{数值结果.}
 	\end{subfigure}%
-	\begin{subfigure}{0.55\textwidth}
+	\begin{subfigure}{0.60\textwidth}
 	  \centering
-	  \includegraphics[width = 0.90\textwidth]{figures/experiment-oni-pgfplot.pdf}
+	  \includegraphics[width = 0.95\textwidth]{figures/experiment-oni-pgfplot.pdf}
+	  \caption{实验结果.}
 	\end{subfigure}
   \end{figure}
+
+  \only<2->{
+  \begin{cobservation}[观察一]
+	从概率角度讲, PA2AM 算法极少违反 atomicity 一致性.
+  \end{cobservation}
+  }
+
+  \only<3->{
+  \begin{cobservation}[观察二]
+	与经常发生的并发模式相比, 读写模式起主导作用。
+  \end{cobservation}
+}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{PA2AM vs. 弱一致性模型}
