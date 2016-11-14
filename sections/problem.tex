@@ -1,32 +1,61 @@
 \section{研究问题}
 
 %%%%%%%%%%%%%%%
+% \begin{frame}{分布数据一致性问题}
+%   \graphicspath{{tikz-in-beamer/}}
+%   \begin{figure}[h!]
+%     \centering
+%     \begin{adjustbox}{max totalsize = {0.50\textwidth}{1.00\textheight}, center}
+% 	  \input{tikz-in-beamer/distributed-data-overlay-for-problem}
+%     \end{adjustbox}
+%   \end{figure}
+% 
+%   \uncover<2->{
+% 	\textcolor{red}{分布数据 \term{distributed data}} $\Leftarrow$ 共享 (集中式) 数据 \term{shared data}:}
+%   \vspace{0.30cm}
+%   \begin{description}
+% 	\item<3->[上层应用:] 分布数据的语义是什么? 如何``方便''地使用分布数据?
+% 	\item<4->[数据副本:] 以何种顺序应用更新? 对应用提供什么保证?
+%   \end{description}
+% \end{frame}
+% %%%%%%%%%%%%%%%
+% \begin{frame}{分布数据一致性问题}
+%   \begin{figure}[h!]
+%     \centering
+%     \begin{adjustbox}{max totalsize = {0.70\textwidth}{1.00\textheight}, center}
+% 	  \input{tikz-in-beamer/data-inconsistency-comment-reordering}
+%     \end{adjustbox}
+% 	\caption{社交网络中, 消息-评论乱序 \citeinbeamer{Lloyd}{CACM}{14}.}
+%   \end{figure}
+% \end{frame}
+%%%%%%%%%%%%%%%
 \begin{frame}{分布数据一致性问题}
   \graphicspath{{tikz-in-beamer/}}
   \begin{figure}[h!]
     \centering
-    \begin{adjustbox}{max totalsize = {0.50\textwidth}{1.00\textheight}, center}
-	  \input{tikz-in-beamer/distributed-data-overlay-for-problem}
+    \begin{adjustbox}{max totalsize = {0.90\textwidth}{1.00\textheight}, center}
+	  \input{tikz-in-beamer/distributed-data-consistency-dsds}
     \end{adjustbox}
   \end{figure}
 
-  \uncover<2->{
-	\textcolor{red}{分布数据 \term{distributed data}} $\Leftarrow$ 共享 (集中式) 数据 \term{shared data}:}
-  \vspace{0.30cm}
-  \begin{description}
-	\item<3->[上层应用:] 分布数据的语义是什么? 如何``方便''地使用分布数据?
-	\item<4->[数据副本:] 以何种顺序应用更新? 对应用提供什么保证?
-  \end{description}
-\end{frame}
-%%%%%%%%%%%%%%%
-\begin{frame}{分布数据一致性问题}
-  \begin{figure}[h!]
-    \centering
-    \begin{adjustbox}{max totalsize = {0.70\textwidth}{1.00\textheight}, center}
-	  \input{tikz-in-beamer/data-inconsistency-comment-reordering}
-    \end{adjustbox}
-	\caption{社交网络中, 消息-评论乱序 \citeinbeamer{Lloyd}{CACM}{14}.}
-  \end{figure}
+  \begin{columns}
+	\column{0.50\textwidth}
+	  \uncover<2->{
+		分布数据一致性问题 \textcolor{blue}{\small (应用视角)}:
+	  \begin{itemize}
+		\item 分布数据的语义是什么?
+		\item 如何``方便''地使用分布数据?
+	  \end{itemize}
+	  }
+	\column{0.50\textwidth}
+	  \uncover<3->{
+		分布共享数据服务 \textcolor{blue}{\small (中间件)}:
+		\begin{itemize}
+		  \item 屏蔽分布数据细节
+		  \item 提供共享数据抽象
+		\end{itemize}
+	  }
+  \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{分布数据一致性问题}
@@ -56,8 +85,8 @@
   \vspace{0.50cm}
   \begin{center}
 	% \textcolor{red}{分布数据一致性问题是分布共享数据服务中的核心问题}
-	\textcolor{blue}{在分布式系统中, \\以数据一致性为核心的权衡 \citeinbeamer{Guerraoui}{TCDE}{16} \\
-  		使得分布数据一致性问题成为核心难题.}
+	\textcolor{blue}{在分布式系统中, \\以数据一致性为核心的权衡 \citeinbeamer{Guerraoui}{TCDE}{16} 使得 \\
+  		分布数据一致性问题成为分布共享数据服务中的核心难题.}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%
@@ -167,7 +196,7 @@
   \uncover<2->{
   \begin{columns}
 	\column{0.45\textwidth}
-	  \fig{width = 0.50\textwidth}{figures/cap-theorem.pdf}{CAP 定理 \citeinbeamer{Brewer}{PODC}{00}}
+	  \fig{width = 0.50\textwidth}{figures/cap-theorem.png}{CAP 定理 \citeinbeamer{Brewer}{PODC}{00}}
 	\column{0.50\textwidth}
 	  \fig{width = 0.65\textwidth}{figures/pacelc-tradeoff-new.pdf}{PACELC 权衡 \citeinbeamer{Abadi}{IEEE Computer}{12}}
   \end{columns}
