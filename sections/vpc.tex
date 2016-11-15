@@ -10,7 +10,7 @@
 \newcommand{\readcentric}{\textsc{Read-Centric}}
 %%%%%%%%%%%%%%%
 \begin{frame}{VPC 工作在技术框架中的位置}
-  \fig{width = 0.50\textwidth}{figures/3d-framework-vpc.pdf}{VPC --- \pram{} 一致性验证.}
+  \fig{width = 0.50\textwidth}{figures/3d-framework-vpc.pdf}{VPC --- \pram{} {\small (\PRAM{})} 一致性验证.}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{VPC 问题定义}
@@ -20,20 +20,20 @@
     \begin{description}
 	  \setlength{\itemsep}{8pt}
       \item[实例:] 系统执行 {\small (execution $e$)}
-      \item[问题:] 该执行是否满足 PRAM 一致性模型 {\small ($\mathcal{C}$)}? 
+      \item[问题:] 该执行 $e$ 是否满足 PRAM 一致性模型 {\small ($\mathcal{C}$)}? 
 		\[
 		  e \in \mathcal{C} \Rightarrow \set{0,1}?
 		\]
     \end{description}    
   \end{cdef}
-
-  \vspace{0.30cm}
-  实例规模 $n$: 系统执行中操作的总数
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{VPC 问题定义}
   \begin{cdef}[系统执行]
 	系统执行 ($e$) $\triangleq$ $\{h_p \mid h_p: \text{进程 } \;p \text{ 上的读写操作序列}\}$
+
+	\vspace{0.30cm}
+	\textcolor{blue}{规模 $n$:} 系统执行中操作的总数
   \end{cdef}
 
   \fignocaption{width = 0.50\textwidth}{figures/execution-example.pdf}
@@ -67,7 +67,7 @@
 
   \begin{description}
     \setlength{\itemsep}{10pt}
-    \item[验证:] 用户与商家就数据一致性签订 SLA 协议 \\
+	\item[验证:] 用户与商家就数据一致性签订 SLA {\small (Service Level Agreement)} 协议
 	  \citeinbeamer{Amazon}{SOSP}{07} \citeinbeamer{Golab}{PODC}{11}
 	  \vspace{2pt}
 	  \begin{itemize}
@@ -183,10 +183,10 @@
   \pause
   \vspace{0.50cm}
 
-  两组实验:
+  两类负载:
   \begin{enumerate}
-	\item 随机生成的读写记录
-	\item 满足 \PRAM{} 一致性的读写记录 \textcolor{red}{\small ($\approx$ 最坏情况输入)}
+	\item 随机生成的系统执行
+	\item 满足 \PRAM{} 一致性的系统执行 \textcolor{red}{\small ($\approx$ 最坏情况输入)}
   \end{enumerate}
 \end{frame}
 %%%%%%%%%%%%%%%

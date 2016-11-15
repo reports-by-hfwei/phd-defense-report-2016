@@ -92,13 +92,19 @@
 %%%%%%%%%%%%%%%
 \begin{frame}{技术框架}
   \fig{width = 0.50\textwidth}{figures/3d-framework.pdf}{``一个基础, 三个维度''技术框架.}
+  % \begin{figure}[h!]
+  %   \centering
+  %   \begin{adjustbox}{max totalsize = {0.70\textwidth}{1.00\textheight}, center}
+  %     \input{tikz-in-beamer/3d-framework}
+  %   \end{adjustbox}
+  % \end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{基础: 数据类型}
 	数据类型: 从个体到群组
 	\pause
 	\vspace{0.20cm}
-	\begin{itemize}
+	\begin{enumerate}
 	  \setlength{\itemsep}{8pt}
 	  \item<2-> 读写寄存器
 	  \item<3-> 事务对象
@@ -108,7 +114,7 @@
 		  \item 支持 ``all-or-none'' 语义
 		  \item 易于开发并发应用
 		\end{itemize}
-	\end{itemize}
+	\end{enumerate}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{维度一: 一致性模型}
@@ -156,36 +162,34 @@
 	\vspace{8pt}
 	\begin{itemize}
 	  \centering
-	  \item 兼容的混合一致性模型
-	  \item 实现手段之一: 参数化
+	  \item 严格定义``多样化''
+	  \item 系统实现``可调节''
 	\end{itemize}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{维度三: 一致性度量}
-  \begin{columns}
-	\column{0.60\textwidth}
-	  \begin{center}
-		给定系统$\mathcal{S}$及一致性模型$\mathcal{C}$,
-	  \end{center}
-
-	  \pause
-
-	  \begin{center}
-		对于$e \in \mathcal{S}$:
-		\begin{description}
-		  \centering
-		  \setlength{\itemsep}{5pt}
-		  \item[验证 (verify):] $e \in \mathcal{C} \textcolor{red}{\mathbf{?}} \Rightarrow \set{0,1}$ 
-		  \item[量化 (quantify):] $e \in \mathcal{C} \textcolor{red}{\mathbf{?}} \Rightarrow (0,1)$ 
-		\end{description}
-	  \end{center}
-	\column{0.40\textwidth}
-	  \fignocaption{width = 0.50\textwidth}{figures/qos-radio.png}
-  \end{columns}
+  \begin{center}
+	给定系统$\mathcal{S}$及一致性模型$\mathcal{C}$,
+  \end{center}
 
   \pause
-  \vspace{0.60cm}
+
+  对于$e \in \mathcal{S}$:
+  \begin{description}
+	\setlength{\itemsep}{5pt}
+	\item[验证 (verify):] $e \in \mathcal{C} \textcolor{red}{\mathbf{?}} \Rightarrow \set{0,1}$ 
+	\item[量化 (quantify):] \only<3->{不同量化对象}\hfill
+	  \begin{description}
+		\item[量化执行 $e$:] $e \in \mathcal{C} \textcolor{red}{\mathbf{?}} \Rightarrow (0,1)$ 
+		  \pause
+		\item[量化协议 $\mathcal{P}$:] 协议 $\mathcal{P}$ 满足一致性模型的程度
+	  \end{description}
+  \end{description}
+  % \fignocaption{width = 0.50\textwidth}{figures/qos-radio.png}
+
+  \pause
+  \vspace{0.50cm}
 
   \begin{center}
 	``精细化, 可度量''研究理念的挑战:

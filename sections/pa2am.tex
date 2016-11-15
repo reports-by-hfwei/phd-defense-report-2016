@@ -49,7 +49,9 @@
   % \end{cdef}
 
   \begin{center}
-	\only<2->{\textcolor{blue}{``近乎强''一致性: }}{在保证\textcolor{red}{低延迟}的情况下获得\textcolor{red}{尽可能强}的数据一致性.}
+	\uncover<2->{\textcolor{blue}{``近乎强''一致性 {\small (Almost Strong Consistency)}: }}
+	
+	在保证\textcolor{red}{低延迟}的情况下获得\textcolor{red}{尽可能强}的数据一致性.
   \end{center}
 
   \uncover<3->{
@@ -180,7 +182,7 @@
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{PA2AM 的意义}
-  \mdf{red}{blue}{PA2AM 可作为一致性/延迟权衡的一种有价值的选项}{teal}{
+  \mdf{red}{blue}{PA2AM 可作为数据一致性/访问延迟权衡的一种可行选项}{teal}{
 	\begin{enumerate}
 	  \item 既 {\small (在统计意义上)} 满足强一致性模型对数据一致性的高标准
 	  \item 又具有弱一致性模型的性能优势

@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 \subsection{RVSI: Snapshot Isolation 一致性弱化与维护}
 
-\newcommand{\chameleon}{\textsc{Chameleon}}
+\newcommand{\chameleon}{$\textsc{Chameleon}^{\textsc{TKVS}}$}
 \newcommand{\konebv}{$k_1$-BV}
 \newcommand{\ktwofv}{$k_2$-FV}
 \newcommand{\kthreesv}{$k_3$-SV}
@@ -30,6 +30,7 @@
 		  \textcolor{red}{SI} \citeinbeamer{Lin}{TODS}{09} \\
           PSI \citeinbeamer{Sovran}{SOSP}{11} NMSI \citeinbeamer{Ardekani}{SRDS}{13} 
     \pause
+	\vspace{0.30cm}
 	\item[\textcolor{red}{异常控制:}] 容忍``有限度的''异常 \citeinbeamer{Yu}{TOCS}{02}
 	\item[\textcolor{red}{可调节:}] 
       \begin{itemize}
@@ -43,7 +44,7 @@
   RVSI {\small (Relaxed Version Snapshot Isolation)} 定义原则:
   \begin{itemize}
     \item<1-> $\text{RC} \supset \text{RVSI}(k_1, k_2, k_3) \supset \text{SI}$
-    \item<2-> 参数 $k_1, k_2, k_3$ 控制``异常''程度
+    \item<2-> 参数 $k_1, k_2, k_3$ 控制相对于 SI 的``异常''程度
     \item<2-> $\text{RVSI}(\infty,\infty,\infty) = \text{RC}; \qquad \text{RVSI}(1,0,\ast) = \text{SI}$
   \end{itemize}
 
@@ -51,15 +52,15 @@
 
   \uncover<1->{
   \begin{description}
-	\item[RC {\small (Read Committed)}:] 只能读取成功提交的更新
-	\item[SI {\small (Snapshot Isolation)}:] 读取最近的系统快照 + 无写冲突事务
+	\item[RC {\small (Read Committed)}:] 读取成功提交的更新
+	\item[SI {\small (Snapshot Isolation)}:] 观察到事务开始之前的最新的系统快照 + 无写冲突事务
   \end{description}
   }
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{RVSI 定义}
   \begin{cdef}[RVSI {\small (要点)}]
-	弱化 SI 关于 ``读取\textcolor{red}{最近的}系统\textcolor{red}{快照}''的要求.
+	弱化 SI 关于 ``观察到事务开始\textcolor{red}{之前}的\textcolor{red}{最新}的系统\textcolor{red}{快照}''的要求.
 	\vspace{5pt}
 
     \begin{description}
@@ -71,7 +72,7 @@
       \item[多变量读 $\texttt{read}(x), \texttt{read}{(y)}$:] \hfill
         \begin{enumerate}
           \setcounter{enumi}{2}
-		\item $\textsl{dist}(\textsl{snap}{(x)},\textsl{snap}{(y)}) \le k_3$
+		\item $\textsl{dist}(\textsl{snap}{(x)},\textsl{snap}{(y)}) \le k_3$ (\kthreesv{})
         \end{enumerate}
     \end{description}
   \end{cdef}
@@ -98,6 +99,7 @@
   RVSI 维护算法:
   \begin{itemize}
     \item 以分布式 RC 和 SI 协议 为基础
+	  \pause
     \item 事务提交前, 计算 RVSI ``版本约束'' ($k_1, k_2, k_3$ 相关不等式)
 	  \begin{description}
 		\item[\konebv{}:] $\mpord{x}(\tsts{T_i}) - \mpord{x}(\tcts{T_j}) < k_1$
@@ -113,9 +115,9 @@
 %%%%%%%%%%%%%%%
 \begin{frame}{RVSI 维护算法}
   \begin{description}
-	\item[系统组件:] 客户端库 + 数据中心
-	\item<2->[数据分区:] 分布式事务原子提交协议 {\small (2PC)}
-	\item<2->[数据副本:] 懒惰复制 {\small (lazy replication)} 协议
+	% \item[系统组件:] 客户端库 + 数据中心
+	\item[数据分区:] 分布式事务原子提交协议 {\small (2PC)}
+	\item[数据副本:] 懒惰复制 {\small (lazy replication)} 协议
   \end{description}
 
   \fignocaption{width = 0.42\textwidth}{figures/chameleon-framework.pdf}
@@ -132,6 +134,7 @@
   \begin{description}
 	\item[\textcolor{blue}{wcf-aborted:}] 
 	  无显著变化 {\small ($\text{wcf}(1,0,0) = 0.184733$)}
+	  \pause
 	\item[\textcolor{red}{vc-aborted:}] 显著减少 
 	  {\small ($\text{vc}(1,0,0) = 0.204733;
 	  \text{vc}(1,1,0) = 0.066433;
@@ -148,6 +151,11 @@
 	  \fig{width = 1.00\textwidth}{figures/rvsi-rw1-abort-rates.pdf}
 		{读写相当 (rwRatio = 1:1) 负载下 RVSI 对事务中止率的影响.}
   \end{columns}
+
+  \begin{description}
+	\item[\textcolor{blue}{wcf-aborted:}] 无显著变化
+	\item[\textcolor{red}{vc-aborted:}] 绝对数值少; 相对减少显著 
+  \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{RVSI 的意义}
