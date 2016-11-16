@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 \subsection{RVSI: Snapshot Isolation 一致性弱化与维护}
 
-\newcommand{\chameleon}{$\textsc{Chameleon}^{\textsc{TKVS}}$}
+\newcommand{\chameleon}{$\textsc{Chameleon}^{\textsc{\scriptsize TKVS}}$}
 \newcommand{\konebv}{$k_1$-BV}
 \newcommand{\ktwofv}{$k_2$-FV}
 \newcommand{\kthreesv}{$k_3$-SV}
@@ -60,7 +60,7 @@
 %%%%%%%%%%%%%%%
 \begin{frame}{RVSI 定义}
   \begin{cdef}[RVSI {\small (要点)}]
-	弱化 SI 关于 ``观察到事务开始\textcolor{red}{之前}的\textcolor{red}{最新}的系统\textcolor{red}{快照}''的要求.
+	弱化 SI 关于``观察到事务开始\textcolor{red}{之前}的\textcolor{red}{最新}的系统\textcolor{red}{快照}''的要求.
 	\vspace{5pt}
 
     \begin{description}
@@ -78,13 +78,15 @@
   \end{cdef}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{\chameleon{} 分布式事务键值存储原型系统设计}
+\begin{frame}{\chameleon{}~\footnotemark[1]分布式事务键值存储原型系统设计}
   \begin{description}
-	\item[系统架构:] 阿里云\footnote{阿里云: \url{https://www.aliyun.com/}.} 
-	  多数据中心 {\small ($9 = 3 \times 3$)}
+	\item[系统架构:] 阿里云~\footnotemark[2]多数据中心 {\small ($9 = 3 \times 3$)} % ~\footnotemark[2]\footnotetext[2]{阿里云: \url{https://www.aliyun.com/}.} 
 	\item<2->[数据分区:] 同一数据中心
 	\item<2->[数据副本:] 跨数据中心; 主从结构
   \end{description}
+
+  \footnotetext[1]{\url{https://github.com/hengxin/chameleon-transactional-kvstore}}
+  \footnotetext[2]{\url{https://www.aliyun.com/}}
 
   \fignocaption{width = 0.55\textwidth}{figures/chameleon-arch.pdf}
 \end{frame}

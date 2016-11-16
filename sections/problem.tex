@@ -147,19 +147,17 @@
   \answer{特性: ``以程序为导向、强调正确性''}
   \vspace{0.20cm}
 
-  ``相对于 SC {\small (Sequential Consistency)}''的正确性~\footnote{术语称为 SCNF: Sequential Consistency Normal Form.} \citeinbeamer{Adve}{ISCA}{90}:
+  \begin{description}
+	\item[一致性:] 追求``相对于 SC {\small (Sequential Consistency)}''的正确性~\footnote{术语称为 SCNF: Sequential Consistency Normal Form.} \citeinbeamer{Adve}{ISCA}{90}
+	\item[权衡:] 易编程性 vs. 性能
+  \end{description}
 
-  \begin{columns}
-	\column{0.60\textwidth}
-	  \begin{description}
-		\item[一致性:] 一致性模型 + \textcolor{red}{编程模型}
-		\item[程序:] 遵循预定规则
-		\item[系统:] 提供 SC 保证
-		\item<3>[权衡:] 易编程性 vs. 性能
-	  \end{description}
-	\column{0.35\textwidth}
-	\uncover<2->{\fignocaption{width = 0.50\textwidth}{figures/jsr133-jmm.png}}
-  \end{columns}
+	  % \begin{description}
+	  %   \item[一致性:] 一致性模型 + 编程模型
+	  %   \item[程序:] 遵循预定规则
+	  %   \item[系统:] 提供 SC 保证
+	  %   \item<3>[权衡:] 易编程性 vs. 性能
+	  % \end{description}
 
   % \fig{width = 0.35\textwidth}{figures/consistency-lattice.png}{一致性模型 {\scriptsize (依据 \citeinbeamer{Steinke}{JACM}{04} 中 Figure~13 重绘)}.}
 \end{frame}
@@ -188,19 +186,23 @@
 % \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{分布式系统领域中的数据一致性理论}
-  \answer{更复杂的权衡\only<1-2>{:} \uncover<3->{$\Longrightarrow$ 一致性理论不追求``相对于 SC''的正确性}}
+  \answer{更复杂的权衡\only<1-3>{:} \uncover<4->{$\Longrightarrow$ 一致性理论不追求``相对于 SC''的正确性}}
 
   \fignocaption{width = 0.30\textwidth}{figures/consistency-centric-tradeoff.pdf}
-  \vspace{-0.80cm}
+  \vspace{-0.30cm}
 
-  \uncover<2->{
+  \pause
   \begin{columns}
 	\column{0.45\textwidth}
-	  \fig{width = 0.50\textwidth}{figures/cap-theorem.png}{CAP 定理 \citeinbeamer{Brewer}{PODC}{00}}
+	  \centerline{\textcolor{red}{可用性} vs. 一致性}
+	  \vspace{-0.50cm}
+	  \fig{width = 0.45\textwidth}{figures/cap-theorem.png}{CAP 定理 \citeinbeamer{Brewer}{PODC}{00}}
+	  \pause
 	\column{0.50\textwidth}
-	  \fig{width = 0.65\textwidth}{figures/pacelc-tradeoff-new.pdf}{PACELC 权衡 \citeinbeamer{Abadi}{IEEE Computer}{12}}
+	  \centerline{\textcolor{red}{访问延迟} vs. 一致性}
+	  \vspace{-0.50cm}
+	  \fig{width = 0.60\textwidth}{figures/pacelc-tradeoff-new.pdf}{PACELC 权衡 \citeinbeamer{Abadi}{IEEE Computer}{12}}
   \end{columns}
-  }
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{分布式系统领域中的数据一致性理论}
@@ -352,10 +354,10 @@
   \mdf{blue}{blue}{论文主要贡献}{black}{
 	\begin{description}
 	  \item<2->[理念:] 提出\idea{}的数据\\一致性问题研究理念
-	  \item<+->[框架:] 提出包含``一个基础、三个维度''的技术框架 
-	  \item<+->[VPC:] 验证 Pipelined-RAM Consistency \hfill \textcolor{brown}{\scriptsize [``精细化, 可度量'']}
-	  \item<.->[PA2AM:]	量化 2-Atomicity 协议 \hfill \textcolor{brown}{\scriptsize [``精细化, 可度量'']} 
-	  \item<.->[RVSI:] 可调节 Snapshot Isolation \hfill \textcolor{brown}{\scriptsize [``多样化, 可调节'']}
+	  \item<3->[框架:] 提出包含``一个基础、三个维度''的技术框架 
+	  \item<4->[VPC:] 验证 Pipelined-RAM Consistency \hfill \textcolor{brown}{\scriptsize [``精细化, 可度量'']}
+	  \item<4->[PA2AM:]	量化 2-Atomicity 协议 \hfill \textcolor{brown}{\scriptsize [``精细化, 可度量'']} 
+	  \item<4->[RVSI:] 可调节 Snapshot Isolation \hfill \textcolor{brown}{\scriptsize [``多样化, 可调节'']}
 	\end{description}
   }
 \end{frame}

@@ -101,13 +101,10 @@
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{基础: 数据类型}
-	数据类型: 从个体到群组
-	\pause
-	\vspace{0.20cm}
 	\begin{enumerate}
 	  \setlength{\itemsep}{8pt}
-	  \item<2-> 读写寄存器
-	  \item<3-> 事务对象
+	  \item 读写寄存器
+	  \item 事务对象
 		\begin{itemize}
 		  \setlength{\itemsep}{4pt}
 		  \item 事务 $\triangleq$ 多个读写寄存器的操作序列
@@ -118,41 +115,49 @@
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{维度一: 一致性模型}
-  一致性模型 \citeinbeamer{Steinke}{JACM}{04} \citeinbeamer{Adya}{Thesis}{99}:
-  \vspace{0.20cm}
-  \begin{itemize}
-    \item 多进程并发操作某数据类型
-	\item 规定各操作的语义
-	  % \begin{itemize}
-	  %   \setlength{\itemsep}{2pt}
-	  %   \item 读写变量: 读操作允许的返回值 
-	  %   \item 事务对象: 事务创建与提交操作的语义
-	  % \end{itemize}
-  \end{itemize}
+  \begin{columns}
+	\column{0.55\textwidth}
+	  一致性模型 \citeinbeamer{Steinke}{JACM}{04} \citeinbeamer{Adya}{Thesis}{99}:
+	  \vspace{0.20cm}
+	  \begin{itemize}
+		\item 多进程并发操作某数据类型
+		\item 规定各操作的语义 {\small (合法返回值)}
+	  \end{itemize}
+	\column{0.40\textwidth}
+	  \uncover<2->{\fignocaption{width = 0.45\textwidth}{figures/specs.png}}
+  \end{columns}
 
-  \vspace{0.20cm}
-  \fig{width = 0.50\textwidth}{figures/consistency-model-tree.png}{一致性模型强弱关系 \scriptsize {(来自 \citeinbeamer{Bailis}{VLDB}{14})}.}
+  \fig{width = 0.45\textwidth}{figures/consistency-model-tree.png}{一致性模型强弱关系 \scriptsize {(来自 \citeinbeamer{Bailis}{VLDB}{14})}.}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{维度一: 一致性模型}
-  一致性模型的\textcolor{blue}{集合}定义:
-  \begin{align*}
-	\uncover<2->{\textrm{系统执行 } \; e &\triangleq \textrm{该执行所产生的事件的序列} \\[5pt]}
-	\uncover<3->{\textrm{分布式系统 } \; \mathcal{S} &\triangleq \set{\textrm{该系统的所有可能执行}} \\[5pt]}
-	\uncover<4->{\textrm{一致性模型 } \; \mathcal{C} &\triangleq \set{\textrm{该模型所允许的所有系统执行}}}
-  \end{align*}
-
-  \only<5->{\fignocaption{width = 0.20\textwidth}{figures/specs.png}}
-\end{frame}
+% \begin{frame}{维度一: 一致性模型}
+%   一致性模型的\textcolor{blue}{集合}定义:
+%   \begin{align*}
+% 	\uncover<2->{\textrm{系统执行 } \; e &\triangleq \textrm{该执行所产生的事件的序列} \\[5pt]}
+% 	\uncover<3->{\textrm{分布式系统 } \; \mathcal{S} &\triangleq \set{\textrm{该系统的所有可能执行}} \\[5pt]}
+% 	\uncover<4->{\textrm{一致性模型 } \; \mathcal{C} &\triangleq \set{\textrm{该模型所允许的所有系统执行}}}
+%   \end{align*}
+% 
+%   \only<5->{\fignocaption{width = 0.20\textwidth}{figures/specs.png}}
+% \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{维度二: 一致性实现机制}
-  \centerline{给定一致性模型 $\mathcal{C}$, 设计系统$\mathcal{S}$:}
-  \[
-	\forall e \in \mathcal{S}: e \in \mathcal{C}.
-  \]
-  \[
-	\textrm{\it i.e., } \mathcal{S} \subseteq \mathcal{C}.
-  \]
+  \begin{center}
+	给定一致性模型 $\mathcal{C}$, 设计系统$\mathcal{S}$, 使得
+
+	\pause
+	\vspace{0.30cm}
+	\textcolor{blue}{$\mathcal{S}$ 满足 $\mathcal{C}$}.
+
+	即, 每个操作的返回值都合法.
+  \end{center}
+
+  % \[
+  %   \forall e \in \mathcal{S}: e \in \mathcal{C}.
+  % \]
+  % \[
+  %   \textrm{\it i.e., } \mathcal{S} \subseteq \mathcal{C}.
+  % \]
 
   \pause
   \vspace{0.50cm}
@@ -170,21 +175,16 @@
 %%%%%%%%%%%%%%%
 \begin{frame}{维度三: 一致性度量}
   \begin{center}
-	给定系统$\mathcal{S}$及一致性模型$\mathcal{C}$,
+	给定一致性模型$\mathcal{C}$及系统$\mathcal{S}$,
   \end{center}
 
   \pause
 
-  对于$e \in \mathcal{S}$:
   \begin{description}
+	\centering
 	\setlength{\itemsep}{5pt}
-	\item[验证 (verify):] $e \in \mathcal{C} \textcolor{red}{\mathbf{?}} \Rightarrow \set{0,1}$ 
-	\item[量化 (quantify):] \only<3->{不同量化对象}\hfill
-	  \begin{description}
-		\item[量化执行 $e$:] $e \in \mathcal{C} \textcolor{red}{\mathbf{?}} \Rightarrow (0,1)$ 
-		  \pause
-		\item[量化协议 $\mathcal{P}$:] 协议 $\mathcal{P}$ 满足一致性模型的程度
-	  \end{description}
+	\item[验证 (verify):] 执行 $e$ 是否满足 $\mathcal{C} \Rightarrow \set{0,1}$ 
+	\item[量化 (quantify):] 协议 $\mathcal{P}$ 满足 $\mathcal{C}$ 的程度
   \end{description}
   % \fignocaption{width = 0.50\textwidth}{figures/qos-radio.png}
 
@@ -196,7 +196,7 @@
 	\vspace{8pt}
 	\begin{description}
 	  \centering
-	  \item[验证:] 算法设计、复杂度分析
+	  \item[验证:] 算法设计与分析
 	  \item[量化:] 数学建模与求解
 	\end{description}
   \end{center}
