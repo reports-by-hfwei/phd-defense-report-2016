@@ -37,21 +37,25 @@
 	  \begin{tabular}{cc|c|c|c|c|}
 		\cline{3-6}
 		\multicolumn{2}{c|}{} & \multicolumn{2}{c|}{\textbf{读写寄存器}} & \multicolumn{2}{c|}{\textbf{事务}} \\ \cline{3-6} 
-		\multicolumn{2}{c|}{} & 多处理器系统 & \cellcolor{red!80}{分布式系统} & \textcolor{gray}{多处理器系统} & \cellcolor{red!80}{分布式系统} \\ \hline
+		\multicolumn{2}{c|}{} & 多处理器系统 & \only<1>{分布式系统}\only<2->{\cellcolor{red}{分布式系统}} 
+			& \textcolor{gray}{多处理器系统} & \only<1>{分布式系统}\only<2->{\cellcolor{red}{分布式系统}} \\ \hline
 
-		\multicolumn{2}{|c|}{\textbf{\ideadt{}}} & {\begin{tabular}[c]{@{}c@{}}{\small 相关工作丰富}\\ {\small 理论扎实}\end{tabular}}
+			\multicolumn{2}{|c|}{\only<1-2>{\bf \ideadt{}}\only<3->{\cellcolor{brown}{\bf \ideadt{}}}} 
+			  & {\begin{tabular}[c]{@{}c@{}}{\small 相关工作丰富}\\ {\small 理论扎实}\end{tabular}}
 		& \begin{tabular}[c]{@{}c@{}}{\small 渐成趋势}\\ {\small 理论欠缺}\end{tabular} 
 		& \multirow{2}{*}[-3em]{\begin{tabular}[c]{@{}c@{}}\textcolor{gray}{\small 软件}\\ \textcolor{gray}{\small 事务内存}\end{tabular}}
 		& {\small 探索阶段} \\ \cline{1-4} \cline{6-6}
 
-		\multicolumn{1}{|c|}{\multirow{2}{*}[-1em]{\textbf{\idearm{}}}} & 验证 
+		\multicolumn{1}{|c|}{\multirow{2}{*}[-1em]{\bf \idearm{}}}
+		& \only<1-2>{验证}\only<3->{\cellcolor{brown}{验证}}
 		& \begin{tabular}[c]{@{}c@{}}{\small 典型模型}\\ {\small 理论全面}\end{tabular} 
 		& \begin{tabular}[c]{@{}c@{}}{\small 弱模型验证}\\ {\small 有待研究}\end{tabular}
 		& 
 		& \begin{tabular}[c]{@{}c@{}}{\small 理论全面}\\ {\small 指导协议设计}\end{tabular}
 		\\ \cline{2-4} \cline{6-6}
 
-		\multicolumn{1}{|c|}{} & 量化 
+		\multicolumn{1}{|c|}{} 
+		& \only<1-3>{量化}\only<4->{\cellcolor{cyan}{量化}}
 		& \begin{tabular}[c]{@{}c@{}}{\small 暂无}\\ {\small 强调正确性}\end{tabular}
 		& \begin{tabular}[c]{@{}c@{}}{\small 量化执行易}\\ {\small 量化协议难}\end{tabular}
 		&  
@@ -60,5 +64,9 @@
 	  \end{tabular}
 	}
   \end{table}
+
+  \centerline{\uncover<2->{\textcolor{red}{1. 渐成趋势}} \qquad\quad
+  \uncover<3->{\textcolor{brown}{2. 可资借鉴}} \qquad\quad
+  \uncover<4->{\textcolor{cyan}{3. 问题凸显}}}
 \end{frame}
 %%%%%%%%%%%%%%%

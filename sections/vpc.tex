@@ -40,7 +40,7 @@
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{VPC 问题定义}
-  \begin{cdef}[\pram{} 一致性模型]
+  \begin{cdef}[\PRAM{} 一致性模型]
 	\begin{center}
 	  系统执行 $e$ 满足 \PRAM{} 一致性 \\
 	  $\iff$\\
@@ -62,7 +62,7 @@
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{研究动机}
-  \question{问题: 为什么要验证 Pipelined-RAM {\small (\PRAM{})} 一致性?}
+  \question{问题: 为什么要验证 \PRAM{} 一致性?}
   \vspace{0.10cm}
 
   \begin{description}
@@ -138,11 +138,11 @@
   \end{ctheorem}
 
   \pause
-  \vspace{0.60cm}
+  \vspace{0.80cm}
 
   \rwclosure{} 算法复杂度: 
   \[
-    \underbrace{O(n^2)}_{\textrm{\#loops}} \cdot
+    \underbrace{O(n^2)}_{\textrm{\#loops}} \quad\cdot
 	\underbrace{O(n^3)}_{\textrm{transitive closure}}  = O(n^5)
   \]
 \end{frame}
