@@ -28,9 +28,6 @@
     \renewcommand{\ULthickness}{.4pt}% Resetting to ulem default
 }
 
-% \usepackage{biblatex}
-% \addbibresource{phd-defense-report.bib}
-
 \setbeamersize{text margin left = 2em, text margin right = 1em}
 \setbeamercolor{footnote mark}{fg = teal}
 \setbeamertemplate{itemize items}[default]
@@ -54,7 +51,6 @@
 % for tables
 \usepackage{multirow}
 \newcommand{\innercell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
-% \usepackage{colortbl}
 \usepackage{hhline}
 %%%%%%%%%%%%%% for appendix %%%%%%%%%%%%%%%%
 % http://www-ljk.imag.fr/membres/Jerome.Lelong/latex/appendixnumberbeamer.sty
@@ -85,6 +81,9 @@
 
 % for cite: #1: author; #2: conference #3: year
 \newcommand{\citeinbeamer}[3]{{\tiny{\textcolor{blue}{[#1@#2'#3]}}}}
+
+\usepackage[backend=biber]{biblatex}
+\addbibresource{phd-defense-report.bib}
 
 \newcommand{\term}[1]{\textcolor{blue}{\scriptsize (#1)}}
 \newcommand{\set}[1]{\{#1\}}
@@ -124,8 +123,6 @@
 %       \tableofcontents[currentsection, sectionstyle=show/shaded, subsectionstyle=show/shaded/hide]
 %   \end{frame}
 % }
-
-% \bibliography{phd-defense-report.bib}
 %%%%%%%%%%%%%%%%%%%%
 \begin{document}
 

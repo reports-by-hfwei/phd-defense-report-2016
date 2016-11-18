@@ -1,9 +1,579 @@
-@inproceedings{lloyd-cops-11,
- author = {Lloyd, Wyatt and Freedman, Michael J. and Kaminsky, Michael and Andersen, David G.},
- title = {Don'T Settle for Eventual: Scalable Causal Consistency for Wide-area Storage with COPS},
- booktitle = {Proceedings of the Twenty-Third ACM Symposium on Operating Systems Principles},
- series = {SOSP '11},
- year = {2011},
- pages = {401--416},
+@article{guerraoui:tcde16,
+  author = {Guerraoui, Rachid and Pavlovic, Matej and Seredinschi, Dragos-Adrian},
+  title = {Trade-offs in Replicated Systems},
+  journal   = {{IEEE} Data Eng. Bull.},
+  volume = {39},
+  number = {1},
+  month = mar,
+  year = {2016},
+  pages = {14--26},
+}
+
+% dubois:isca86; weak ordering
+@inproceedings{dubois:isca86,
+ author = {Dubois, Michel and Scheurich, Christoph and Briggs, Fay{\'e} A.},
+ title = {Memory Access Buffering in Multiprocessors},
+ booktitle = {Proceedings of the 13th Annual International Symposium on Computer Architecture},
+ series = {ISCA '86},
+ year = {1986},
+ pages = {434--442},
+ publisher = {IEEE Computer Society Press},
+}
+
+% lamport:tc79; sequential consistency
+@article{lamport:tc79,
+ author = {Lamport, Leslie},
+ title = {How to Make a Multiprocessor Computer That Correctly Executes Multiprocess Programs},
+ journal = {IEEE Trans. Comput.},
+ volume = {28},
+ number = {9},
+ month = sep,
+ year = {1979},
+ pages = {690--691},
+}
+
+% terry:sosp95; eventual consistency (bayou)
+@inproceedings{terry:sosp95,
+  author = {Terry, Douglas B. and Theimer, Marvin M. and Petersen, Karin and Demers, Alan J. and Spreitzer, Mike J. and Hauser, Carl H.},
+  title = {Managing Update Conflicts in Bayou, a Weakly Connected Replicated Storage System},
+  booktitle = {Proceedings of the 15th ACM Symposium on Operating Systems Principles},
+  series = {SOSP '95},
+  year = {1995},
+  pages = {172--182},
+  publisher = {ACM},
+}
+
+% brewer:podc00
+@inproceedings{brewer:podc00,
+  author = {Eric Brewer},
+  title = {Towards robust distributed systems},
+  booktitle = {Proceedings of the annual ACM SIGACT-SIGOPS Symposium on Principles of Distributed Computing (Invited Talk)},
+  series = {PODC '00},
+  month = jul,
+  year = {2000},
+}
+
+% pacelc tradeoff
+@article{abadi:computer12,
+  author    = {Daniel Abadi},
+  title     = {Consistency Tradeoffs in Modern Distributed Database System Design},
+  journal   = {IEEE Computer},
+  volume    = {45},
+  number    = {2},
+  year      = {2012},
+  pages     = {37--42},
+}
+
+@article{facebook:osr10,
+ author = {Lakshman, Avinash and Malik, Prashant},
+ title = {Cassandra: A Decentralized Structured Storage System},
+ journal = {SIGOPS Oper. Syst. Rev.},
+ volume = {44},
+ number = {2},
+ month = apr,
+ year = {2010},
+ pages = {35--40},
+ publisher = {ACM},
+}
+
+% unified theory
+@article{steinke:jacm04,
+ author = {Steinke, Robert C. and Nutt, Gary J.},
+ title = {A Unified Theory of Shared Memory Consistency},
+ journal = {J. ACM},
+ volume = {51},
+ number = {5},
+ month = sep,
+ year = {2004},
+ pages = {800--849},
+}
+
+% adya:thesis99; weak consistency
+@phdthesis{adya:thesis99,
+  author = {Adya, Atul},
+  title = {Weak Consistency: A Generalized Theory and Optimistic Implementations for Distributed Transactions},
+  year = {1999},
+  school = {Massachusetts Institute of Technology},
+}
+
+@inproceedings{amazon:sosp07,
+ author = {DeCandia, Giuseppe and Hastorun, Deniz and Jampani, Madan and Kakulapati, Gunavardhan and Lakshman, Avinash and Pilchin, Alex and Sivasubramanian, Swaminathan and Vosshall, Peter and Vogels, Werner},
+ title = {Dynamo: Amazon's Highly Available Key-value Store},
+ booktitle = {Proceedings of 21st ACM SIGOPS Symposium on Operating Systems Principles},
+ series = {SOSP '07},
+ year = {2007},
+ pages = {205--220},
+ publisher = {ACM},
+}
+
+% golab:podc11; online verification
+@inproceedings{golab:podc11,
+  author = {Golab, Wojciech and Li, Xiaozhou and Shah, Mehul A.},
+  title = {Analyzing Consistency Properties for Fun and Profit},
+  booktitle = {Proceedings of the 30th Annual ACM SIGACT-SIGOPS Symposium on Principles of Distributed Computing},
+  series = {PODC '11},
+  year = {2011},
+  pages = {197--206},
+  publisher = {ACM},
+}
+
+% terry:cacm13
+@article{terry:cacm13,
+ author = {Terry, Doug},
+ title = {Replicated Data Consistency Explained Through Baseball},
+ journal = {Commun. ACM},
+ volume = {56},
+ number = {12},
+ year = {2013},
+ pages = {82--89},
+}
+
+@ELECTRONIC{google:blog09,
+  author = {Jake Brutlag},
+  title = {Speed Matters for Google Web Search},
+  howpublished = {\url{https://services.google.com/fh/files/blogs/google_delayexp.pdf}},
+  note = {Accessed: 07-08-2016},
+}
+
+% dutta:podc04; fast read
+@inproceedings{dutta:podc04,
+  author = {Dutta, Partha and Guerraoui, Rachid and Levy, Ron R. and Chakraborty, Arindam},
+  title = {How Fast Can a Distributed Atomic Read Be?},
+  booktitle = {Proceedings of the 23rd Annual ACM Symposium on Principles of Distributed Computing},
+  year = {2004},
+  pages = {236--245},
+}
+
+@article{attiya:jacm95,
+  author = {Attiya, Hagit and Bar-Noy, Amotz and Dolev, Danny},
+  title = {Sharing Memory Robustly in Message-passing Systems},
+  journal = {J. ACM},
+  volume = {42},
+  number = {1},
+  month = jan,
+  year = {1995},
+  pages = {124--142},
+  publisher = {ACM},
+}
+
+% attiya:sicomp98
+@article{attiya:sicomp98,
+  author = {Hagit Attiya and Roy Friedman},
+  title = {A Correctness Condition for High-Performance Multiprocessors},
+  journal = {SIAM Journal on Computing},
+  volume = {27},
+  number = {6},
+  pages = {1637-1670},
+  year = {1998},
+}
+
+% elnikety:srds05; GSI
+@inproceedings{elnikety:srds05,
+  author = {Elnikety, Sameh and Zwaenepoel, Willy and Pedone, Fernando},
+  title = {Database Replication Using Generalized Snapshot Isolation},
+  booktitle = {Proceedings of the 24th IEEE Symposium on Reliable Distributed Systems},
+  series = {SRDS '05},
+  year = {2005},
+  pages = {73--84},
+  publisher = {IEEE Computer Society},
+}
+
+% sovran:sosp11; psi
+@inproceedings{sovran:sosp11,
+  author = {Sovran, Yair and Power, Russell and Aguilera, Marcos K. and Li, Jinyang},
+  title = {Transactional Storage for Geo-replicated Systems},
+  booktitle = {Proceedings of the 23rd ACM Symposium on Operating Systems Principles},
+  series = {SOSP '11},
+  year = {2011},
+  pages = {385--400},
+  publisher = {ACM},
+}
+
+% ardekani:srds; nmsi
+@inproceedings{ardekani:srds13,
+  author = {Ardekani, Masoud Saeida and Sutra, Pierre and Shapiro, Marc},
+  title = {Non-monotonic Snapshot Isolation: Scalable and Strong Consistency for Geo-replicated Transactional Systems},
+  booktitle = {Proceedings of the 32nd IEEE International Symposium on Reliable Distributed Systems},
+  series = {SRDS '13},
+  year = {2013},
+  pages = {163--172},
+  publisher = {IEEE Computer Society},
+}
+
+% berenson:sigmod95; ansi isolations
+@inproceedings{berenson:sigmod95,
+  author = {Berenson, Hal and Bernstein, Phil and Gray, Jim and Melton, Jim and O'Neil, Elizabeth and O'Neil, Patrick},
+  title = {A Critique of ANSI SQL Isolation Levels},
+  booktitle = {Proceedings of the 1995 ACM SIGMOD International Conference on Management of Data},
+  series = {SIGMOD '95},
+  year = {1995},
+  pages = {1--10},
+  publisher = {ACM},
+}
+
+% yu:tocs02
+@article{yu:tocs02,
+ author = {Yu, Haifeng and Vahdat, Amin},
+ title = {Design and Evaluation of a Conit-based Continuous Consistency Model for Replicated Services},
+ journal = {ACM Trans. Comp. Syst.},
+ volume = {20},
+ number = {3},
+ year = {2002},
+ pages = {239--282},
+}
+
+% terry:sosp13
+@inproceedings{terry:sosp13,
+ author = {Terry, Douglas B. and Prabhakaran, Vijayan and Kotla, Ramakrishna and Balakrishnan, Mahesh and Aguilera, Marcos K. and Abu-Libdeh, Hussam},
+ title = {Consistency-based Service Level Agreements for Cloud Storage},
+ booktitle = {Proceedings of the 24th ACM Symposium on Operating Systems Principles},
+ series = {SOSP '13},
+ year = {2013},
+ pages = {309--324},
+ publisher = {ACM},
+}
+
+% terry:tr13
+@techreport{terry:tr13,
+  author = {Kotla, Ramakrishna and Balakrishnan, Mahesh and Terry, Doug and Aguilera, Marcos K.},
+  title = {Transactions with Consistency Choices on Geo-Replicated Cloud Storage},
+  year = {2013},
+  month = sep,
+  institution = {Microsoft, MSR-TR-2013-82},
+}
+
+% dubois:isca86; weak ordering
+@inproceedings{dubois:isca86,
+ author = {Dubois, Michel and Scheurich, Christoph and Briggs, Fay{\'e} A.},
+ title = {Memory Access Buffering in Multiprocessors},
+ booktitle = {Proceedings of the 13th Annual International Symposium on Computer Architecture},
+ series = {ISCA '86},
+ year = {1986},
+ pages = {434--442},
+ publisher = {IEEE Computer Society Press},
+}
+
+% li:osdi12; RedBlue consistency
+@inproceedings{li:osdi12,
+ author = {Li, Cheng and Porto, Daniel and Clement, Allen and Gehrke, Johannes and Pregui\c{c}a, Nuno and Rodrigues, Rodrigo},
+ title = {Making Geo-replicated Systems Fast As Possible, Consistent when Necessary},
+ booktitle = {Proceedings of the 10th USENIX Conference on Operating Systems Design and Implementation},
+ series = {OSDI '12},
+ year = {2012},
+ pages = {265--278},
+ publisher = {USENIX Association},
+} 
+
+% ladin:tocs92; lazy replication
+@article{ladin:tocs92,
+ author = {Ladin, Rivka and Liskov, Barbara and Shrira, Liuba and Ghemawat, Sanjay},
+ title = {Providing High Availability Using Lazy Replication},
+ journal = {ACM Trans. Comput. Syst.},
+ volume = {10},
+ number = {4},
+ month = nov,
+ year = {1992},
+ pages = {360--391},
  publisher = {ACM},
 } 
+
+% bernstein:sigmod06; rcsr
+@inproceedings{bernstein:sigmod06,
+ author = {Bernstein, Philip A. and Fekete, Alan and Guo, Hongfei and Ramakrishnan, Raghu and Tamma, Pradeep},
+ title = {Relaxed-currency Serializability for Middle-tier Caching and Replication},
+ booktitle = {Proceedings of the 2006 ACM SIGMOD International Conference on Management of Data},
+ series = {SIGMOD '06},
+ year = {2006},
+ pages = {599--610},
+ publisher = {ACM},
+}
+
+% tripathi:bigdata15
+@inproceedings{tripathi:bigdata15,
+ author = {Anand Tripathi, and BhagavathiDhass Thirunavukarasu},
+ title = {A Transaction Model for Management of Replicated Data with Multiple Consistency Levels},
+ booktitle = {Proceedings of the 2015 IEEE International Conference on Big Data},
+ series = {BigData'15},
+ year = {2015},
+ pages = {470--477},
+ publisher = {IEEE Computer Society},
+} 
+
+% gibbons:sicomp97; VSC and VL
+@article{gibbons:sicomp97,
+  author = {Gibbons, Phillip B. and Korach, Ephraim},
+  title = {Testing shared memories},
+  journal = {SIAM J. Comput.},
+  volume = {26},
+  number = {4},
+  month = aug,
+  year = {1997},
+  pages = {1208--1244},
+}
+
+% cantin:tpds05; VMC
+@article{cantin:tpds05,
+  author = {Cantin, Jason F. and Lipasti, Mikko H. and Smith, James E.},
+  journal = {IEEE Transactions on Parallel and Distributed Systems},
+  title = {The complexity of verifying memory coherence and consistency},
+  volume = {16},
+  number = {7},
+  month = jul,
+  year = {2005},
+  pages = {663--671},
+}
+
+% hangal:isca04; TSO
+@inproceedings{hangal:isca04,
+  author = {Hangal, Sudheendra and Vahia, Durgam and Manovit, Chaiyasit and Lu, Juin-Yeu Joseph, and Narayanan, Sridhar},
+  title = {{TSO}tool: A Program for Verifying Memory Systems Using the Memory Consistency Model},
+  booktitle = {Proceedings of the 31st Annual International Symposium on Computer Architecture},
+  series = {ISCA '04},
+  month = jun,
+  year = {2004},
+}
+
+% manovit:spaa05; TSO
+@inproceedings{manovit:spaa05,
+  author = {Manovit, Chaiyasit and Hangal, Sudheendra},
+  title = {Efficient Algorithms for Verifying Memory Consistency},
+  booktitle = {Proceedings of the 17th Annual ACM Symposium on Parallelism in Algorithms and Architectures},
+  series = {SPAA '05},
+  year = {2005},
+  pages = {245--252},
+  publisher = {ACM},
+} 
+
+% roy:cav06; TSO
+@inproceedings{roy:cav06,
+  author = {Roy, Amitabha and Zeisset, Stephan and Fleckenstein, Charles J. and Huang, John C.},
+  title = {Fast and generalized polynomial time memory consistency verification},
+  booktitle = {Proceedings of the 18th International Conference on Computer Aided Verification},
+  series = {CAV '06},
+  year = {2006},
+  pages = {503--516},
+}
+
+% baswana:cav08; TSO
+@inproceedings{baswana:cav08,
+  author = {Baswana, Surender and Mehta, Shashank K. and Powar, Vishal},
+  title = {Implied Set Closure and Its Application to Memory Consistency Verification},
+  booktitle = {Proceedings of the 20th International Conference on Computer Aided Verification},
+  series = {CAV '08},
+  year = {2008},
+  pages = {94--106},
+}
+
+% golab:icdcs13; k-AV
+@inproceedings{golab:icdcs13,
+  author = {Golab, Wojciech and Hurwitz, Jeremy and Li, Xiaozhou (Steve)},
+  title = {On the k-Atomicity-Verification Problem},
+  booktitle = {Proceedings of the 33rd IEEE International Conference on Distributed Computing Systems},
+  series = {ICDCS '13},
+  year = {2013},
+  pages = {591--600},
+  publisher = {IEEE Computer Society},
+} 
+
+% golab:icdcs14; gamma-atomicity
+@inproceedings{golab:icdcs14,
+ author = {Golab, Wojciech and Rahman, Muntasir Raihan and Auyoung, Alvin and Keeton, Kimberly and Gupta, Indranil},
+ title = {Client-Centric Benchmarking of Eventual Consistency for Cloud Storage Systems},
+ booktitle = {Proceedings of the 34th IEEE International Conference on Distributed Computing Systems},
+ series = {ICDCS '14},
+ year = {2014},
+ pages = {493--502},
+ publisher = {IEEE Computer Society},
+}
+
+% golab:podc15; k-AV
+@inproceedings{golab:podc15,
+ author = {Golab, Wojciech and Li, Xiaozhou (Steve) and L\'{o}pez-Ortiz, Alejandro and Nishimura, Naomi},
+ title = {Computing Weak Consistency in Polynomial Time: [Extended Abstract]},
+ booktitle = {Proceedings of the 2015 ACM Symposium on Principles of Distributed Computing},
+ series = {PODC '15},
+ year = {2015},
+ pages = {395--404},
+ publisher = {ACM},
+} 
+
+% yu:disc03; prob-atomicity
+@inproceedings{yu:disc03,
+  author = {Yu, Haifeng},
+  title = {Overcoming the Majority Barrier in Large-Scale Systems},
+  booktitle = {Proceedings of the 17th International Conference on Distributed Computing},
+  series = {DISC' 03},
+  year = {2003},
+  pages= {352--366},
+  publisher = {Springer Berlin Heidelberg},
+}
+
+% gramoli:opodis07; timed qs
+@inproceedings{gramoli:opodis07,
+ author = {Gramoli, Vincent and Raynal, Michel},
+ title = {Timed Quorum Systems for Large-scale and Dynamic Environments},
+ booktitle = {Proceedings of the 11th International Conference on Principles of Distributed Systems},
+ series = {OPODIS '07},
+ year = {2007},
+ pages = {429--442},
+ publisher = {Springer-Verlag},
+} 
+
+% lee:dc05; randomized register
+@article{lee:dc05,
+ author = {Lee, Hyunyoung and Welch, Jennifer L.},
+ title = {Randomized Registers and Iterative Algorithms},
+ journal = {Distrib. Comput.},
+ volume = {17},
+ number = {3},
+ year = {2005},
+ pages = {209--221},
+}
+
+@article{bailis:pvldb12,
+ author = {Bailis, Peter and Venkataraman, Shivaram and Franklin, Michael J. and Hellerstein, Joseph M. and Stoica, Ion},
+ title = {Probabilistically Bounded Staleness for Practical Partial Quorums},
+ journal = {Proc. VLDB Endow.},
+ volume = {5},
+ number = {8},
+ year = {2012},
+ pages = {776--787},
+}
+
+% fekete:pvldb09; quantify SI
+@article{fekete:pvldb09,
+  author = {Fekete, Alan and Goldrei, Shirley N. and Asenjo, Jorge P{\'e}rez},
+  title = {Quantifying Isolation Anomalies},
+  journal = {Proc. VLDB Endow.},
+  volume = {2},
+  number = {1},
+  month = aug,
+  year = {2009},
+  pages = {467--478},
+}
+
+% papadimitriou:jacm79
+@article{papadimitriou:jacm79,
+  author = {Papadimitriou, Christos H.},
+  title = {The Serializability of Concurrent Database Updates},
+  journal = {J. ACM},
+  volume = {26},
+  number = {4},
+  month = oct,
+  year = {1979},
+  pages = {631--653},
+  publisher = {ACM},
+}
+
+% yannakakis:jacm84; view/state SR
+@article{yannakakis:jacm84,
+  author = {Yannakakis, Mihalis},
+  title = {Serializability by Locking},
+  journal = {J. ACM},
+  volume = {31},
+  number = {2},
+  month = mar,
+  year = {1984},
+  pages = {227--244},
+  publisher = {ACM},
+}
+
+% bernstein:tods83; one-copy SR
+% title = {Multiversion Concurrency Control\&Mdash;Theory and Algorithms},
+@article{bernstein:tods83,
+  author = {Bernstein, Philip A. and Goodman, Nathan},
+  title = {Multiversion Concurrency Control --- Theory and Algorithms},
+  journal = {ACM Trans. Database Syst.},
+  volume = {8},
+  number = {4},
+  month = dec,
+  year = {1983},
+  pages = {465--483},
+  publisher = {ACM},
+}
+
+@article{fekete:tods05,
+  author = {Fekete, Alan and Liarokapis, Dimitrios and O'Neil, Elizabeth and O'Neil, Patrick and Shasha, Dennis},
+  title = {Making Snapshot Isolation Serializable},
+  journal = {ACM Trans. Database Syst.},
+  volume = {30},
+  number = {2},
+  month = jun,
+  year = {2005},
+  pages = {492--528},
+  publisher = {ACM},
+}
+
+@inproceedings{cahill:sigmod08,
+  author = {Cahill, Michael J. and R\"{o}hm, Uwe and Fekete, Alan D.},
+  title = {Serializable Isolation for Snapshot Databases},
+  booktitle = {Proceedings of the 2008 ACM SIGMOD International Conference on Management of Data},
+  series = {SIGMOD '08},
+  year = {2008},
+  pages = {729--738},
+  publisher = {ACM},
+}
+
+@inproceedings{zellag:icde11,
+  author = {Zellag, Kamal and Kemme, Bettina},
+  title = {Real-time Quantification and Classification of Consistency Anomalies in Multi-tier Architectures},
+  booktitle = {Proceedings of the 27th IEEE International Conference on Data Engineering},
+  series = {ICDE '11},
+  year = {2011},
+  pages = {613--624},
+  publisher = {IEEE Computer Society},
+}
+
+@inproceedings{burckhardt:popl14,
+ author = {Burckhardt, Sebastian and Gotsman, Alexey and Yang, Hongseok and Zawirski, Marek},
+ title = {Replicated Data Types: Specification, Verification, Optimality},
+ booktitle = {Proceedings of the 41st ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages},
+ series = {POPL '14},
+ year = {2014},
+ pages = {271--284},
+ publisher = {ACM},
+}
+
+@article{adve:computer96,
+ author = {Adve, Sarita V. and Gharachorloo, Kourosh},
+ title = {Shared Memory Consistency Models: A Tutorial},
+ journal = {Computer},
+ volume = {29},
+ number = {12},
+ month = dec,
+ year = {1996},
+ pages = {66--76},
+ publisher = {IEEE Computer Society Press},
+}
+
+@article{saito:csur05,
+ author = {Saito, Yasushi and Shapiro, Marc},
+ title = {Optimistic Replication},
+ journal = {ACM Comput. Surv.},
+ volume = {37},
+ number = {1},
+ month = mar,
+ year = {2005},
+ pages = {42--81},
+ publisher = {ACM},
+}
+
+@article{bailis:pvldb13,
+ author = {Bailis, Peter and Davidson, Aaron and Fekete, Alan and Ghodsi, Ali and Hellerstein, Joseph M. and Stoica, Ion},
+ title = {Highly Available Transactions: Virtues and Limitations},
+ journal = {Proc. VLDB Endow.},
+ volume = {7},
+ number = {3},
+ month = nov,
+ year = {2013},
+ pages = {181--192},
+ publisher = {VLDB Endowment},
+}
+
+@inproceedings{brzezinski:pdp04,
+  title={From session causality to causal consistency},
+  author={Brzezinski, J and Sobaniec, C and Wawrzyniak, D},
+  booktitle={Proceedings of the 12th Euromicro Conference on Parallel, Distributed and Network-Based Processing},
+  pages={152--158},
+  year={2004},
+}
