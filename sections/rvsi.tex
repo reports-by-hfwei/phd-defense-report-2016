@@ -23,7 +23,7 @@
     \item[分布式事务:]
       \begin{itemize}
         \item ``all-or-none'' 语义
-        \item 受到分布式存储系统的关注 \citeinbeamer{Cassandra}{CASSANDRA-ISSUE-7056}{14}
+		\item 受到分布式存储系统的关注 \href{https://issues.apache.org/jira/browse/CASSANDRA-7056}{\citeinbeamer{Cassandra}{CASSANDRA-ISSUE-7056}{14}}
       \end{itemize}
 	\item[弱一致性:] \textcolor{red}{SI} \citeinbeamer{Berenson}{SIGMOD}{95} \textcolor{red}{$\xRightarrow{\text{relaxed}}$}\\
         PCSI \citeinbeamer{Elnikety}{SRDS}{05} PSI \citeinbeamer{Sovran}{SOSP}{11} NMSI \citeinbeamer{Ardekani}{SRDS}{13} 
@@ -41,19 +41,19 @@
 \begin{frame}{RVSI 定义}
   RVSI {\small (Relaxed Version Snapshot Isolation)} 定义原则:
   \begin{itemize}
-    \item<1-> $\text{RC} \supset \text{RVSI}(k_1, k_2, k_3) \supset \text{SI}$
-    \item<2-> 参数 $k_1, k_2, k_3$ 控制相对于 SI 的``异常''程度
+    \item<1-> 参数 $k_1, k_2, k_3$ 调节/控制相对于 SI 的``异常''程度
+    \item<2-> $\text{RC} \supset \text{RVSI}(k_1, k_2, k_3) \supset \text{SI}$
     \item<2-> $\text{RVSI}(\infty,\infty,\infty) = \text{RC}; \qquad \text{RVSI}(1,0,\ast) = \text{SI}$
   \end{itemize}
 
-  \vspace{0.60cm}
+  % \vspace{0.60cm}
 
-  \uncover<1->{
-  \begin{description}
-	\item[RC {\small (Read Committed)}:] 读取成功提交的更新
-	\item[SI {\small (Snapshot Isolation)}:] 观察到事务开始之前的最新的系统快照 + 无写冲突事务
-  \end{description}
-  }
+  % \uncover<1->{
+  % \begin{description}
+  %   \item[RC {\small (Read Committed)}:] 读取成功提交的更新
+  %   \item[SI {\small (Snapshot Isolation)}:] 观察到事务开始之前的最新的系统快照 + 无写冲突事务
+  % \end{description}
+  % }
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{RVSI 定义}
@@ -130,14 +130,14 @@
 %%%%%%%%%%%%%%%
 \begin{frame}{RVSI 实验评估}
   \fig{width = 0.70\textwidth}{figures/rvsi-rw4-abort-rates.pdf}
-	{读频繁 (rwRatio = 4:1) 负载下 RVSI 对事务中止率的影响.}
+  {\textcolor{teal}{读频繁} (rwRatio = 4:1) 负载下 RVSI 对事务中止率的影响.}
 
+	\pause
   \begin{description}
-	\item[\textcolor{blue}{wcf-aborted:}] 
-	  \only<2->{无显著变化 {\small ($\text{mpl} = 30\text{ 时}, \text{wcf}(1,0,0) = 0.184733$)}}
-	\item[\textcolor{red}{vc-aborted:}] \only<3->{显著减少
-		{\small ($\text{mpl} = 30 \text{ 时}, 
-		\text{vc}(1,0,0) = 0.204733; \text{vc}(1,1,0) = 0.066433; \text{vc}(2,2,1) = 0.002033$)}}
+	\item[\textcolor{blue}{wcf-aborted:}] 无显著变化 {\small ($\text{mpl} = 30\text{ 时}, \text{wcf}(1,0,0) = 0.184733$)}
+	  \pause
+	\item[\textcolor{red}{vc-aborted:}] 显著减少 {\small ($\text{mpl} = 30 \text{ 时}, 
+	  \text{vc}(1,0,0) = 0.204733; \text{vc}(1,1,0) = 0.066433; \text{vc}(2,2,1) = 0.002033$)}
   \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%
@@ -153,7 +153,7 @@
 
   \begin{description}
 	\item[\textcolor{blue}{wcf-aborted:}] 无显著变化
-	\item[\textcolor{red}{vc-aborted:}] 绝对数值少; 相对减少显著 
+	\item[\textcolor{red}{vc-aborted:}] 绝对数值小; 相对变化显著 
   \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%

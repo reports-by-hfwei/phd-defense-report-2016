@@ -13,6 +13,30 @@
   \fig{width = 0.50\textwidth}{figures/3d-framework-vpc.pdf}{VPC --- \pram{} {\small (\PRAM{})} 一致性验证.}
 \end{frame}
 %%%%%%%%%%%%%%%
+\begin{frame}{研究动机}
+  \question{问题: 为什么要验证 \PRAM{} 一致性?}
+  \vspace{0.10cm}
+
+  \begin{description}
+    \setlength{\itemsep}{10pt}
+	\item[验证:] 用户与商家就数据一致性签订 SLA {\small (Service Level Agreement)} 协议
+	  \citeinbeamer{Amazon}{SOSP}{07} \citeinbeamer{Golab}{PODC}{11}
+	  \vspace{2pt}
+	  \begin{itemize}
+		\item \textcolor{teal}{[商家]} 系统测试手段之一
+		\item \textcolor{teal}{[用户]} 确认系统是否提供了其所声称的数据一致性 
+	  \end{itemize}
+	\pause
+	\item[PRAM:] 存储系统常提供``会话'' {\small (session)} 一致性\\
+      \citeinbeamer{Saito}{CSUR}{05} \citeinbeamer{Terry}{CACM}{13}
+	  \vspace{2pt}
+      \begin{itemize}
+		\item 包含了弱一致性的诸多变体 
+		\item 近似于 PRAM 一致性 \citeinbeamer{Brzezi$\acute{\text{n}}$ski}{PDP}{04} \citeinbeamer{Bailis}{VLDB}{13}
+      \end{itemize}
+  \end{description}
+\end{frame}
+%%%%%%%%%%%%%%%
 \begin{frame}{VPC 问题定义}
   \begin{cdef}[VPC: Verifying PRAM Consistency]
     VPC 判定问题:
@@ -59,30 +83,6 @@
 	\textcolor{brown}{Rz1} \textcolor{brown}{Ry1}
 	Wa1\; \textcolor{brown}{Ra1} Wb1\; \textcolor{brown}{Rb1} \textcolor{brown}{Rx2}
   \end{gather*}
-\end{frame}
-%%%%%%%%%%%%%%%
-\begin{frame}{研究动机}
-  \question{问题: 为什么要验证 \PRAM{} 一致性?}
-  \vspace{0.10cm}
-
-  \begin{description}
-    \setlength{\itemsep}{10pt}
-	\item[验证:] 用户与商家就数据一致性签订 SLA {\small (Service Level Agreement)} 协议
-	  \citeinbeamer{Amazon}{SOSP}{07} \citeinbeamer{Golab}{PODC}{11}
-	  \vspace{2pt}
-	  \begin{itemize}
-		\item \textcolor{teal}{[商家]} 系统测试手段之一
-		\item \textcolor{teal}{[用户]} 确认系统是否提供了其所声称的数据一致性 
-	  \end{itemize}
-	\pause
-	\item[PRAM:] 存储系统常提供``会话'' {\small (session)} 一致性\\
-      \citeinbeamer{Saito}{CSUR}{05} \citeinbeamer{Terry}{CACM}{13}
-	  \vspace{2pt}
-      \begin{itemize}
-		\item 包含了弱一致性的诸多变体 
-		\item 近似于 PRAM 一致性 \citeinbeamer{Brzezi$\acute{\text{n}}$ski}{PDP}{04} \citeinbeamer{Bailis}{VLDB}{13}
-      \end{itemize}
-  \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{VPC 问题分类}
