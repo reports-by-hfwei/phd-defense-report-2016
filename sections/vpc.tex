@@ -138,7 +138,20 @@
   \end{ctheorem}
 
   \pause
-  \vspace{0.80cm}
+  \vspace{0.20cm}
+
+  \begin{cproof}
+	\begin{description}
+	  \item[``$\Longrightarrow$''] 反证法.
+	  \item[``$\Longleftarrow$''] 
+		\textcolor{red}{难点:} DAG 图蕴含着多个全序
+
+		\textcolor{red}{技巧:} 对读操作作数学归纳, 构造合法调度
+	\end{description}
+  \end{cproof}
+
+  \pause
+  \vspace{0.30cm}
 
   \rwclosure{} 算法复杂度: 
   \[
@@ -168,7 +181,7 @@
   \rwclosure{} 算法复杂度: 
   \[
     \underbrace{O(n)}_{\textrm{iterations}} \cdot
-	\underbrace{O(n^3)}_{\textsc{Topo-Schedule}} = O(n^4)
+	\underbrace{O(n^3)}_{\textcolor{red}{\textsc{Topo-Schedule}}} = O(n^4)
   \]
 \end{frame}
 %%%%%%%%%%%%%%%
@@ -227,8 +240,15 @@
 \begin{frame}{VPC 的意义}
   \mdf{red}{blue}{对 VPC 问题的系统研究}{teal}{
 	\begin{enumerate}
+	  \setlength{\itemsep}{5pt}
 	  \item \readcentric{} 算法可用于测试系统是否正确实现了 \PRAM{} 一致性模型
 	  \item \npcn{} 结果有助于理解弱一致性模型的复杂度
+		\pause
+	  \item 较早关注``弱一致性模型验证''问题 {\small (\textcolor{red}{2013$\sim$})}
+		\begin{itemize}
+		  \item 强: \citeinbeamer{Gibbons}{SICOMP}{97} \citeinbeamer{Cantin}{TPDS}{05} \citeinbeamer{Golab}{PODC}{11} 
+		  \item 弱: \citeinbeamer{Furbach}{ACSD}{14} \citeinbeamer{Bouajjani}{arXiv}{16}
+		\end{itemize}
 	\end{enumerate}
   }
 \end{frame}
