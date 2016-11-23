@@ -46,14 +46,14 @@
     \item<2-> $\text{RVSI}(\infty,\infty,\infty) = \text{RC}; \qquad \text{RVSI}(1,0,\ast) = \text{SI}$
   \end{itemize}
 
-  % \vspace{0.60cm}
+  \vspace{0.60cm}
 
-  % \uncover<1->{
-  % \begin{description}
-  %   \item[RC {\small (Read Committed)}:] 读取成功提交的更新
-  %   \item[SI {\small (Snapshot Isolation)}:] 观察到事务开始之前的最新的系统快照 + 无写冲突事务
-  % \end{description}
-  % }
+  \uncover<2->{
+	\begin{description}
+	  \item[RC:] Read Committed
+	  \item[SI:] Snapshot Isolation
+	\end{description}
+  }
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{RVSI 定义}
@@ -75,6 +75,15 @@
         \end{enumerate}
     \end{description}
   \end{cdef}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{RVSI 定义}
+  在线书店应用:
+  \begin{description}
+	\item[客户 $T_1$:] 查询某书信息 \textcolor{brown}{$\xRightarrow{k_1\text{-BV}}$} 书评, 标签可以过时
+	\item[职员 $T_2$:] 查询库存量 \textcolor{brown}{$\xRightarrow{k_2\text{-FV}}$} 希望观察到并发的库存更新
+	\item[分析师 $T_3$:] 销量 vs. 星级 \textcolor{brown}{$\xRightarrow{k_3\text{-SV}}$} 不同系统快照
+  \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{\chameleon{}~\footnotemark[1]分布式事务键值存储原型系统设计}
@@ -158,7 +167,7 @@
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{RVSI 的意义}
-  \mdf{red}{blue}{RVSI 对事务中止率的影响}{teal}{
+  \mdf{red}{blue}{RVSI 对事务中止率的影响}{
 	\begin{enumerate}
 	  \item 适当放松事务对 RVSI 版本规约的要求可降低事务中止率
 	  \item RVSI 能否``显著''降低事务中止率与负载类型相关

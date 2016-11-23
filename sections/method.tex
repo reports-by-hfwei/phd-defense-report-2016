@@ -68,50 +68,31 @@
 \begin{frame}{分布数据一致性问题}
   \fignocaption{width = 0.618\textwidth}{figures/distributed-data-consistency-explained.pdf}
 \end{frame}
-
-% 分布数据一致性问题:
-% \begin{itemize}
-%   \item [\textcolor{blue}{\bf \cmark}] 分布: 分区 + 副本
-%   \item [\textcolor{red}{\bf \xmark}] 数据: 数据类型
-%   \item [\textcolor{red}{\bf \xmark}] 一致性: 关键问题
-% \end{itemize}
-
-% \textcolor{blue}{数据类型:}
-% \begin{itemize}
-%   \item 读写寄存器/变量 \textcolor{cyan}{\small ($x,y$)}
-%   \item 数据结构 \textcolor{cyan}{\small (\textsc{Set, List})}
-%   \item 事务 \textcolor{cyan}{\small (\textsc{Tx})}
-% \end{itemize}
-
-% \textcolor{blue}{一致性关键问题:}
-% \begin{itemize}
-%   \item 模型 \textcolor{cyan}{\small (semantics; 是什么)}
-%   \item 机制 \textcolor{cyan}{\small (mechanism; 怎么做)}
-%   \item 度量 \textcolor{cyan}{\small (measurement; 怎么样)}
-% \end{itemize}
 %%%%%%%%%%%%%%%
 \begin{frame}{技术框架}
   \fig{width = 0.50\textwidth}{figures/3d-framework.pdf}{``一个基础, 三个维度''技术框架.}
-  % \begin{figure}[h!]
-  %   \centering
-  %   \begin{adjustbox}{max totalsize = {0.70\textwidth}{1.00\textheight}, center}
-  %     \input{tikz-in-beamer/3d-framework}
-  %   \end{adjustbox}
-  % \end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%
-\begin{frame}{基础: 数据类型}
-	\begin{enumerate}
-	  \setlength{\itemsep}{8pt}
-	  \item 读写寄存器
-	  \item 事务对象
-		\begin{itemize}
-		  \setlength{\itemsep}{4pt}
-		  \item 事务 $\triangleq$ 多个读写寄存器的操作序列
-		  \item 支持 ``all-or-none'' 语义
-		  \item 易于开发并发应用
-		\end{itemize}
-	\end{enumerate}
+\begin{frame}[fragile]{基础: 数据类型}
+  数据类型: 从个体到群组
+  \begin{enumerate}
+	\setlength{\itemsep}{3pt}
+	\item 读写寄存器~\footnotemark[1]\footnotetext[1]{由于历史的原因, 分布式计算理论中使用术语``寄存器''~\citeinbeamer{Lamport}{DC}{86}.}
+	  \begin{itemize}
+		\item 单个变量
+		\item 读/写操作
+	  \end{itemize}
+	  \pause
+	\item 事务对象 {\small (transaction; transactional object)}
+	  \begin{itemize}
+		\setlength{\itemsep}{3pt}
+		\item 事务 $\triangleq$ 多个读写寄存器的操作序列\\
+		  \begin{center}
+			\textcolor{blue}{\texttt{beginTx}} \texttt{r(x) r(y) w(y) w(x)} \textcolor{blue}{\texttt{endTx}}
+		  \end{center}
+		\item 原子性: ``all-or-none'' 语义, 易于开发并发应用
+	  \end{itemize}
+  \end{enumerate}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{维度一: 一致性模型}
@@ -129,6 +110,16 @@
 
   \fig{width = 0.45\textwidth}{figures/consistency-model-tree.png}{一致性模型强弱关系 \scriptsize {(来自 \citeinbeamer{Bailis}{VLDB}{14})}.}
 \end{frame}
+%%%%%%%%%%%%%%%
+% \begin{frame}{维度一: 一致性模型}
+%   \begin{cdef}[Atomicity \citeinbeamer{Lamport}{DC}{86}~\footnotemark]
+% 	每个操作 {\small (\textcolor{blue}{区间})} 都如同瞬时 {\small (\textcolor{blue}{点})} 发生的一样.
+% 
+% 	\fig{width = 0.45\textwidth}{figures/atomicity-example.pdf}{满足 atomicity 的操作集合.}
+%   \end{cdef}
+% 
+%   \footnotetext[1]{也称 Linearizability \citeinbeamer{Herlihy}{TOPLAS}{90}.}
+% \end{frame}
 %%%%%%%%%%%%%%%
 % \begin{frame}{维度一: 一致性模型}
 %   一致性模型的\textcolor{blue}{集合}定义:

@@ -76,6 +76,17 @@
   }
 \end{frame}
 %%%%%%%%%%%%%%%
+\begin{frame}{PA2AM 一致性}
+  出租车实时位置查询一致性需求:
+  \begin{description}
+	\item[场景:] 出租车实时更新位置信息 {\small (副本)}
+    \item[权衡:] 为了保证查询低延迟, 允许违反 \textcolor{blue}{\small atomicity}
+	  \pause
+	\item[有界需求:] 满足\;{\small \textcolor{blue}{2}-atomicity}
+	\item[量化需求:] 违反 atomicity 的读请求低于 \textcolor{blue}{$1\%$}
+  \end{description}
+\end{frame}
+%%%%%%%%%%%%%%%
 \begin{frame}{PA2AM 维护算法}
   \fig{width = 0.85\textwidth}{figures/atomicity-2am-read-compare.pdf}
   {经典 atomicity 算法中, 读操作需两轮网络通信 \citeinbeamer{Attiya}{JACM}{95} 
@@ -125,6 +136,12 @@
 		\end{enumerate}
 	  \end{cdef}
   \end{columns}
+
+  \vspace{0.60cm}
+
+  \[
+	\textrm{ONI} \triangleq \textrm{CP}  \cap \textrm{RWP}
+  \]
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{PA2AM 量化分析}
@@ -132,20 +149,12 @@
 
   \begin{enumerate}
 	\setlength{\itemsep}{3pt}
-	\item $\textrm{ONI} \triangleq \textrm{CP}  \cap \textrm{RWP}$
 	\item 排队论建模, 计算 $\mathbb{P}(\textrm{CP})$ 
 	\item 带时间的球盒模型, 计算 $\mathbb{P}(\textrm{RWP|CP})$
-	  \pause
-	  \begin{description}
-		\item[系统与协议:] 多副本; ``过半'' {\small (majority)} 读写
-		\item[建模目的:] 
-		  \pause
-		\item[球盒模型:] 
-		\item[带时间:] 
-	  \end{description}
   \end{enumerate}
   
   \pause
+  \vspace{0.30cm}
 
   \begin{figure}
 	\begin{subfigure}{0.50\textwidth}
@@ -156,6 +165,24 @@
 	  \centering
 	  \includegraphics[width = 0.80\textwidth]{figures/rwp.png}
 	\end{subfigure}
+  \end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{PA2AM 量化分析}
+  带时间的球盒模型, 计算 $\mathbb{P}(\textrm{RWP}|\textcolor{red}{\textrm{CP}})$:
+	\begin{description}
+	  \item<3->[建模目的:] $R(r) = w'$ ($R(r) \neq w$)
+	  \item<4->[系统协议:] $n$ 副本; ``过半数'' {\small ($M = \lfloor n / 2 \rfloor + 1$)} 通信规则
+	  \item<5->[球盒模型:] 操作产生 $n$ 个球, 发送到 $n$ 个副本盒子
+	  \item<6->[时刻$t$:] 操作 $r$ \textcolor{brown}{恰好前 $M$ 个球}到达相应盒子
+	  \item<8->[带时间:] 操作起始时间 + 消息延迟
+	\end{description}
+
+  \begin{figure}[h!]
+    \centering
+    \begin{adjustbox}{max totalsize = {0.50\textwidth}{1.00\textheight}, center}
+      \input{tikz-in-beamer/timed-balls-into-bins-overlay}
+    \end{adjustbox}
   \end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%
@@ -206,10 +233,21 @@
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{PA2AM 的意义}
-  \mdf{red}{blue}{PA2AM 可作为数据一致性/访问延迟权衡的一种可行选项}{teal}{
+  \mdf{red}{blue}{PA2AM 可作为数据一致性/访问延迟权衡的一种可行选项}{
 	\begin{enumerate}
 	  \item 既 {\small (在统计意义上)} 满足强一致性模型对数据一致性的高标准
 	  \item 又具有弱一致性模型的性能优势
+    \end{enumerate}
+  }
+
+  \pause
+  \vspace{0.30cm}
+
+  \mdf{red}{blue}{PA2AM 在相关工作中的意义}{
+	\begin{enumerate}
+	  \item {\textcolor{gray}{\small (AFAWK)}} \textcolor{red}{首次} ``确定性陈旧度有界 + 概率'' \\
+		\citeinbeamer{Aiyer}{DISC}{05} \citeinbeamer{Lee}{DC}{05} \citeinbeamer{Bailis}{PVLDB}{12}
+	  \item 度量违反 \textcolor{red}{atomicity} {\small (vs. regularity \citeinbeamer{Lee}{DC}{05} \citeinbeamer{Bailis}{PVLDB}{12})} 的程度
     \end{enumerate}
   }
 \end{frame}

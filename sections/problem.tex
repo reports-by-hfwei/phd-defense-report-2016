@@ -85,7 +85,7 @@
   \vspace{0.50cm}
   \begin{center}
 	% \textcolor{red}{分布数据一致性问题是分布共享数据服务中的核心问题}
-	\textcolor{blue}{在分布式系统中, \\以数据一致性为核心的权衡 \citeinbeamer{Guerraoui}{TCDE}{16} 使得 \\
+	\textcolor{blue}{在大规模分布式系统中, \\以数据一致性为核心的权衡 \citeinbeamer{Guerraoui}{TCDE}{16} 使得 \\
   		分布数据一致性问题成为分布共享数据服务中的核心难题.}
   \end{center}
 \end{frame}
@@ -106,7 +106,11 @@
 % \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{分布数据一致性问题}
-  \mdf{red}{red}{论文研究动机}{blue}{面向分布式系统的\\分布数据一致性理论应体现什么特性?}
+  \mdf{red}{red}{论文研究动机}{
+	\begin{center}
+	  \textcolor{teal}{面向大规模分布式系统的\\分布数据一致性理论应体现什么特性?}
+	\end{center}
+  }
 
   \pause
   \vspace{0.80cm}
@@ -267,7 +271,7 @@
   \textcolor{red}{新平台, 新特点:} 
 
   \begin{itemize}
-	\item<2-> 更复杂的权衡 $\Longrightarrow$ 正确性变得模糊
+	\item<2-> 更复杂的权衡 $\Longrightarrow$ 正确性变得模糊 {\small (blurred)}
 	\item<3-> 更丰富的应用 $\Longrightarrow$ 多样性变得重要
   \end{itemize}
 
@@ -346,17 +350,21 @@
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{数据一致性问题研究理念 (IV)}
-  \mdf{red}{red}{论文研究问题}{teal}{如何在分布式系统中\\落实\idea{}的\\分布数据一致性问题研究理念?}
+  \mdf{red}{red}{论文研究问题}{
+	\begin{center}
+	  如何面向大规模分布式系统研究\\能体现\idea{}\\理念的分布数据一致性技术?
+	\end{center}
+  }
 
   \pause
 
-  \mdf{blue}{blue}{论文主要贡献}{black}{
+  \mdf{blue}{blue}{论文主要贡献}{
 	\begin{description}
-	  \item<2->[理念:] 提出\idea{}的数据\\一致性问题研究理念
-	  \item<3->[框架:] 提出包含``一个基础、三个维度''的技术框架 
-	  \item<4->[VPC:] 验证 Pipelined-RAM Consistency \hfill \textcolor{brown}{\scriptsize [``精细化, 可度量'']}
-	  \item<4->[PA2AM:]	量化 2-Atomicity 协议 \hfill \textcolor{brown}{\scriptsize [``精细化, 可度量'']} 
-	  \item<4->[RVSI:] 可调节 Snapshot Isolation \hfill \textcolor{brown}{\scriptsize [``多样化, 可调节'']}
+	  % \item<2->[理念:] 提出\idea{}的数据\\一致性问题研究理念
+	  \item<2->[框架:] 提出包含``一个基础、三个维度''的技术框架 
+	  \item<3->[VPC:] 验证 Pipelined-RAM Consistency \hfill \textcolor{brown}{\scriptsize [``精细化, 可度量'']}
+	  \item<3->[PA2AM:]	量化 2-Atomicity 协议 \hfill \textcolor{brown}{\scriptsize [``精细化, 可度量'']} 
+	  \item<3->[RVSI:] 可调节 Snapshot Isolation \hfill \textcolor{brown}{\scriptsize [``多样化, 可调节'']}
 	\end{description}
   }
 \end{frame}
