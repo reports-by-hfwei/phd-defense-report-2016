@@ -19,22 +19,15 @@
 
   \begin{description}
     \setlength{\itemsep}{10pt}
-	\item[验证:] 用户与商家就数据一致性签订 SLA {\small (Service Level Agreement)} 协议
+	\item[验证:] 测试/确认系统是否提供了其所声称的数据一致性 
 	  \citeinbeamer{Amazon}{SOSP}{07} \citeinbeamer{Golab}{PODC}{11}
-	  \vspace{2pt}
-	  \begin{itemize}
-		\item \textcolor{teal}{[商家]} 系统测试手段之一
-		\item \textcolor{teal}{[用户]} 确认系统是否提供了其所声称的数据一致性 
-	  \end{itemize}
 	\pause
-	\item[PRAM:] 存储系统常提供``会话'' {\small (session)} 一致性\\
-      \citeinbeamer{Saito}{CSUR}{05} \citeinbeamer{Terry}{CACM}{13}
-	  \vspace{2pt}
-      \begin{itemize}
-		\item 包含了弱一致性的诸多变体 
-		\item 近似于 PRAM 一致性 \citeinbeamer{Brzezi$\acute{\text{n}}$ski}{PDP}{04} \citeinbeamer{Bailis}{VLDB}{13}
-      \end{itemize}
+	\item[PRAM:] 包含存储系统常提供的``会话''一致性\\
+	  \citeinbeamer{Terry}{PDIS}{94} \citeinbeamer{Brzezi$\acute{\text{n}}$ski}{PDP}{04}
   \end{description}
+
+  \pause
+  \fig{width = 0.50\textwidth}{figures/pram-monotonic-writes-example.pdf}{\PRAM{} 保证``单调写''性质 \citeinbeamer{Terry}{PDIS}{94} \citeinbeamer{Brzezi$\acute{\text{n}}$ski}{PDP}{04}.}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{VPC 问题定义}
@@ -175,18 +168,49 @@
 	\item \textcolor{blue}{增量式}调度每个读操作
 	\item 在读操作诱导的\textcolor{blue}{局部子图}上按\textcolor{blue}{逆拓扑序}应用 $w'wr$ 规则
   \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{VPC-MU 的多项式算法 \readcentric{}}
+  \begin{ctheorem}[\readcentric{} 算法正确性]
+	\begin{center}
+	  \vpc{mu} 实例满足 \PRAM{} 一致性\\
+		$\iff$\\
+	  \readcentric{} 算法所得图是 DAG 图.
+	\end{center}
+  \end{ctheorem}
 
   \pause
-  \vspace{0.60cm}
+  \vspace{0.30cm}
+
+  \begin{cproof}
+	\[
+	  \readcentric{} \textcolor{brown}{\xLeftrightarrow{Reachability}} \rwclosure{}
+	\]
+
+	\[
+	  \text{\textcolor{red}{难点: }} \#w'wr_{\readcentric{}} \le \#w'wr_{\rwclosure{}}
+	\]
+  \end{cproof}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{VPC-MU 的多项式算法 \readcentric{}}
   \rwclosure{} 算法复杂度: 
   \[
     \underbrace{O(n)}_{\textrm{iterations}} \cdot
-	\underbrace{O(n^3)}_{\textcolor{red}{\textsc{Topo-Schedule}}} = O(n^4)
+	\underbrace{O(n \cdot n^2)}_{\textcolor{red}{\textsc{Topo-Schedule}}} = O(n^4)
   \]
+
+  \begin{clemma}[\textsc{Topo-Schedule} 的非迭代性]
+	\begin{center}
+	  设\textsc{Topo-Schedule} 正在处理读操作$r$,\\
+	  则\textcolor{blue}{局部子图}中的每个写操作\textcolor{red}{最多只有一次机会}\\
+	  在满足规则 $w'wr$ 的三元组中扮演``$w'$角色''.
+	\end{center}
+  \end{clemma}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{实验评估}
-  实验目的:
+  实验目的~\footnotemark[1]~\footnotetext[1]{机器配置: Intel Core i7 3.40GHZ, 4GB RAM.}:
   \begin{enumerate}
 	\item 考察 \readcentric{} 算法的实际效率 
 	  \textcolor{blue}{\small ({\it vs.} 渐近时间复杂度)}
@@ -227,12 +251,14 @@
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{实验评估}
-  \fig{width = 0.50\textwidth}{figures/vpc-scalability-more.pdf}
+  \fig{width = 0.45\textwidth}{figures/vpc-scalability-more.pdf}
   {\readcentric{} 算法在满足 \PRAM{} 一致性的执行上的运行时间.}
+
+  \vspace{-0.30cm}
 
   \begin{description}
 	\centering
-	\item[\readcentric{}:] 20个进程、60,000个操作 < 600s
+	\item[\readcentric{}:] 20个进程、60,000个操作 < 600s~\footnotemark[1]~\footnotetext[1]{用于测试, 规模可用.}
 	\item[\rwclosure{}:] 20个进程、8,000个操作 > 3,000s
   \end{description}
 \end{frame}

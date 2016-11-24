@@ -8,6 +8,7 @@
 \newcommand{\mpord}[1]{\mathcal{O}_{#1}}
 \newcommand{\tsts}[1]{#1.{sts}}
 \newcommand{\tcts}[1]{#1.{cts}}
+\newcommand{\hp}{\prec_{h}}
 %%%%%%%%%%%%%%%
 \begin{frame}{RVSI 工作在技术框架中的位置}
   \fig{width = 0.50\textwidth}{figures/3d-framework-rvsi.pdf}
@@ -57,23 +58,36 @@
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{RVSI 定义}
-  SI: ``观察到事务开始 \textcolor{blue}{\scriptsize (2) }\textcolor{red}{之前的} 
+  SI: ``观察到本事务开始 \textcolor{blue}{\scriptsize (2) }\textcolor{red}{之前的} 
 	\textcolor{blue}{\scriptsize (1) }\textcolor{red}{最新的}系统 \textcolor{blue}{\scriptsize (3) }\textcolor{red}{快照}''
-  \begin{cdef}[RVSI {\small (弱化 SI 的要点)}]
+
+  \begin{cdef}[RVSI {\small (Relaxed \textcolor{brown}{Version} Snapshot Isolation)}]
 	\vspace{5pt}
 
     \begin{description}
-      \item[单变量读 $\texttt{read}(x)$:] \hfill 
+      \item[单变量:] \hfill 
         \begin{enumerate}
 		  \item 允许读 $\le k_1$ 陈旧值 (\konebv{})
 		  \item 允许读 $\le k_2$ 并发更新 (\ktwofv{})
         \end{enumerate}
-      \item[多变量读 $\texttt{read}(x), \texttt{read}{(y)}$:] \hfill
+      \item[多变量:] \hfill
         \begin{enumerate}
           \setcounter{enumi}{2}
 		\item $\textsl{dist}(\textsl{snap}{(x)},\textsl{snap}{(y)}) \le k_3$ (\kthreesv{})
         \end{enumerate}
     \end{description}
+  \end{cdef}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{RVSI 定义}
+  \begin{cdef}[RVSI 形式化定义]
+	{\footnotesize
+	\begin{align*}
+	  \forall r_i(x_{j}), w_k(x_k), c_k \in h: & \left(c_j \in h \land \bigwedge_{k=1}^{m} \left(c_j \hp{} c_k \hp{} s_i \right)\right) \Rightarrow m < k_1, \\
+	  \forall r_i(x_{j}), w_k(x_k), c_k \in h: & \left(c_j \in h \land \bigwedge_{k=1}^{m} \left(s_i \hp{} c_k \hp{} c_j \right)\right) \Rightarrow m \le k_2, \\
+	  \forall r_i(x_j), r_i(y_l), w_k(x_k), c_k \in h: & \left(\bigwedge_{k=1}^{m} \left(c_j \hp{} c_k \hp{} c_l \right)\right) \Rightarrow m \le k_3.
+	\end{align*}
+  }
   \end{cdef}
 \end{frame}
 %%%%%%%%%%%%%%%
