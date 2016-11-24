@@ -199,13 +199,31 @@
   \begin{columns}
 	\column{0.45\textwidth}
 	  \centerline{\textcolor{red}{可用性} vs. 一致性}
-	  \vspace{-0.50cm}
+	  \vspace{-0.70cm}
 	  \fig{width = 0.45\textwidth}{figures/cap-theorem.png}{CAP 定理 \citeinbeamer{Brewer}{PODC}{00}}
 	\column{0.50\textwidth}
 	  \centerline{\textcolor{red}{访问延迟} vs. 一致性}
-	  \vspace{-0.50cm}
+	  \vspace{-0.70cm}
 	  \fig{width = 0.60\textwidth}{figures/pacelc-tradeoff-new.pdf}{PACELC 权衡 \citeinbeamer{Abadi}{IEEE Computer}{12}}
   \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%
+\begin{frame}{分布式系统领域中的数据一致性理论}
+  \answer{更复杂的权衡 $\Longrightarrow$ 一致性理论不追求``相对于 SC''的正确性}
+
+  \vspace{0.30cm}
+  \begin{cdef}[Eventual Consistency]
+	\begin{quote}
+	  ``\textcolor{red}{If} clients stop issuing update requests, then the replicas
+	  will \textcolor{red}{eventually} reach a consistent state.'' \hfill --- \citeinbeamer{Terry}{SOSP}{95} \citeinbeamer{Vogels}{CACM}{09}
+	\end{quote}
+  \end{cdef}
+
+  \pause
+
+  \fignocaption{width = 0.35\textwidth}{figures/amazon-dynamo-logo.jpg}
+  \pause
+  \fignocaption{width = 0.50\textwidth, frame}{figures/understanding-eventual-consistency.png}
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{分布式系统领域中的数据一致性理论}
@@ -220,6 +238,31 @@
   \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%
+\begin{frame}{分布式系统领域中的数据一致性理论}
+  \answer{更丰富的应用 $\Longrightarrow$ 一致性理论应体现应用的多样性}
+  \vspace{0.50cm}
+
+  % 棒球赛应用一致性需求~\citeinbeamer{Terry}{SOSP}{13}:
+  % \begin{description}
+  %   \item[记分员:] 采用 \textcolor{blue}{\texttt{\small read-my-writes consistency}} 更新比赛得分
+  %   \item[电台记者:] 采用 \textcolor{blue}{\texttt{\small monotonic reads consistency}} 避免
+  %   \item[体育新闻记者:] 
+  %   \item[统计检查员:] 采用 \textcolor{blue}{\small eventual consistency}
+  % \end{description}
+
+  \begin{table}
+	\centering
+	\begin{tabular}{l||l}
+	  \hline
+	  记分员 		& Read My Writes 						\\ \hline
+	  电台记者 		& Consistent Prefix \& Monotonic Reads 	\\ \hline
+	  体育新闻记者	& Bounded Staleness 					\\ \hline
+	  统计监察员	& Eventual Consistency 					\\ \hline
+	\end{tabular}
+	\caption{棒球赛参与者对一致性的不同需求~\citeinbeamer{Terry}{SOSP}{13}.}
+  \end{table}
+\end{frame}
+%%%%%%%%%%%%%%%
 % \begin{frame}{分布式系统领域数据一致性理论}
 %   \graphicspath{{tikz-in-beamer/}}
 %   \begin{figure}[h!]
@@ -230,44 +273,7 @@
 %   \end{figure}
 % \end{frame}
 %%%%%%%%%%%%%%%
-% \begin{frame}{数据一致性问题研究的历史阶段 (结论)}
-%   \begin{columns}[T]
-% 	\column{0.40\textwidth}
-% 	  新平台, 新特点:
-% 	  \vspace{0.30cm}
-% 	  \begin{itemize}
-% 		\item 更丰富的应用
-% 		\item 更复杂的权衡
-% 	  \end{itemize}
-% 	\column{0.45\textwidth}
-% 	\only<2->{更具\textcolor{brown}{``柔性''}的数据一致性理论:}
-% 	  \vspace{0.30cm}
-% 	  \begin{itemize}
-% 		\item<3-> 多样化, 可调节
-% 		\item<4-> 精细化, 可度量
-% 	  \end{itemize}
-%   \end{columns}
-% \end{frame}
-
-  % \uncover<1->{\textcolor{blue}{需要什么样的数据一致性理论?}}
-  % \vspace{0.30cm}
-
-  % \begin{columns}[t]
-  %   \column{0.50\textwidth}
-  %     \uncover<2->{
-  %     (1) 
-  %     } 
-  %   \column{0.50\textwidth}
-  %     \uncover<3->{
-  %   　(2) 体现更丰富的 tradeoffs
-  %     \fignocaption{width = 0.60\textwidth}{figures/consistency-centric-tradeoff.pdf}
-  %     }
-  % \end{columns}
-%%%%%%%%%%%%%%%
 \begin{frame}{分布数据一致性问题研究理念 (I)}
-  % \begin{center}
-  %   \textcolor{red}{新平台, 新特点:} 更复杂的权衡、更丰富的应用
-  % \end{center}
   \textcolor{red}{新平台, 新特点:} 
 
   \begin{itemize}
@@ -275,26 +281,8 @@
 	\item<3-> 更丰富的应用 $\Longrightarrow$ 多样性变得重要
   \end{itemize}
 
-  % \vspace{0.50cm}
-  % \only<2>{
-  % 棒球赛应用一致性需求~\citeinbeamer{Terry}{SOSP}{13}:
-  % \begin{description}
-  %   \item[记分员:] 采用 \textcolor{blue}{\texttt{\small read-my-writes consistency}} 更新比赛得分
-  %   \item[电台记者:] 采用 \textcolor{blue}{\texttt{\small monotonic reads consistency}} 避免读到陈旧比分
-  % \end{description}
-  % }
-
-  % \vspace{0.25cm}
-  % \only<3>{
-  % 出租车实时位置查询一致性需求:
-  % \begin{description}
-  %   \item[权衡:] 为了保证低延迟, 允许违反 \textcolor{blue}{\texttt{\small atomicity}}
-  %   \item[有界:] 所有读请求都要满足 \textcolor{blue}{\texttt{\small 2-atomicity}}
-  %   \item[量化需求:] 违反 \textcolor{blue}{\texttt{\small atomicity}} 的读请求低于$1\%$ 
-  % \end{description}
-  % }
-
   \vspace{1.00cm}
+
   \uncover<4->{
 	\centerline{需要更具\textcolor{brown}{``柔性''}的分布数据一致性理论:}
   }
