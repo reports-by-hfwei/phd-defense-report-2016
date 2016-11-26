@@ -41,13 +41,6 @@
 \end{frame}
 %%%%%%%%%%%%%%%
 \begin{frame}{PA2AM 一致性}
-  % \begin{cdef}[``近乎强''一致性]
-  %   对某特定强一致性的弱化: \begin{itemize}
-  %     \item (版本) 允许读陈旧值，但陈旧度有限
-  %     \item (概率) 读到陈旧值的概率很小
-  %   \end{itemize}
-  % \end{cdef}
-
   \begin{center}
 	\uncover<2->{\textcolor{blue}{``近乎强''一致性 {\small (Almost Strong Consistency)}: }}
 	
@@ -60,10 +53,10 @@
 	  \setlength{\itemsep}{5pt}
 	  \item[低延迟:] \uncover<4->{读操作只需一轮网络通信} 
 	  \item[尽可能强:] \uncover<6->{对 atomicity {\small (strongest)} 的弱化}
-    \begin{itemize}
-	  \item<6-> \textcolor{brown}{\it (版本)} 2-atomicity: 允许读陈旧值, 但\textcolor{red}{陈旧度 $k \le 2$}
-	  \item<6-> \textcolor{brown}{\it (概率)} \textcolor{red}{$\mathbb{P}(k = 2)$ 很小}
-    \end{itemize}
+		\begin{itemize}
+		  \item<7-> \textcolor{brown}{\it (版本)} 2-atomicity: 允许读陈旧值, 但\textcolor{red}{陈旧度 $k \le 2$}
+		  \item<8-> \textcolor{brown}{\it (概率)} \textcolor{red}{$\mathbb{P}(k = 2)$ 很小}
+		\end{itemize}
     \end{description}
   \end{cdef}
   }
@@ -96,6 +89,8 @@
 %%%%%%%%%%%%%%%
 \begin{frame}{PA2AM 量化分析}
   \question{问题: PA2AM 维护算法在多大程度上违反了 atomicity?}
+
+  \pause
   \vspace{0.10cm}
 
   \begin{ctheorem}[充要条件]
@@ -107,8 +102,6 @@
 	\vspace{-0.50cm}
 	\fignocaption{width = 0.35\textwidth}{figures/2atomicity-case.pdf}
   \end{ctheorem}
-
-  \pause
 
   \begin{cproof}
 	\textcolor{red}{分情况分析:} 读写操作之间的偏序关系与 reads-from 关系.
@@ -153,7 +146,6 @@
 	\item 带时间的球盒模型, 计算 $\mathbb{P}(\textrm{RWP|CP})$
   \end{enumerate}
   
-  \pause
   \vspace{0.30cm}
 
   \begin{figure}
@@ -171,10 +163,11 @@
 \begin{frame}{PA2AM 量化分析}
   带时间的球盒模型, 计算 $\mathbb{P}(\textrm{RWP}|\textcolor{red}{\textrm{CP}})$:
 	\begin{description}
-	  \item<3->[建模目的:] $R(r) = w'$ ($R(r) \neq w$)
-	  \item<4->[系统协议:] $n$ 副本; ``过半数'' {\small ($M = \lfloor n / 2 \rfloor + 1$)} 通信规则
+	  \item<3->[建模目的:] $\mathbb{P}\set{R(r) = w'}$ ($R(r) \neq w$)
+	  \item<4->[系统协议:] $n$ 副本节点; ``过半数'' {\small ($M = \lfloor n / 2 \rfloor + 1$)} 通信规则
 	  \item<5->[球盒模型:] 操作产生 $n$ 个球, 发送到 $n$ 个副本盒子
 	  \item<6->[时刻$t$:] 操作 $r$ \textcolor{brown}{恰好前 $M$ 个球}到达相应盒子
+	  \item<7->[$R(r) \neq w$:] 操作 $w$ 相应 $M$ 个球尚在途中 
 	  \item<8->[带时间:] 操作起始时间 + 消息延迟
 	\end{description}
 
